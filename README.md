@@ -7,7 +7,7 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - Introduction to programming with Ruby.
 - Object Oriented Programming with Ruby.
 - [Core Ruby Tools](https://github.com/SandyRodger/launch_school_books/edit/main/Ruby%20Core%20Tools.md)
-- Introduction to HTTP.
+- [Introduction to HTTP](https://launchschool.com/books/http)
 - Introduction to SQL.
 - Introduction to Regular Expressions.
 - Working with Web APIS.
