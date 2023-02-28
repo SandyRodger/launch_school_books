@@ -150,7 +150,23 @@ $ ls -l test.sh
 -rwxr-xr--  1 bob admin 0B Jul 15 15:24 test.sh
 ```
 - 
+### [Users and Groups](https://launchschool.com/books/command_line/read/permissions#usersandgroups)
 
+- All files and directories in Linux/Unix are assigned to a user and a group.
+- Users can belong to multiple groups, which will grant it access-types assigned to that group.
+- Groups can have multiple users.
+- Use the `groups` command to see if your user is part of a certain group:
+```
+groups
+# => staff everyone localaccounts _appserverusr admin _appserveradm _lpadmin com.apple.sharepoint.group.1 _appstore _lpoperator _developer _analyticsusers com.apple.access_ftp com.apple.access_screensharing com.apple.access_ssh com.apple.access_remote_ae
+```
+
+### [Root user and Sudo](https://launchschool.com/books/command_line/read/permissions#rootuserandsudo)
+
+- 'Root' is the super-user (in Linux/Unix). In the airport analogy it is god. So only log in as root when strictly necessary.
+- Switch to root user with the command: `su -` and then password.
+- Even root cannot execute a file with no execute permission.
+- `sudo` is like 'super-user do' and is a safer way of borrowing root user's power for a single command.
 ## My CLI vocab
 (I'm only noting those that I haven't remembered and made part of my daily coding usage)
 
