@@ -35,13 +35,13 @@ Why use the CLI?
   - The input:
     - Will always take the format: `[command][arguments]` 
   
-  - The most common use of the command line is what's called 'system administration', which is just managing computers and servers. THis includes installing and configuring software, monitoring comnputer resources, setting up web-servers and automating processes. These include common tasks such as:
+  - The most common use of the command line is what's called 'system administration', which is just managing computers and servers. This includes installing and configuring software, monitoring comnputer resources, setting up web-servers and automating processes. These include common tasks such as:
     - Restart servers
-    - Rename hundreds/thousands of fiules according to a prescribed pattern
+    - Rename hundreds/thousands of fi les according to a prescribed pattern
     - Manage system logs
-    - Sety up scheduled tasks (cron jobs)
+    - Set up scheduled tasks (cron jobs)
     - Debug server issues
-    - Monkey patch code on a server
+    - Monkey-patch code on a server
     - query data
     - set up databases and servers 
 
@@ -77,7 +77,7 @@ SOMETHING="some value"
 echo $SOMETHING
 # => some value
 ```
- - To change your prompt:
+ - To temporarily change your prompt:
 
 ```ruby
 $ PS1="(testprompt)> "
@@ -86,11 +86,11 @@ $ PS1="(testprompt)> "
 
 - Then there's a section on creating a `.bashrc` file and `.bash_profile` file.
 - Then there's a section on permanently changing your bash prompt.
-- A note about how single v double quotes interpolates differently.
+- A note about how single v. double quotes interpolates differently.
 
 ### [$PATH and Executables](https://launchschool.com/books/command_line/read/environment#path)
 
-- The `PATH` variables gives context that the Command Line needs to figure out which file to execute. It determines which directories are searched when a command is entered.
+- The `PATH` variables gives context that the Command Line needs in order to figure out which file to execute. It determines which directories are searched when a command is entered.
 - `PATH` is an ordered, colon-delimited, list of directories that contains executables.
 - The order of the directories is first-found-first-execute.
 - If you use `/`,`.`, or `~` before a command the command line will interpret that as an actual path to a file and not use `PATH`.
@@ -178,7 +178,7 @@ groups
 
 ### [Changing context in Terminal](https://launchschool.com/books/command_line/read/other_interfaces)
 
-- Some commands completely change the context of the command line.
+- Some commands completely change the context of the command line. For instance:
   - Database management commands:
     - `mysql`
     - `psql`
@@ -216,12 +216,12 @@ groups
 
 - Some devs use the CLI as their IDE (Integrated Development Environment)
 
-## [conclusion](https://launchschool.com/books/command_line/read/conclusion)
+## [Conclusion](https://launchschool.com/books/command_line/read/conclusion)
 
 - The command line is an interface to your computer's files and directories
 - Everything you do in the command line is related to files, directories and executables.
 - Environment variables provide context for what you do in the command line.
-- Access to files, diretories and executables is determined by permissions. There are permissions for the file's user(owner), group and other(everyone else).
+- Access to files, directories and executables is determined by permissions. There are permissions for the file's user(owner), group and other(everyone else).
 - Some programs provide a completely different context within the command line interface.
 
 ## My CLI vocab
