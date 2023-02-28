@@ -1,8 +1,8 @@
-[Core Ruby Tools](https://launchschool.com/books/core_ruby_tools)
+# [Core Ruby Tools](https://launchschool.com/books/core_ruby_tools)
 
  ### [Introduction](https://launchschool.com/books/core_ruby_tools/read/introduction)
  
-Ruby tools:
+Some Ruby tools we'll cover or have covered:
 
 - RubyGems
 - Rbenv / RVM
@@ -13,7 +13,7 @@ Ruby tools:
 - Rake
 - Rails
 
- It's a lot, but it's also what makes Ruby so handy.
+ It's a lot, but it's also what makes Ruby so handy. This book is about learning how to navigate through your coding environment and potentially debug problems. These are not univerdal coding concepts.
  
  ## [Your Ruby Installation](https://launchschool.com/books/core_ruby_tools/read/your_ruby_installation)
  
