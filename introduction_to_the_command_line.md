@@ -105,7 +105,51 @@ $PATH
 - `which [executable file]` is used here to see where a command is to be found.
 - The path lookup rules for all commands relies heavily on managing the `$PATH` environment carefully.
 
-##[Permissions](https://launchschool.com/books/command_line/read/permissions)
+## [Permissions](https://launchschool.com/books/command_line/read/permissions)
+
+- Ownership
+  - user
+  - group
+  - other 
+- Access
+  - read (`r`)
+  - write (`w`)
+  - execute (`x`)
+
+- VIP lounge at airport analogy
+
+### [Interpreting permissions](https://launchschool.com/books/command_line/read/permissions#interpretingpermissions)
+- How to read permissions:
+```
+# +-------- Directory or not
+# |  +------- User Read, Write, Execute
+# |  |   +------- Group Read, Write, Execute
+# |  |   |   +----- Other Read, Write, Execute
+# |  |   |   |   +--- The name of the user
+# |  |   |   |   |     +--- The name of the group
+# |  |   |   |   |     |
+# d|rwx|rwx|rwx user group
+```
+### [Setting permissions](https://launchschool.com/books/command_line/read/permissions#settingpermissions)
+
+- One can set permissions with octal numbers:
+```
+$ chmod 777 test.sh
+
+$ ls -l test.sh
+-rwxrwxrwx  1 bob admin 0B Jul 15 15:24 test.sh
+
+$ chmod 000 test.sh
+
+$ ls -l test.sh
+----------  1 bob admin 0B Jul 15 15:24 test.sh
+
+$ chmod 754 test.sh
+
+$ ls -l test.sh
+-rwxr-xr--  1 bob admin 0B Jul 15 15:24 test.sh
+```
+- 
 
 ## My CLI vocab
 (I'm only noting those that I haven't remembered and made part of my daily coding usage)
@@ -113,7 +157,7 @@ $PATH
 [Some common commands](https://launchschool.com/books/command_line/read/command_line_interface#commoncommands)
 
 - `echo` - sends text to the CLI's output.
--`tar` - an archival command that can archive, compress and extract files.
+- `tar` - an archival command that can archive, compress and extract files.
  
  ```ruby
  $ tar -c -z -f ./archive.tgz ./files-to-archive/
@@ -133,3 +177,19 @@ $PATH
 - 'tree' - prints a visual representation of current directory and children.
 - `ctrl + C` - terminates process.
 - `which` - tells you where a command is stored. `which touch`
+- `chmod` - change files permissions ie. `chmod +w sample.txt` to add write access. More examples:
+``` 
+$ ls -lah test.txt
+-rwxr--r--  1 bob  staff  1GB Jul 14 15:24 test.txt
+
+$ # Remove write access for user
+$ chmod u-w test.txt
+$ ls -lah test.txt
+-r-xr--r--  1 bob  staff  1GB Jul 14 15:24 test.txt
+
+$ # Add execute access for group
+$ chmod g+x test.txt
+$ ls -lah test.txt
+-r-xr-xr--  1 bob  staff  1GB Jul 14 15:24 test.txt
+```
+- 
