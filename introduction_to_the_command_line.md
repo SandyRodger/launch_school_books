@@ -167,6 +167,63 @@ groups
 - Switch to root user with the command: `su -` and then password.
 - Even root cannot execute a file with no execute permission.
 - `sudo` is like 'super-user do' and is a safer way of borrowing root user's power for a single command.
+- One of the ways Sudo is safer is a default 5 minute log out if no root-necessary commands have been run.
+
+### [Summary](https://launchschool.com/books/command_line/read/permissions#summary)
+
+- Permissions are assigned to files and directories, not users and groups.
+- Access levels are determined by the `rwx` permissions for the owner, group and other.
+- A file must have `x` permission to execute that file directly.
+- To change the permissions of a file/directory, you need to be logged in as root or use `sudo`.
+
+### [Changing context in Terminal](https://launchschool.com/books/command_line/read/other_interfaces)
+
+- Some commands completely change the context of the command line.
+  - Database management commands:
+    - `mysql`
+    - `psql`
+    - `redis-client`
+    - `mongo`
+  - Text editors
+    - `vim`
+    - `pico`
+    - `nano`
+    - `emacs`
+  - REPLs
+    - `irb`
+    - `python`
+    - `php -a`
+  - System Monitoring
+    - `top`
+    - `htop`
+  - Reading files or manuals
+    - 'man`
+    - `less`
+    - `more`
+  - Window session handling
+    - `byobu` 
+    - `screen`
+    - `tmux`
+
+- `top` is a command that displays the data being processed by your computer in real time. It's basically doing what your activity monitor is doing.
+
+## [REPLs](https://launchschool.com/books/command_line/read/other_interfaces#repl)
+
+- The bash shell (aka the CLI) is a repl, as is irb.
+- Also `node`
+
+## [Editors](https://launchschool.com/books/command_line/read/other_interfaces#editors)
+
+- Some devs use the CLI as their IDE (Integrated Development Environment)
+
+## [conclusion](https://launchschool.com/books/command_line/read/conclusion)
+
+- The command line is an interface to your computer's files and directories
+- Everything you do in the command line is related to files, directories and executables.
+- Environment variables provide context for what you do in the command line.
+- Access to files, diretories and executables is determined by permissions. There are permissions for the file's user(owner), group and other(everyone else).
+- Some programs provide a completely different context within the command line interface.
+
 ## My CLI vocab
 (I'm only noting those that I haven't remembered and made part of my daily coding usage)
 
