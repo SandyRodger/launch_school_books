@@ -13,7 +13,7 @@ Some Ruby tools we'll cover or have covered:
 - Rake
 - Rails
 
- It's a lot, but it's also what makes Ruby so handy. This book is about learning how to navigate through your coding environment and potentially debug problems. These are not univerdal coding concepts.
+ It's a lot, but it's also what makes Ruby so handy. This book is about learning how to navigate through your coding environment and potentially debug problems. These are not univeral coding concepts that require mastery.
  
  ## [Your Ruby Installation](https://launchschool.com/books/core_ruby_tools/read/your_ruby_installation)
  
@@ -29,12 +29,13 @@ Some Ruby tools we'll cover or have covered:
   `/usr/bin/ruby -v` tells you which version you're using. 
   - Undesireably, Mac system Ruby needs root access to install and manipulate other Ruby components. Root access isn't always available to the developer, so this can be a ball-ache.
   - So it's outdated and denies you full access, this is why you should install a Ruby Version Manager and use it to install the "Rubies" you need. 
-  - You can do this by installing homebrew, which is a package manager designed for Macs.
+  - You can do this by installing [homebrew](https://docs.brew.sh/), which is a package manager designed for Macs.
   #### On Linux
   - If Ruby is not already installed you can install it with your package manager (RPM, Yum, DPKG) and it will end up in the `/usr/bin` and `/usr/lib/ruby` directories.
   
   ### [What Ruby am I running?](https://launchschool.com/books/core_ruby_tools/read/your_ruby_installation)
    - `which ruby` tells you where ruby is. Mine is `/usr/bin/ruby`, which is the pre-installed Mac version, and not good enough. 
+  - If `which ruby` has rbenv in it, you are using a bersion installed by rbenv. Ditto for RVM.
    - I need to install a Ruby Version Manager later.
    - The system Ruby also stores additional commands, like `irb` and `rake` in the same directory.
    - `usr/bin/ruby` contains other Ruby libraries and gems, but actually it's an alias for the real directories, nestled more deeply in `/System/Library/Frameworks`, which is a place you should never modify directly.
@@ -44,13 +45,13 @@ Some Ruby tools we'll cover or have covered:
     
    - `ruby -v` tells you which version of ruby you have installed. 
    - The latest version of Ruby can be seen [here](https://www.ruby-lang.org/en/downloads/)
-   - 
+   
    ### What gets installed with Ruby? 
    
     - The core library
     - The standard library
     - The `irb` REPL
-    - The rake utility (a tool to automate Ruby dev tasks
+   - The rake utility (a tool to automate Ruby dev tasks)
     - The gem command (a tool to manage Ruby Gems)
     - Documentation tools (`rdoc` and `ri`)
   
