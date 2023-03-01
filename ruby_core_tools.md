@@ -189,3 +189,143 @@ rvm --ruby-version use 2.2.2
 - A note on gemsets, which is a poor substitute for Bundler.
 
 ### [rbenv](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers#rbenv)
+
+-  You may feel that RVM and rbenv work very similarly. There are minor syntax variations. It is under the hood thtat the real differences are to be found.
+-  rbenv uses a set of small scripts called 'shims'. They are saved in a place where Ruby must search when it can't find a command, like `rubocop`.
+
+#### installing rubies
+
+- Step 1 of rbenv is installing the ruby you need.
+- run `rbenv versions` to see which versions of ruby you already have.
+- Unlike RVM, rbenv does not provide a way to install rubies by default. But we can make this, by installing the `ruby-build` rbenv plug-in:
+```
+brew install ruby-build
+```
+- Then just `rbenv install 2.2.2`
+#### Setting local rubies
+- set default ruby (here to version 2.3.1) with: `rbenv global 2.3.1`
+- use the `rbenv local` command from a project's directory to set a project's ruby. As in:
+```
+cd ~/src/magic
+rbenv local 2.0.0
+```
+- This works just like RVM.
+
+#### Where are my rubies, gems and apps now?
+- rbenv creates a directory called the rbenv root directory at installation. Find it with `rbenv root`.
+- The root directory contains a `versions` directory and a `shims` directory.
+- inside `versions` you will find one directory for each version of ruby.
+- Now `gem env` shows you the active version of the ruby and gem currently active.
+
+##### When things go wrong
+ - rbenv is safer than RVM because it makes small, one-time changes to your PATH and leaves your system to run as it was designed to.
+ - Then a section on how to troubleshoot rbenv.
+
+##### Plugins
+
+-  Don't forget to check these out as your  use of rbenv expands. Of particular ntoe is `ruby-build` which adds the `install` command to the `rbenv` command so you can install rubies directly with rbenv.
+
+### [Summary](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers#summary)
+
+## [Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler)
+
+- Dealing with dependencies.
+- Most devs use a Ruby Version manager to manage multiple rubies, you can use this to deal with gem dependencies, but most don't. For that we have a dependency manager like Bundler.
+-
+### [Installing Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler#installingbundler)
+
+- My version of ruby has Bundler pre-installed.
+
+### [Gemfile and Gemfile.lock](https://launchschool.com/books/core_ruby_tools/read/bundler#gemfile)
+
+- Your gem file is where you save your gems.
+- Note that the gem is Bundle, but the command is `bundler` (even though `bundele` is an alias).
+- Bundler won't always choose the latest gem version. It may just pick one which works.
+
+### [Running apps with Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler#runningappswithbundler)
+
+- add `require 'bundler/setup'` to your app, before other apps. (Unnessecary if your app is a Rails app).
+- `bundler/setup` first removes all Gem directories from Ruby's `$LOAD_PATH` global array. Normally Ruby would look in this array to find the directories that it searches for required files. `bundler/setup` suplants these with its `Gemfile.lock` and adds those directories to the `$LOAD_PATH`. So now all you need to do is run your app and the correct version of the gem will be loaded.
+
+### [Where are my Rubies, Gems and Apps now?](https://launchschool.com/books/core_ruby_tools/read/bundler#wherearerubiesgemsapps)
+- They are where they were before you installed Bundler. No change.
+- Something about using `binstubs` feature.
+
+### [Bundle exec](https://launchschool.com/books/core_ruby_tools/read/bundler#bundleexec)
+-  for when the app has conflict with your `bundler/setup` command.
+-  A section on when you should use this command. Some say always.
+
+#### binstubs
+
+- An alternative to `bundle exec`.
+
+### [When things go wrong](https://launchschool.com/books/core_ruby_tools/read/bundler#whenthingsgowrong)
+
+ eg.
+ ```
+ Gem::LoadError: You have already activated ...
+ ```
+ or
+ ```
+ in `require': cannot load such file -- colorize (LoadError)
+ ```
+ - And some more tricks to do when bindle fails. Many of them involved uninstalling and reinstalling Bundler.
+
+### [Summary](https://launchschool.com/books/core_ruby_tools/read/bundler#summary)
+
+## [Rake](https://launchschool.com/books/core_ruby_tools/read/rake)
+
+### [What is Rake](https://launchschool.com/books/core_ruby_tools/read/rake#whatisrake)
+
+- Rake is a rubygem that automates many common tasks involved with building, testing, packaging and installing programs. It comes with Ruby when installed. It automates the following tasks:
+  - Set up required environment by creating directories and files.
+  - Set up and initialize databases
+  - Run tests
+  - Package your app and all of its files for distribution
+  - Install the application
+  - Perform common Git tasks
+  - Rebuild certain files and directories based on changes to other files and directories.
+- So it can automate any task involved in development/ testing/ release cycles.
+
+### [How do you use rake?](https://launchschool.com/books/core_ruby_tools/read/rake#howtouserake)
+
+- `Rakefile`
+- Rake runs a default task if you do not specify which task you want when calling it.
+- `desc`
+- `task`
+- `rake -T` : find out what tasks it can run.
+- `bundle exec rake` may be necessary to run the right rake version.
+
+### [Why do I need Rake?](https://launchschool.com/books/core_ruby_tools/read/rake#whyrake)
+
+- Because nearly every Ruby project has one.
+- You basically always use Rake, because it is so useful. Here are some tasks it can automate:
+  - Run all tests.
+  - Increment a version number.
+  - Create your release notes.
+  - Make a complete backup of your local repo.
+- Sure, you can do all these things manually, but why would you?
+### [A real world example](https://launchschool.com/books/core_ruby_tools/read/rake#realworldexample)
+- the Pry gem `Rakefile`
+
+### [When things go wrong](https://launchschool.com/books/core_ruby_tools/read/rake#whenthingsgowrong)
+
+## [Conclusion](https://launchschool.com/books/core_ruby_tools/read/conclusion)
+
+- This is by no means all the tools. Some coming later in the course are:
+  - Sinatra
+  - Sequel
+  - Rails gem
+  - PostgreSQL 
+### [Relationships](https://launchschool.com/books/core_ruby_tools/read/conclusion#relationships)
+
+- How tools interact.
+- Ruby Version Manager is at the top level.
+- Within each Ruby you can have many gems.
+- Each gem can have mutiple versions.
+
+### [Useful links](https://launchschool.com/books/core_ruby_tools/read/conclusion#usefullinks)
+
+
+
+
