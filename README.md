@@ -9,7 +9,7 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - [Core Ruby Tools](https://github.com/SandyRodger/launch_school_books/edit/main/Ruby%20Core%20Tools.md)
 - [Introduction to HTTP](https://launchschool.com/books/http)
 - Introduction to SQL.
-- Introduction to Regular Expressions.
+- [Introduction to Regular Expressions](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md)
 - Working with Web APIS.
 - Agile Planning.
 - Demystifying Rails.
