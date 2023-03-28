@@ -6,15 +6,22 @@ Some Ruby tools we've covered:
 
 - RubyGems
 - Rubocop
-- databases
+- The Command Line
+- Code Editors
+- Git & Github
 
 Some Ruby tools we'll look at in this book:
 
 - Rbenv / RVM
-- Bundler
-- SQL
+- Gems
 - Rake
+- Bundler
+
+And Ruby tools for later:
+
+- SQL
 - Rails
+- Databases
 
  It's a lot, but it's also what makes Ruby so handy. This book is about learning how to navigate through your coding environment and debug problems. These are not univeral coding concepts that require mastery.
  
