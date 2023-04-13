@@ -1,8 +1,7 @@
 # [Http Book](https://launchschool.com/books/http)
+# [Background](https://launchschool.com/books/http/read/background)
 
 ## [Introduction](https://launchschool.com/books/http/read/introduction#gettingstarted)
-## [Background](https://launchschool.com/books/http/read/background)
-
 - Your browser is the interface/window through which you interact with the World Wide Web.
 - Under you browser's hood lies a collection of files that make viewing the page possible:
   - CSS
@@ -143,8 +142,158 @@ http://www.example.com:88/home?item=book
 |&| This is a reserved character used when adding more parameters to the query string
 |results=10| This is also a parameter name value pair
 
-## Preparations
-## Making Requests
+For example:
+
+```
+http://www.phoneshop.com?product=iphone&size=32gb&color=white
+```
+
+<p align="center">
+<img width="682" alt="Screenshot 2023-04-13 at 08 33 04" src="https://user-images.githubusercontent.com/78854926/231687023-1dbc9695-f7ff-429e-b9e8-34f104108580.png">
+</p>
+
+- Here 3 name value pairs are passed to the server from the URL:
+  - `product=iphone`
+  - 'size=32gb'
+  - 'color-white'
+- This is asking the `phoneshop` server to narrow down on a product, `iphone`, size '32gb' and colour 'white'. What the server doe with these parameters is up to the server side application.
+- **Because query strings are passed in from the URL they are only used in HTTP GET requests.**
+- There are different types of HTTP requests. Typing a URL into the browser is a HTTP GET request. Most links do too.
+
+<p align="center">
+<img width="689" alt="Screenshot 2023-04-13 at 08 42 23" src="https://user-images.githubusercontent.com/78854926/231689211-322e15cf-ccb0-4af7-92d3-5069b1026ff2.png">
+</p>
+
+- Query strings are great for passing additional information to the server, but here are some disadvantages:
+  - Max length: If you have a lot of data to pass you won't be able to do it with query strings.
+  - Name/Value pairs are visible in the URL. So passing things like passwords is ill-advised.
+  - Space and special characters like `&` can't be used with query strings they must be URL 
+
+### [URL encoding](https://launchschool.com/books/http/read/what_is_a_url#urlencoding)
+
+- URLs can only accept certain ASCII characters.
+- Chars which have to be encoded:
+  - reserved chars
+  - unsafe chars
+  - chars not from 128 character ASCII set.
+- URL encoding replaces these chars with `%` and a hexadecimal number representing the equivalent UTF-8 number.
+- You don't need to get UTF-8, just know that it uses 1-4 bytes to represent every possible character in the Unicode character set.
+- Here are some popular encoded characters and examples:
+
+|Char  |UTF-8 code|URL
+| :--- | :---: | :---: |
+|space|%20|http://www.thedesignshop.com/shops/tommy%20hilfiger.html
+|$|%24|http://www.spam.com/i-have-%2410-million-for-you
+|£|%C2%A3| http://www.spam.com/big-inheritance-%C2%A3-millions
+|€|%E2%82%AC|http://www.spam.com/big-inheritance-%E2%82%AC-millions
+|𐍈|%F0%90%8D%88|http://www.symbols-of-the-world.com/hwair-%F0%90%8D%88
+
+- All characters in the ASCII set have equivalent UTF-8 numbers. 
+- Characters must be encoded if:
+  - They have no coresponding character within the standard ASCII character set.
+  - Using characters would be unsafe because it could be modified or misinterpreted by some systems. For example `%` is unsafe because it is used to encode other characters. Other unsafe characters include (but are not limited to):
+    - spaces
+    - "
+    - #
+    - >
+    - <
+    - {
+    - }
+    - [
+    - ]
+    - ~
+  - The character is reserved for special use in the URL. For example:
+    -  ?
+    -  : (delimits host/port components and user/password.
+    -  @
+    -  & (is a query string delimiter)
+
+- What characters can be used safely within a URL?
+  - Alphanumeric characters
+  - _
+  - .
+  - +
+  - !
+  - '
+  - (
+  - )
+  - ' (this is clarified [here](https://launchschool.com/posts/915605ee) which explains that single quote are safe but double quotes are unsafe)
+  - , 
+  - Reserved characters when used for their reserved purpose.
+
+### [Summary](https://launchschool.com/books/http/read/what_is_a_url#summary)
+
+# HTTP
+
+## [Preparations](https://launchschool.com/books/http/read/preparations)
+
+### [HTTP GUI tools](https://launchschool.com/books/http/read/preparations#httpguitools)
+
+-  I chose paw (or [RapidAPI](https://paw.cloud)) 
+
+### [HTTP command line tools](https://launchschool.com/books/http/read/preparations#httpcommandlinetools)
+
+- Curl is available with the command `curl www.google.com`
+
+## [Making Requests](https://launchschool.com/books/http/read/making_requests)
+
+### [HTTP request with a browser](https://launchschool.com/books/http/read/making_requests#httprequestwithabrowser)
+
+- Example of typing in https://www.reddit.com
+- The server that hosts the main Reddit website handles your request and sends back a response to your browser. Your browser renders that as the website you see.
+
+### [HTTP request with an HTTP tool](https://launchschool.com/books/http/read/making_requests#httprequestwithhttptool)
+
+- How do we see the raw HTTP data? We use an HTTP tool
+- It issues the request and displays the raw text data.
+- For a trainee web-developer you need to be able to scan and understand this raw data. Just to get a general idea.
+
+### [Using the inspector](https://launchschool.com/books/http/read/making_requests#usingtheinspector)
+
+- Every modern browser has a way to view HTTP requests, usually called an inspector.
+- `option + command + i` to pop it up.
+- Just by entering a URL your browser is making multiple requests. One for every resource.
+- The initial request for `www.website.com` returns an HTML file containing references to many other resources. Your browser understands that these resources need to be found and issues requests for them.
+- You can see all of these sub-requests (my term) in the inspector tool. 
+- `curl` is less decipherable.
+- Bear in mind that Reddit now requires a User-Agent to be added to any HTTP request to prevent bots from accessing the site. That looks like this:
+
+``` 
+-A 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36'
+```
+### [Request Methods](https://launchschool.com/books/http/read/making_requests#requestmethods)
+
+- Looking at the 'Method' and 'status' columns.
+- In the Method column you have HTTP Request Methods. This is like a verb that tells teh server what actioins to perform in a resource.
+- The two most common commands are `GET` and `POST`.
+- The status column shows response status for each request.
+- Every request gets a response, even if it is `ERROR`.(... unless they timeout, but that's rare).
+
+### [Get Requests](https://launchschool.com/books/http/read/making_requests#get)
+
+- Initiated by clicking a link or putting an address in the browser bar.
+- The default behaviour of a link is to issue a `GET` request to a URL.
+- To remember for now:
+  - GET requests are used to retrieve a resource. Most links are GET requests
+  - The response to a GET request can be anything, but if it is HTML and that HTML references other resources then your browser will automatically issue GET requests for those. (A pure HTML tool will not).
+
+### [Post requests](https://launchschool.com/books/http/read/making_requests#post)
+
+- To send/submit data or initiate an action to/on the server.
+- POST requests allow us to send much larger and sensitive data to the server, like images and videos. 
+- This is because the alternative is sending a GET request with the information written in the query string, which would be:
+  - Exposing our credentials.
+  - Limited in size
+-  I'm receiving a 303 response, i'm not sure if that's a bad thing. But what I'm supposed to be demonstrating is that the data is being submitted to the server, not via the URL but in the HTTP body. The body contains the data that is being transmitted in a HTML message. So and HTTP message can be sent with an empty body.
+  - Or the body can contain HTML messages, images, videos. The body is like the letter inside an envelope.
+  - Filling out the POST request is (meant to be) the same as you filling out the form on the web-page itself.
+  - The HTTP response to our POST is `Location: http://al-blackjack.herokuapp.com/bet` which shows the webpage we are directed to once we've filled out the name form.
+  - The `location` header is a response header (because responses have headers too). More on headers later.
+  - Your browser sees 'Location' in the header and automatically issues the next request for the URL specified. SO the "make a bet" page is the response to that second request.
+  - Remember : when using a browser most of the request/response cycles are hidden from you.
+
+### [HTTP Headers](https://launchschool.com/books/http/read/making_requests#httpheaders)
+
 ## Processing responses
 ## Stateful Web Applications
 ## Security
@@ -157,7 +306,7 @@ Overview:
 |1. Introduction| 12th April|
 |2. Background| 12th April|
 |3.  What is a URL?|13th April|
-|4. Preparations|
+|4. Preparations|13th April|
 |**HTTP**|
 |5. Making requests|
 |6.  Processing responses|
