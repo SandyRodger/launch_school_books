@@ -12,7 +12,7 @@
 - All these files were sent from a **server** to your browser (the **client**) by an application protocol called **HTTP**. (which is why URLs in your browser search bar start with 'http://'.
 - HyperText Transfer Protocol acts as a link between applications and transfers hypertext documents.
 - HTTP follows a simple model:
-  - a client makes a request to a server and waits for a response. (**request response protocol**). These request and response messages are like text messages or strings, which are formatted in a language the other machine understands.
+  - A client makes a request to a server and waits for a response. (**request response protocol**). These request and response messages are like text messages or strings, which are formatted in a language the other machine understands.
 
 HTTP has been through several changes since its inception:
 
@@ -294,6 +294,15 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 
 ### [HTTP Headers](https://launchschool.com/books/http/read/making_requests#httpheaders)
 
+- HTTP headers allow the client and server to send additional information during the HTTP request/response cycle.
+  - Headers are colon-seperated name-value pairs that are sent in plain text.
+  - we can look at them in raw form in the Inspector. (mine doesn't look like this?)
+
+<p align="center">
+<img width="700" alt="Screenshot 2023-04-13 at 13 08 18" src="https://user-images.githubusercontent.com/78854926/231753681-b3f21d5d-99b4-4da4-8604-3fdf20589c93.png">
+</p>
+
+- Here are the various headers being sent during a request/response cycle.
 ## Processing responses
 ## Stateful Web Applications
 ## Security
@@ -308,7 +317,7 @@ Overview:
 |3.  What is a URL?|13th April|
 |4. Preparations|13th April|
 |**HTTP**|
-|5. Making requests|
+|5. Making requests|13th April|
 |6.  Processing responses|
 |7. Stateful web applications|
 |8. Security|
