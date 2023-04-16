@@ -45,7 +45,7 @@ HTTP has been through several changes since its inception:
 - It still works to type an IP address directly into the address bar.
 - DNS databases are stored on computers called DNS servers.
 - There is a huge global hierarchical network of DNS servers. No single one contains the whole database.
-- If a DNS server does not contain the address it passes the request up the chain to the next DNS server. Eventually the address will be found in a DNS database and the coresponding IP address will be used to receive the request.
+- If a DNS server does not contain the address it passes the request up the chain to the next DNS server. Eventually the address will be found in a DNS database and the corresponding IP address will be used to receive the request.
 - A typical interaction with the internet could look like this:
   - type a URL into the address bar
   - The browser creates a HTTP request, which is packaged up and sent to your device's network interface.
@@ -194,9 +194,8 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
   - Using characters would be unsafe because it could be modified or misinterpreted by some systems. For example `%` is unsafe because it is used to encode other characters. Other unsafe characters include (but are not limited to):
     - spaces
     - "
-    - #
-    - >
-    - <
+    - This symbol, which isn't formatting properly #
+    - Greater than > and less than <
     - {
     - }
     - [
@@ -212,7 +211,7 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
   - Alphanumeric characters
   - _
   - .
-  - +
+  - Plus + (which is rendering as a square bullet point)
   - !
   - '
   - (
@@ -302,11 +301,200 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 <img width="700" alt="Screenshot 2023-04-13 at 13 08 18" src="https://user-images.githubusercontent.com/78854926/231753681-b3f21d5d-99b4-4da4-8604-3fdf20589c93.png">
 </p>
 
-- Here are the various headers being sent during a request/response cycle.
-## Processing responses
-## Stateful Web Applications
+- Here [above] are the various headers being sent during a request/response cycle.
+- And request headers are different:
+
+<p align="center">
+<img width="697" alt="Screenshot 2023-04-13 at 13 26 08" src="https://user-images.githubusercontent.com/78854926/231757688-d39c60d4-b240-4b15-95dd-f37482ab4712.png">
+</p>
+
+### [Request headers](https://launchschool.com/books/http/read/making_requests#requestheaders)
+
+- Request headers give more information about the client and the resource to be fetched. For example:
+
+|Field name  |Description|example
+| :--- | :---: | :---: |
+|Host|The domain name of the server| Host: www.reddit.com
+|Accept Language | List of acceptable languages| Accept-Language: en-US,en;q=0.8| 
+|User-agent|A string that identifies the client|User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.101 Safari/537.36|
+|Connection| Type of connection the client would prefer| Connection: keep-alive
+
+### [Summary](https://launchschool.com/books/http/read/making_requests#summary)
+
+You should be able to:
+-  Use the inspector to view HTTP requests
+-  Making GET/POST requests with an HTTP tool.
+You should understand:
+- HTTP method
+- path (the resource name and any query parameters)
+- headers
+- message body (for `POST` requests)
+
+
+## [Processing responses](https://launchschool.com/books/http/read/processing_responses)
+
+### [Introduction](https://launchschool.com/books/http/read/processing_responses#introduction)
+
+- This section focuses on what comprises an HTTP response.
+
+### [Status code](https://launchschool.com/books/http/read/processing_responses#statuscode)
+
+- A three digit number that the server sends back after receiving a request, which signifies the status of the request.
+- There is a status text next to the status code. They are both in the status column.
+
+<p align="center">
+<img width="705" alt="Screenshot 2023-04-13 at 13 41 16" src="https://user-images.githubusercontent.com/78854926/231761447-14543bcb-2c2a-4ac7-8363-b4134c8271bd.png">
+</p>
+
+- here are some common codes with their meanings:
+|Satus code|Status text|Meaning
+| :--- | :---: | :---: |
+|200|OK| The request was handled successfully|
+|302|Found|The requested resource has changed temporarily. Usually results in a redirect to another URL.
+|404|Not Found| The requested resource cannot be found|
+|500|Internal server error|The server has encountered a generic error|
+
+#### 302 Found
+
+- When a resource is moved the re-quest is often re-routed to a new URL. This is called a `redirect`. When your browser sees a 302 response it will automatically follow the re-routed URL in the Location response header. (Note we are looking at redierects in teh context of browsers and HTTP tools, there are other ways too.
+- For example if you want to access your account profile on Github.
+  - Go to `https://github.com/settings/profile`
+  - If you aren't signed in your browser will send you to a sign-in page.
+  - After entering your credentials, you are sent to the original page you were trying to access. How does this work:
+    - You enter `https://github.com/settings/profile` and your browser redirects you to the sign in page:
+<p align="center">
+<img width="699" alt="Screenshot 2023-04-13 at 14 45 27" src="https://user-images.githubusercontent.com/78854926/231778486-5557a51d-bbee-4054-9be9-c6f0ee43cb99.png">
+</p>
+
+- The HTTP tool will not automatically follow the redirect. It will present a Location ofLocation: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile with a  `return_to` parameter. This is actually the same URL you get redirected to when enter the URL in the browser.
+
+#### 404 Not Found
+
+In a browser:
+
+<p align="center">
+<img width="1440" alt="Screenshot 2023-04-13 at 14 53 11" src="https://user-images.githubusercontent.com/78854926/231780571-6a60a85b-551b-468e-9cb3-05a25dd8322b.png">  
+</p>
+
+Or with a HTTP tool:
+
+<p align="center">
+<img width="1440" alt="Screenshot 2023-04-13 at 14 56 23" src="https://user-images.githubusercontent.com/78854926/231781552-6ad29ec1-4cf2-482b-8d7f-c428846c216a.png">
+</p>
+
+#### 500 Internal Server Error
+
+- This means "There's something wrong on the server side". Could be a misplaced comma, could be a mis-configured server setting. Only someone with access to the server can fix this. This is when the computer might tell you to contact your system administrator.
+- It could look like this:
+
+<p align="center">
+<img width="696" alt="Screenshot 2023-04-13 at 15 00 16" src="https://user-images.githubusercontent.com/78854926/231782848-38ddb206-af1c-4348-abd9-0c185d6ad80f.png">
+</p>
+
+Or this:
+
+<p align="center">
+<img width="699" alt="Screenshot 2023-04-13 at 15 00 55" src="https://user-images.githubusercontent.com/78854926/231783035-fc7b64e9-7c23-419c-afb6-2e7eec75195a.png">
+</p>
+
+### [Response Headers](https://launchschool.com/books/http/read/processing_responses#responseheaders)
+
+- We can see this with the inspector. (I can't seem to get to this part of inspector)
+- Here are some common response headers:
+
+|Header name|Description|Example|
+| :---: | :---: | :---: |
+|Content-encoding|The type of data used on the encoding|Content-Encoding: gzip
+|Server| Name of the server|Server:thin 1.5.0 codename Knife|
+|Location|Notify client of new resource location|Location: https://www.github.com/login
+|Content-type|The type of data the response contains|Content-Type:text/html; charset=UTF-8
+
+<p align="center">
+<img width="698" alt="Screenshot 2023-04-13 at 15 10 50" src="https://user-images.githubusercontent.com/78854926/231785780-76b4709d-f9d3-42cb-8a45-b6e878a1f467.png">
+</p>
+
+- It's not necessary to memorize all of these, but be aware tehy can subtly effect workflow.
+
+### [Summary](https://launchschool.com/books/http/read/processing_responses#summary)
+
+- We've looked at:
+  - The components of HTTP responses.
+  - How to use the inspector to view headers.
+- So HTTP is just an agreement in the form of formatted text that dictates how a client and server communicate. 
+- The most important parts of HTTP are:
+  - Status code
+  - Header
+  - message body (which contains the raw data).
+
+
+
+## [Stateful Web Applications](https://launchschool.com/books/http/read/statefulness)
+
+### [Introduction](https://launchschool.com/books/http/read/statefulness#introduction)
+
+- HTTP is stateless:
+
+<p align="center">
+<img width="660" alt="Screenshot 2023-04-13 at 15 36 03" src="https://user-images.githubusercontent.com/78854926/231793994-44575567-5486-4700-8187-d0acdbf8c960.png">
+</p>
+- This means each request is treated as a brand new entity and different requests are not aware of each other.
+- This *statelessness* means the internet is distributed and hard to control, but it's also a pain in the ass to create stateful applications.  
+- We've all experienced stateful websites. This is an illusion. For example:
+  - Facebook displaying our username at the top of the page.
+- We'll look at:
+  - How developers use techniques to simulate stateful experiences
+  - Some techniques on the client to make displaying dynamic content easy:
+    - Cookies
+    - Sessions
+    - AJAX (Asynchronous Javascript calls)
+    - Sending stateful data as query parameters when making requests (we won't cover this one -  it used to be ubiquitous, but now almost totally gone).
+
+### [A Stateful App](https://launchschool.com/books/http/read/statefulness#astatefulapp)
+
+- The book uses reddit as a demo, I will use musescore.com.
+
+<p align="center" >
+<img width="1440" alt="Screenshot 2023-04-13 at 15 49 21" src="https://user-images.githubusercontent.com/78854926/231798046-6da24370-ad8a-49e0-a3e6-b8bdfe3c6eee.png">
+</p>
+
+then login
+
+<p align="center" >
+<img width="1440" alt="Screenshot 2023-04-13 at 15 52 40" src="https://user-images.githubusercontent.com/78854926/231798963-dad9eb1f-a8e4-4a25-b629-a39cba10f52e.png">
+</p>
+
+- So you're now logged in. Even if you refresh the page it will stay logged in. How do we explain this with stateless HTML?
+
+### [Sessions](https://launchschool.com/books/http/read/statefulness#sessions)
+
+- The client can create an illusion of statefulness by sending a unique token called a **session identifier** with each request. This allows the server to identify clients and create the appropriate environment for them.
+- This sense of statefulness has several consequences:
+  - Every session must be inspoected for such a token
+  - If it does dontain a session id, it must be checked toi see if it's valid.
+  - Session expiration rules should be adhered to.
+  - Browser should decide how to store session data.
+  - Server needs to recreat the application state every time, based on the session id and send back to the client as a response.
+- So the server needs to work pretty hard.
+  - Every request gets its own response, even though most of them will contain the same data as the last response. Imagine the response from the Facebook homepage for example would be pretty expensive HTML. The facebook server would have to compute all the likes per image, every image and status and present it in a time-line.
+  - If you clicked 'like' on a single image facebook would have to recreate the whole page! It would increment the count and send you a HTML file describing the whole page, even though almost all of the page is the same. But actually, Facebook uses AJAX, so your browser doesn't refresh your browser every time.
+  - Optimizing sessions and tightening security is a big area that we won't go into here, but oine common way is a browser cookie.
+
+### [Cookies](https://launchschool.com/books/http/read/statefulness#cookies)
+
+- A cookie is a piece of data that is sent from the server and stored in the client during a request/response cycle. Cookies, AKA HTTP Cookies are small files stored in a browser which contain session information.
+- By default most browsers have cookies enabled.
+- When you first visit a website it will send session information and set it in a browser cookie on your local computer.
+- Note that the actual session data is different and is stored on the server.
+- With every request you send the cookie data is compared to the server-side session data.
+- This is how you are recognised when you return to a website - your cookie data is matched.
+
+<p align="center">
+<img width="689" alt="Screenshot 2023-04-13 at 16 30 31" src="https://user-images.githubusercontent.com/78854926/231809742-1eb4e812-408d-4c91-b0f3-e75eccb539d8.png">
+</p>
+
 ## Security
 ## Conclusions and next steps
+
 
 Overview:
 
@@ -318,7 +506,7 @@ Overview:
 |4. Preparations|13th April|
 |**HTTP**|
 |5. Making requests|13th April|
-|6.  Processing responses|
-|7. Stateful web applications|
+|6.  Processing responses|13th April|
+|7. Stateful web applications|13th April|
 |8. Security|
 |9. Conclusions and next steps|
