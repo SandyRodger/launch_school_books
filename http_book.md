@@ -492,8 +492,134 @@ then login
 <img width="689" alt="Screenshot 2023-04-13 at 16 30 31" src="https://user-images.githubusercontent.com/78854926/231809742-1eb4e812-408d-4c91-b0f3-e75eccb539d8.png">
 </p>
 
-## Security
-## Conclusions and next steps
+- Here is a walk-through using Yahoo, but I already have cookies from Yahoo, so it doesn't work for me. I will use https://www.brightonandhovealbion.com/ instead because I have no interest in football.
+- The 'response headers' tab tab should have a 'set-cookies' line, but mine does not, even though I have accepted cookies.
+
+How it should work:
+- You go to a website you've never been to (or to be precise, never accepted cookies from). 
+- Under the inspector's 'Network' tab you will find a 'Request Headers' tab.
+- The inspector tab has a section called 'Request Headers'. At this point it has no reference to cookies.
+- Under the 'Response Headers' tab it has 'set-cookies' headers. These add cookie data to the response.
+- Once you have made a request on the page the 'cookie' header will be set. This is now information sent by your browser to the server. Your browser stores these cookies. It remains stored even if you shut down and restart everything.
+
+How does the website keep track of us if each packet is unrelated to each other? This can be demonstrated by following these steps:
+- Go to a website, look at inspector, Application
+- Expand the cookies tab and look at the website address. There you will see the cookies that came with our original request, under the 'value' header.
+- If you log in you will see a unique session header in the penultimate row. This session ID is saved in a cookie in your browser and sent with every future request to that website.
+- With the session id now being sent with every request the server can identify the client and retrieve the data associated with that client. In that associated session data is where the server remembers the state for that client.
+- Where is this data stored? On the server somewhere. It's not super important.
+
+REMEMBER:
+
+- The id sent with a session is unique and expires in a relatively short time. This means if it expires you have to log-in again. Once logged out, the session id information is gone.
+- So if you manually delete the session-id cookies while logged in you are effectively logging out.
+
+### [AJAX](https://launchschool.com/books/http/read/statefulness#ajax)
+
+- Asynchronous JavaScript and XML
+- It allows pages to issue requests and process responses without a full page refresh. For example facebook would be very expensive to refresh for every request sent.
+- When AJAX is used, all requests happen asynchronously, which effectively just means the page doesn't refresh. 
+- Apparently on a google search, every letter types=d into the search-bar is issueing a new AJAX request. The responses to these requests is processed by a 'callback'
+- A 'callback' is a piece of logic you pass on to some function to be executed after a certain event has happened.
+- This google-search callback is updating the html with new search results.
+- AJAX requests are just like other requests except that instead of the browser refreshing and then processing the response the response is processed by a callback function, which is probably some clinet-side JavaScript code.
+
+### [https://launchschool.com/books/http/read/statefulness#summary](https://launchschool.com/books/http/read/statefulness#summary)
+
+- Techniques used by devs to mimic statefulness with a stateless protocol (HTTP).
+- Cookies and sessions.
+- The inspector to look at
+  - cookies
+  - session id 
+- AJAX
+
+## [Security](https://launchschool.com/books/http/read/security)
+
+- The attributes that make HTTP difficult to control also make it difficult to secure.
+  - What if someone steals my browser session id?
+  - If I'm accessing some random website, can they see into my facebook cookie?
+
+### [HTTPS](https://launchschool.com/books/http/read/security#securehttp)
+
+- All of these requests and responses are in the form of strings. 
+- A hacker could use *packet sniffing* techniques to read these.
+- Within requests one could find the session id, which would grant the hacker access to your account bypassing username/password/
+- This can be prevented with https:
+
+<p align="center">
+<img width="672" alt="Screenshot 2023-04-24 at 15 32 05" src="https://user-images.githubusercontent.com/78854926/234028305-c6aa30a8-748f-4670-8895-09d5015d9bda.png">
+</p>
+
+- This encrypts the strings before they are sent on the network.
+- The encryption protocol is TLS (previously Secure Sockets Layer was used).
+- These protoicls use certificates to communicate with remote servers and exchange remote keys before data encryption happens.
+- You can look at these certificates by clicking on the https padlock:
+
+<p align="center">
+<img width="1293" alt="Screenshot 2023-04-24 at 15 36 27" src="https://user-images.githubusercontent.com/78854926/234029505-24ff2b02-f6bf-46a6-bbbd-a13ed5ff3e70.png">
+</p>
+
+- Most browsers check the certificate for you automatically.
+
+### [Same Origin Policy](https://launchschool.com/books/http/read/security#sameoriginpolicy)
+
+- Permits unrestricted access between resources originating from the same source. 
+- Origin means scheme + host + port.
+  -  http://mysite.com/doc1 has the same origin as http://mysite.com/doc2
+  -  http://mysite.com/doc1 has a different orgin as 
+    -  https://mysite.com/doc1 (different scheme)
+    -  http://mysite.com:4000/doc1 (different port)
+    -  http://anothersite.com/doc1 (different host)
+-  Same origin policy does not restrict all cross-origin requests.
+-  Usually allowed:
+  -  linking requests
+  -  redirect requests
+  -  form submissions
+  -  embedding of resources from other resources such as
+    -  scripts
+    -  css stylesheets
+    -  images and other media 
+    -  fonts
+    -  iframes
+-  Usually restricted:
+  -  cross-origin requests where resources are being accessed programatically using APIs such as
+    -  `XMLhttpRequest`
+    -  fetch
+- This is a problem for devs who have a legitimate need to make these restricted kind of cross-origin request.
+- CORS (Cross Origin Resource Sharing) was developed to deal with this.
+- CORS is a mechanism which allows interactions that would normally be restricted. It works by adding new HTTP headers. This is covered more later in the Core Curriculum.
+
+### [Session Hi-jacking](https://launchschool.com/books/http/read/security#sessionhijacking)
+
+- This is what happens when a hacker gets a gold of the session id. It means sometimes both people can be on the same session.
+
+#### Countermeasures for Session Hijacking
+
+- Resetting sessions.
+- Setting an expiration time on sessions.
+- Use HTTPS across the whole app.
+
+### [Cross site scripting](https://launchschool.com/books/http/read/security#crosssitescripting)
+
+- This happens when you allow users to input JavaScript or HTML that ends up being displayed by the site directly. For example writing raw code into a text box.
+<p align="center">
+<img width="604" alt="Screenshot 2023-04-24 at 16 25 14" src="https://user-images.githubusercontent.com/78854926/234042912-7b74bf2e-1226-4c14-93f7-677bb609e400.png">
+</p>
+
+#### Potential solutions for cross-site scripting
+
+- Make sure to always sanitize user input.
+  - Eliminate problematic input such as <script> tags
+  - Disallow HTML and javascript inout completely.
+- Escape all user input when displaying it.
+- "Escaping" means to replace an HTML character with a combination of ASCII characters. This tells the client to display the character as is. These combinations of ASCII characters are called HTML entities. So for example `<p>Hello World!<\p>` would become `&lt;p&gt;Hello World!&lt;\p&gt;`
+  
+### [Summary](https://launchschool.com/books/http/read/security#summary)
+  
+- various aspects of security in web applications
+- How fragile and problematic developing and securing a web application is. And it's mainly due to HTTP.
+
+## [Conclusions and next steps](https://launchschool.com/books/http/read/conclusion_and_next_steps)
 
 
 Overview:
@@ -508,5 +634,5 @@ Overview:
 |5. Making requests|13th April|
 |6.  Processing responses|13th April|
 |7. Stateful web applications|13th April|
-|8. Security|
-|9. Conclusions and next steps|
+|8. Security|23rd April|
+|9. Conclusions and next steps|23rd April|
