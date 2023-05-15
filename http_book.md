@@ -91,9 +91,9 @@ HTTP has been through several changes since its inception:
 - HTTP is a stateless protocol and this has implications for server resources and ease of use.
 - It means that the server does not need to hang on to information or state between requests.
 - This means that when a request breaks on route to the server no part of the system has to do any clean-up.
-- This makes HTTP a risilient protocol. It also makes it a difficult protocol for building stateful applications.
-- Since HTTP is inhernetly stateless, that means web developers need to work hard to create stateful experiences in web-applications.
-- A example of this is remaining logged into something, while completing more request/response cycles. And how does the website even know these requests are coming from you?
+- This makes HTTP a resilient protocol. It also makes it a difficult protocol for building stateful applications.
+- Since HTTP is inherently stateless, that means web developers need to work hard to create stateful experiences in web-applications.
+- An example of this is remaining logged into something, while completing more request/response cycles. And how does the website even know these requests are coming from you?
 - There are tricks that make it seem like an experience is stateful, but those tricks are not covered in this book.
 - Just remember, even though you think an experience is stateful, the web is built of HTTP, which is stateless.
 
