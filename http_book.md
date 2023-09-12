@@ -9,10 +9,10 @@
   - Javascript
   - Videos
   - Images
-- All these files were sent from a **server** to your browser (the **client**) by an application protocol called **HTTP**. (which is why URLs in your browser search bar start with 'http://'.
+- All these files were sent from a **server** to your browser (the **client**) by an application protocol called **HTTP**. This is why URLs in your browser search bar start with 'http://'.
 - HyperText Transfer Protocol acts as a link between applications and transfers hypertext documents.
 - HTTP follows a simple model:
-  - A client makes a request to a server and waits for a response. (**request response protocol**). These request and response messages are like text messages or strings, which are formatted in a language the other machine understands.
+  - A client makes a request to a server and waits for a response (**request response protocol**). These request and response messages are like text messages or strings, which are formatted in a language the other machine understands.
 
 HTTP has been through several changes since its inception:
 
@@ -53,7 +53,7 @@ HTTP has been through several changes since its inception:
   - The packaged up HTTP request then goes over the internet where it is directed to the server with the matching IP address.
   - The remote server accepts the request and sends a response over the internet back to your network interface which hands it to your browser.
   - The browser displays this response as a web-page.
-- Your browser issueing a request is simply sending some text to an IP address.
+- Your browser issuing a request is simply sending some text to an IP address.
 - The client (web-browser) and server (recipient of the request) have an agreed protocol (HTTP) which allows the server to:
   -  take apart the request
   -  Understand each component
@@ -156,9 +156,9 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
   - `product=iphone`
   - 'size=32gb'
   - 'color-white'
-- This is asking the `phoneshop` server to narrow down on a product, `iphone`, size '32gb' and colour 'white'. What the server doe with these parameters is up to the server side application.
+- This is asking the `phoneshop` server to narrow down on a product, `iphone`, size '32gb' and colour 'white'. What the server does with these parameters is up to the server-side application.
 - **Because query strings are passed in from the URL they are only used in HTTP GET requests.**
-- There are different types of HTTP requests. Typing a URL into the browser is a HTTP GET request. Most links do too.
+- There are different types of HTTP requests. Typing a URL into the browser is a HTTP GET request. Most links are too.
 
 <p align="center">
 <img width="689" alt="Screenshot 2023-04-13 at 08 42 23" src="https://user-images.githubusercontent.com/78854926/231689211-322e15cf-ccb0-4af7-92d3-5069b1026ff2.png">
@@ -180,7 +180,7 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 - You don't need to get UTF-8, just know that it uses 1-4 bytes to represent every possible character in the Unicode character set.
 - Here are some popular encoded characters and examples:
 
-|Char  |UTF-8 code|URL
+|Char  |UTF-8 code|URL example
 | :--- | :---: | :---: |
 |space|%20|http://www.thedesignshop.com/shops/tommy%20hilfiger.html
 |$|%24|http://www.spam.com/i-have-%2410-million-for-you
@@ -232,7 +232,7 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 
 ### [HTTP command line tools](https://launchschool.com/books/http/read/preparations#httpcommandlinetools)
 
-- Curl is available with the command `curl www.google.com`
+- Curl is available with the command `curl` as in `curl www.google.com`
 
 ## [Making Requests](https://launchschool.com/books/http/read/making_requests)
 
@@ -263,7 +263,7 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 ### [Request Methods](https://launchschool.com/books/http/read/making_requests#requestmethods)
 
 - Looking at the 'Method' and 'status' columns.
-- In the Method column you have HTTP Request Methods. This is like a verb that tells teh server what actioins to perform in a resource.
+- In the Method column you have HTTP Request Methods. This is like a verb that tells the server what actioins to perform in a resource.
 - The two most common commands are `GET` and `POST`.
 - The status column shows response status for each request.
 - Every request gets a response, even if it is `ERROR`.(... unless they timeout, but that's rare).
@@ -279,16 +279,16 @@ http://www.phoneshop.com?product=iphone&size=32gb&color=white
 ### [Post requests](https://launchschool.com/books/http/read/making_requests#post)
 
 - To send/submit data or initiate an action to/on the server.
-- POST requests allow us to send much larger and sensitive data to the server, like images and videos. 
+- POST requests allow us to send sensitive and much larger data to the server, like images and videos. 
 - This is because the alternative is sending a GET request with the information written in the query string, which would be:
   - Exposing our credentials.
   - Limited in size
--  I'm receiving a 303 response, i'm not sure if that's a bad thing. But what I'm supposed to be demonstrating is that the data is being submitted to the server, not via the URL but in the HTTP body. The body contains the data that is being transmitted in a HTML message. So and HTTP message can be sent with an empty body.
+-  I'm receiving a 303 response, i'm not sure if that's a bad thing. But what I'm supposed to be demonstrating is that the data is being submitted to the server, not via the URL but in the HTTP body. The body contains the data that is being transmitted in a HTML message. So HTTP messages can be sent with an empty body.
   - Or the body can contain HTML messages, images, videos. The body is like the letter inside an envelope.
   - Filling out the POST request is (meant to be) the same as you filling out the form on the web-page itself.
   - The HTTP response to our POST is `Location: http://al-blackjack.herokuapp.com/bet` which shows the webpage we are directed to once we've filled out the name form.
   - The `location` header is a response header (because responses have headers too). More on headers later.
-  - Your browser sees 'Location' in the header and automatically issues the next request for the URL specified. SO the "make a bet" page is the response to that second request.
+  - Your browser sees 'Location' in the header and automatically issues the next request for the URL specified. So the "make a bet" page is the response to that second request.
   - Remember : when using a browser most of the request/response cycles are hidden from you.
 
 ### [HTTP Headers](https://launchschool.com/books/http/read/making_requests#httpheaders)
