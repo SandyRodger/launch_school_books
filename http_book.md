@@ -357,7 +357,7 @@ You should understand:
 
 #### 302 Found
 
-- When a resource is moved the re-quest is often re-routed to a new URL. This is called a `redirect`. When your browser sees a 302 response it will automatically follow the re-routed URL in the Location response header. (Note we are looking at redierects in teh context of browsers and HTTP tools, there are other ways too.
+- When a resource is moved the re-quest is often re-routed to a new URL. This is called a `redirect`. When your browser sees a 302 response it will automatically follow the re-routed URL in the Location response header. (Note we are looking at redierects in the context of browsers and HTTP tools, there are other ways too.
 - For example if you want to access your account profile on Github.
   - Go to `https://github.com/settings/profile`
   - If you aren't signed in your browser will send you to a sign-in page.
@@ -367,7 +367,7 @@ You should understand:
 <img width="699" alt="Screenshot 2023-04-13 at 14 45 27" src="https://user-images.githubusercontent.com/78854926/231778486-5557a51d-bbee-4054-9be9-c6f0ee43cb99.png">
 </p>
 
-- The HTTP tool will not automatically follow the redirect. It will present a Location ofLocation: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile with a  `return_to` parameter. This is actually the same URL you get redirected to when enter the URL in the browser.
+- The HTTP tool will not automatically follow the redirect. It will present a Location like this: https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fsettings%2Fprofile with a  `return_to` parameter. This is actually the same URL you get redirected to when enter the URL in the browser.
 
 #### 404 Not Found
 
@@ -414,14 +414,14 @@ Or this:
 <img width="698" alt="Screenshot 2023-04-13 at 15 10 50" src="https://user-images.githubusercontent.com/78854926/231785780-76b4709d-f9d3-42cb-8a45-b6e878a1f467.png">
 </p>
 
-- It's not necessary to memorize all of these, but be aware tehy can subtly effect workflow.
+- It's not necessary to memorize all of these, but be aware they can subtly effect workflow.
 
 ### [Summary](https://launchschool.com/books/http/read/processing_responses#summary)
 
 - We've looked at:
   - The components of HTTP responses.
   - How to use the inspector to view headers.
-- So HTTP is just an agreement in the form of formatted text that dictates how a client and server communicate. 
+- HTTP is just an agreement in the form of formatted text that dictates how a client and server communicate. 
 - The most important parts of HTTP are:
   - Status code
   - Header
@@ -438,6 +438,7 @@ Or this:
 <p align="center">
 <img width="660" alt="Screenshot 2023-04-13 at 15 36 03" src="https://user-images.githubusercontent.com/78854926/231793994-44575567-5486-4700-8187-d0acdbf8c960.png">
 </p>
+
 - This means each request is treated as a brand new entity and different requests are not aware of each other.
 - This *statelessness* means the internet is distributed and hard to control, but it's also a pain in the ass to create stateful applications.  
 - We've all experienced stateful websites. This is an illusion. For example:
