@@ -471,15 +471,15 @@ then login
 
 - The client can create an illusion of statefulness by sending a unique token called a **session identifier** with each request. This allows the server to identify clients and create the appropriate environment for them.
 - This sense of statefulness has several consequences:
-  - Every session must be inspoected for such a token
-  - If it does dontain a session id, it must be checked toi see if it's valid.
+  - Every session must be inspected for such a token
+  - If it does contain a session id, it must be checked to see if it's valid.
   - Session expiration rules should be adhered to.
-  - Browser should decide how to store session data.
-  - Server needs to recreat the application state every time, based on the session id and send back to the client as a response.
+  - Browsers should decide how to store session data.
+  - The server needs to recreate the application state every time, based on the session id and send it back to the client as a response.
 - So the server needs to work pretty hard.
   - Every request gets its own response, even though most of them will contain the same data as the last response. Imagine the response from the Facebook homepage for example would be pretty expensive HTML. The facebook server would have to compute all the likes per image, every image and status and present it in a time-line.
   - If you clicked 'like' on a single image facebook would have to recreate the whole page! It would increment the count and send you a HTML file describing the whole page, even though almost all of the page is the same. But actually, Facebook uses AJAX, so your browser doesn't refresh your browser every time.
-  - Optimizing sessions and tightening security is a big area that we won't go into here, but oine common way is a browser cookie.
+  - Optimizing sessions and tightening security is a big area that we won't go into here, but one common way is a browser cookie.
 
 ### [Cookies](https://launchschool.com/books/http/read/statefulness#cookies)
 
@@ -487,7 +487,7 @@ then login
 - By default most browsers have cookies enabled.
 - When you first visit a website it will send session information and set it in a browser cookie on your local computer.
 - Note that the actual session data is different and is stored on the server.
-- With every request you send the cookie data is compared to the server-side session data.
+- With every request you send, the cookie data is compared to the server-side session-data.
 - This is how you are recognised when you return to a website - your cookie data is matched.
 
 <p align="center">
@@ -495,13 +495,13 @@ then login
 </p>
 
 - Here is a walk-through using Yahoo, but I already have cookies from Yahoo, so it doesn't work for me. I will use https://www.brightonandhovealbion.com/ instead because I have no interest in football.
-- The 'response headers' tab tab should have a 'set-cookies' line, but mine does not, even though I have accepted cookies.
+- The 'response headers' tab should have a 'set-cookies' line, but mine does not, even though I have accepted cookies.
 
 How it should work:
 - You go to a website you've never been to (or to be precise, never accepted cookies from). 
 - Under the inspector's 'Network' tab you will find a 'Request Headers' tab.
 - The inspector tab has a section called 'Request Headers'. At this point it has no reference to cookies.
-- Under the 'Response Headers' tab it has 'set-cookies' headers. These add cookie data to the response.
+- Under the 'Response Headers' tab it has 'set-cookies' headers. These add cookie-data to the response.
 - Once you have made a request on the page the 'cookie' header will be set. This is now information sent by your browser to the server. Your browser stores these cookies. It remains stored even if you shut down and restart everything.
 
 How does the website keep track of us if each packet is unrelated to each other? This can be demonstrated by following these steps:
@@ -521,16 +521,16 @@ REMEMBER:
 - Asynchronous JavaScript and XML
 - It allows pages to issue requests and process responses without a full page refresh. For example facebook would be very expensive to refresh for every request sent.
 - When AJAX is used, all requests happen asynchronously, which effectively just means the page doesn't refresh. 
-- Apparently on a google search, every letter types=d into the search-bar is issueing a new AJAX request. The responses to these requests is processed by a 'callback'
+- Apparently on a google search, every letter typed into the search-bar is issueing a new AJAX request. The responses to these requests is processed by a 'callback'.
 - A 'callback' is a piece of logic you pass on to some function to be executed after a certain event has happened.
 - This google-search callback is updating the html with new search results.
-- AJAX requests are just like other requests except that instead of the browser refreshing and then processing the response the response is processed by a callback function, which is probably some clinet-side JavaScript code.
+- AJAX requests are just like other requests except that instead of the browser refreshing and then processing the response the response is processed by a callback function, which is probably some client-side JavaScript code.
 
 ### [https://launchschool.com/books/http/read/statefulness#summary](https://launchschool.com/books/http/read/statefulness#summary)
 
 - Techniques used by devs to mimic statefulness with a stateless protocol (HTTP).
 - Cookies and sessions.
-- The inspector to look at
+- The inspector to look at:
   - cookies
   - session id 
 - AJAX
@@ -554,7 +554,7 @@ REMEMBER:
 
 - This encrypts the strings before they are sent on the network.
 - The encryption protocol is TLS (previously Secure Sockets Layer was used).
-- These protoicls use certificates to communicate with remote servers and exchange remote keys before data encryption happens.
+- These protocols use certificates to communicate with remote servers and exchange remote keys before data encryption happens.
 - You can look at these certificates by clicking on the https padlock:
 
 <p align="center">
