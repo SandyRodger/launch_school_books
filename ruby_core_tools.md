@@ -85,7 +85,7 @@ And Ruby tools for later:
  - Install your gem with `gem install gem_name`. You can specify additional remote libraries to connect to your gem.
  #### The local library
  - When `gem` installs a gem it saves its files in your local library.
- - Where gem creates this local library depends on a few things (whether you are using a system Ruby that needs root access, a user maintainable Ruby, the specific Ruby version number and whether you use a Ruby versioin manager like RVM or Rbenv. `gem` knows where to put things and gets on with it.
+ - Where gem creates this local library depends on a few things (whether you are using a system Ruby that needs root access, a user maintainable Ruby, the specific Ruby version number and whether you use a Ruby version manager like RVM or Rbenv. `gem` knows where to put things and gets on with it.
  #### Gems and your File System
  - Sometimes you may want to look at a gem's source code. Maybe to understand how the gem works, or diagnose a problem with a gem not working.
  - Source code is available online, but if you have no connection you can find the gem's code in your local library where your gem is saved.
