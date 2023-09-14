@@ -45,7 +45,7 @@ And Ruby tools for later:
   
   ### [What Ruby am I running?](https://launchschool.com/books/core_ruby_tools/read/your_ruby_installation)
    - `which ruby` tells you where ruby is. Mine is `/usr/bin/ruby`, which is the pre-installed Mac version, and not good enough. 
-  - If `which ruby` has rbenv in it, you are using a bersion installed by rbenv. Ditto for RVM.
+  - If `which ruby` has rbenv in it, you are using a version installed by rbenv. Ditto for RVM.
    - I need to install a Ruby Version Manager later (rbenv).
    - The system Ruby also stores additional commands, like `irb` and `rake` in the same directory.
    - `usr/bin/ruby` contains other Ruby libraries and gems, but actually it's an alias for the real directories, nestled more deeply in `/System/Library/Frameworks`, which is a place you should never modify directly.
@@ -56,14 +56,14 @@ And Ruby tools for later:
    - `ruby -v` tells you which version of ruby you have installed. 
    - The latest version of Ruby can be seen [here](https://www.ruby-lang.org/en/downloads/)
    
-   ### What gets installed with Ruby? 
+   ### What gets installed with Ruby?
    
-    - The core library
-    - The standard library
-    - The `irb` REPL
+   - The core library
+   - The standard library
+   - The `irb` REPL
    - The rake utility (a tool to automate Ruby dev tasks)
-    - The gem command (a tool to manage Ruby Gems)
-    - Documentation tools (`rdoc` and `ri`)
+   - The gem command (a tool to manage Ruby Gems)
+   - Documentation tools (`rdoc` and `ri`)
   
   ## [Gems](https://launchschool.com/books/core_ruby_tools/read/gems)
   
