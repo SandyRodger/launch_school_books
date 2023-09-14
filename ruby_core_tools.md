@@ -157,7 +157,7 @@ puts $LOADED_FEATURES.grep(/freewill\.rb/)
 
 ## [Ruby Version Managers](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers)
 
--  Ruby is an evolving language and sooner or later you will write a program that needs a specific version of Ruby. Ruby version managers can heklp you to switch between Rubies for different projects.
+-  Ruby is an evolving language and sooner or later you will write a program that needs a specific version of Ruby. Ruby version managers can help you to switch between Rubies for different projects.
 
 ### [Which Ruby version should I use?](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers#whichrvm)
 -  Install `rbenv` with `brew install rbenv`
@@ -178,7 +178,7 @@ puts $LOADED_FEATURES.grep(/freewill\.rb/)
 cd ~/src/magic
 rvm --ruby-version use 2.2.2
 ```
-   - , which creates a `.ruby-version` file in that directory. For good measure you should set your default version in your home directory:
+   - which creates a `.ruby-version` file in that directory. For good measure you should set your default version in your home directory:
   ```
   cd 
   rvm --ruby-version default
@@ -197,7 +197,7 @@ rvm --ruby-version use 2.2.2
 
 ### [rbenv](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers#rbenv)
 
--  You may feel that RVM and rbenv work very similarly. There are minor syntax variations. It is under the hood thtat the real differences are to be found.
+-  You may feel that RVM and rbenv work very similarly. There are minor syntax variations. It is under the hood that the real differences are to be found.
 -  rbenv uses a set of small scripts called 'shims'. They are saved in a place where Ruby must search when it can't find a command, like `rubocop`.
 
 #### installing rubies
@@ -230,7 +230,7 @@ rbenv local 2.0.0
 
 ##### Plugins
 
--  Don't forget to check these out as your  use of rbenv expands. Of particular ntoe is `ruby-build` which adds the `install` command to the `rbenv` command so you can install rubies directly with rbenv.
+-  Don't forget to check these out as your  use of rbenv expands. Of particular note is `ruby-build` which adds the `install` command to the `rbenv` command so you can install rubies directly with rbenv.
 
 ### [Summary](https://launchschool.com/books/core_ruby_tools/read/ruby_version_managers#summary)
 
@@ -238,7 +238,7 @@ rbenv local 2.0.0
 
 - Dealing with dependencies.
 - Most devs use a Ruby Version manager to manage multiple rubies, you can use this to deal with gem dependencies, but most don't. For that we have a dependency manager like Bundler.
--
+
 ### [Installing Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler#installingbundler)
 
 - My version of ruby has Bundler pre-installed.
@@ -246,7 +246,7 @@ rbenv local 2.0.0
 ### [Gemfile and Gemfile.lock](https://launchschool.com/books/core_ruby_tools/read/bundler#gemfile)
 
 - Your gem file is where you save your gems.
-- Note that the gem is Bundle, but the command is `bundler` (even though `bundele` is an alias).
+- Note that the gem is Bundle, but the command is `bundler` (even though `bundle` is an alias).
 - Bundler won't always choose the latest gem version. It may just pick one which works.
 
 ### [Running apps with Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler#runningappswithbundler)
@@ -259,7 +259,7 @@ rbenv local 2.0.0
 - Something about using `binstubs` feature.
 
 ### [Bundle exec](https://launchschool.com/books/core_ruby_tools/read/bundler#bundleexec)
--  for when the app has conflict with your `bundler/setup` command.
+-  For when the app has conflict with your `bundler/setup` command.
 -  A section on when you should use this command. Some say always.
 
 #### binstubs
@@ -276,7 +276,7 @@ rbenv local 2.0.0
  ```
  in `require': cannot load such file -- colorize (LoadError)
  ```
- - And some more tricks to do when bindle fails. Many of them involved uninstalling and reinstalling Bundler.
+ - And some more tricks to do when bundle fails. Many of them involved uninstalling and reinstalling Bundler.
 
 ### [Summary](https://launchschool.com/books/core_ruby_tools/read/bundler#summary)
 
