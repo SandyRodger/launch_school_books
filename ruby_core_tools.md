@@ -239,6 +239,8 @@ rbenv local 2.0.0
 - Dealing with dependencies.
 - Most devs use a Ruby Version manager to manage multiple rubies, you can use this to deal with gem dependencies, but most don't. For that we have a dependency manager like Bundler.
 
+### [An article about Bundler Ollie showed me](https://www.ombulabs.com/blog/ruby/learning/understanding-bundler.html)
+
 ### [Installing Bundler](https://launchschool.com/books/core_ruby_tools/read/bundler#installingbundler)
 
 - My version of ruby has Bundler pre-installed.
