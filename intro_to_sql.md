@@ -1,0 +1,97 @@
+# [Introduction to SQL](https://launchschool.com/books/sql)
+
+GETTING STARTED
+Introduction
+The importance of data
+Structured Data
+Spreadsheet as Database
+Relational Database Management Systems
+SQL
+Why learn SQL?
+Summary
+Preparations
+Interacting With PostgreSQL
+SQL Basics Tutorial
+
+YOUR FIRST DATABASE: SCHEMA
+Create and View Databases
+Create a database
+Connecting to a Database
+Delete the Database
+Summary
+Exercises
+Create and View Tables
+Table Creation Syntax
+Data Types
+Keys and Constraints
+View the Table
+Schema and DCL
+Summary
+Exercises
+
+Alter a Table
+Alter Table Syntax
+Renaming a Table
+Renaming a Column
+Changing a Column's Datatype
+Adding a Constraint
+Removing a Constraint
+Adding a Column
+Removing a Column
+Dropping Tables
+Summary
+Exercises
+
+YOUR FIRST DATABASE: DATA
+Add Data with INSERT
+Data and DML
+Setup
+Insertion Statement Syntax
+Adding Rows of Data
+Constraints and Adding Data
+Summary
+Exercises
+Select Queries
+Select Query Syntax
+ORDER BY
+Operators
+Summary
+Exercises
+More on Select
+LIMIT and OFFSET
+DISTINCT
+Functions
+GROUP BY
+Summary
+Exercises
+ Update Data in a Table
+Updating Data
+Deleting Data
+Update vs Delete
+Use Caution
+Summary
+Exercises
+WORKING WITH MULTIPLE TABLES
+Create Multiple Tables
+Normalization
+Database Design
+Keys
+One-to-One
+Referential Integrity
+One-to-Many
+Many-to-Many
+Summary
+Exercises
+SQL Joins
+Join Syntax
+Types of Joins
+Multiple Joins
+Aliasing
+Subqueries
+Summary
+Exercises
+CONCLUSION
+Summary and Additional Resources
+Summary
+Next Steps
+Resources
