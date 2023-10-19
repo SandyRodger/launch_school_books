@@ -156,11 +156,11 @@
 ## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
 
 1. Introduction
-The importance of data
-Structured Data
-Spreadsheet as Database
-Relational Database Management Systems
-SQL
+- The importance of data
+- Structured Data
+- Spreadsheet as Database
+- Relational Database Management Systems
+- SQL
 Why learn SQL?
 Summary
 2. Preparations
