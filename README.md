@@ -144,14 +144,14 @@
 ## [Introduction to Regular Expressions](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md)
 
   - [Other resources](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#other-resources)
-- [Basic Matching](https://launchschool.com/books/regex/read/basic_matching)
-  - [Alphanumerics](https://launchschool.com/books/regex/read/alphanumerics)
-- [Character classes](https://launchschool.com/books/regex/read/character_classes)
-- [Range of characters](https://launchschool.com/books/regex/read/range_of_characters)
-- [Character Class Shortcut](https://launchschool.com/books/regex/read/character_class_shortcut)
-- [Anchors](https://launchschool.com/books/regex/read/anchors)
-- [Quantifiers](https://launchschool.com/books/regex/read/quantifiers)
-  - [Greediness](https://launchschool.com/books/regex/read/greediness)
+- [Basic Matching](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#basic-matching)
+  - [Alphanumerics](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#alphanumerics)
+- [Character classes](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#character-classes)
+- [Range of characters](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#range-of-characters)
+- [Character Class Shortcut](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#character-class-shortcut)
+- [Anchors](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#anchors)
+- [Quantifiers](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#quantifiers)
+  - [Greediness](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#greediness)
 
 ## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
 
