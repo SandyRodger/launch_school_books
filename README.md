@@ -143,15 +143,15 @@ My note taking system changed in RB130, so some of the books from earlier in the
 
 ## [Introduction to Regular Expressions](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md)
 
-- [Other resources](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#other-resources)
+  - [Other resources](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#other-resources)
 - [Basic Matching](https://launchschool.com/books/regex/read/basic_matching)
-- [Alphanumerics](https://launchschool.com/books/regex/read/alphanumerics)
+  - [Alphanumerics](https://launchschool.com/books/regex/read/alphanumerics)
 - [Character classes](https://launchschool.com/books/regex/read/character_classes)
 - [Range of characters](https://launchschool.com/books/regex/read/range_of_characters)
 - [Character Class Shortcut](https://launchschool.com/books/regex/read/character_class_shortcut)
 - [Anchors](https://launchschool.com/books/regex/read/anchors)
 - [Quantifiers](https://launchschool.com/books/regex/read/quantifiers)
-- [Greediness](https://launchschool.com/books/regex/read/greediness)
+  - [Greediness](https://launchschool.com/books/regex/read/greediness)
 
 
 
