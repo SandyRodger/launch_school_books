@@ -29,8 +29,9 @@ My note taking system changed in RB130, so some of the books from earlier in the
 
 ## [Introduction to Git and Github](https://github.com/SandyRodger/launch_school_books/blob/main/git_and_github.md)
 
-## Introduction to programming with Ruby.
-## [Object Oriented Programming with Ruby.](https://github.com/SandyRodger/launch_school_books/tree/main#:~:text=8%20months%20ago-,OOP_book.md,-Create%20OOP_book.md)
+## [Introduction to programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/intro_to_ruby_book.md)
+
+## [Object Oriented Programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/OOP_book.md)
 
 ## [Core Ruby Tools](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md)
 
@@ -82,7 +83,6 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - [Conclusion](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md#conclusion)
   - [Relationships](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md#relationships)
   - [Useful links](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md#useful-links)
-
 
 ## [Introduction to HTTP](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md)
 
@@ -138,8 +138,6 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - [Conclusions and next steps](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md#conclusions-and-next-steps)
 
 ## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
-
-
 
 ## [Introduction to Regular Expressions](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md)
 
