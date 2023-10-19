@@ -220,82 +220,181 @@
 
 #### [Create a database](https://launchschool.com/books/sql/read/create_database)
 
+ - `createdb sql_book`
+ - `psql -d sql_book`
+
+ ##### Using a SQL statement
+
+- Instead of `createdb` you could use the SQL syntax `CREATE DATABASE`. Like this:
+  - `CREATE DATABASE another_database;`
+  - `DROP DATABASE another_database;`
+- The convention of uppercase from SQL staements and lowercase for tables and databases is for clarity only.
+- When creating databases the name parameter is mandatory and there are other, optional parameters for things like:
+  - encoding
+  - collation
+  - connection limit
+  - etc.
+
+##### Database naming
+
+- DB names should be self-descriptive. When you have many DBs this becomes important.
+- Snake-case.
  
  
- Connecting to a Database
-- Delete the Database
-- Summary
-- Exercises
-### 6.Create and View Tables
-- Table Creation Syntax
-- Data Types
-- Keys and Constraints
-- View the Table
-- Schema and DCL
-- Summary
-- Exercises
+#### [Connecting to a Database](https://launchschool.com/books/sql/read/create_database#connnecttodb)
+
+- We can open the psql console and connect to a database with the command `psql` + a `-d` option + database name.
+- From within psql we can connect to different DBs with `\c` or `\connect` meta-commands.
+- `\c another_database`
+
+#### [Delete the Database](https://launchschool.com/books/sql/read/create_database#deletingdb)
+
+- `DROP DATABASE another_database;`
+- Be very careful with these commands, they are irreversable.
+
+##### Using dropdb
+
+- this has to be run from the command line because it is a PostgreSQL command wrapping up the `DROP DATABASE` SQL command, which would be run from teh psql console.
+
+#### [Summary](https://launchschool.com/books/sql/read/create_database#summary)
+
+- Something about the `\e` command that I'm failing to grasp.
+
+- commands so far:
+  - PSQL Meta-Commands
+    - `\l` or `\list`
+    - `\c sql_book` or `\connect sql_book`
+  - Client/Application Command-Line Command
+    - `psql -d sql_book`
+    - `createdb sql_book` , which is a wrapper function for `CREATE DATABASE sql_book`
+    - `dropdb my_database`, which is a wrapper function for `DROP DATABASE my_database`
+
+#### [Exercises](https://launchschool.com/books/sql/read/create_database#exercises)
+
+1. From the Terminal, create a database called database_one. = `createdb database_1`
+2. From the Terminal, connect via the psql console to the database that you created in the previous question. = `psql -d database_1`
+3. From the psql console, create a database called database_two. = `CREATE DATABASE database_2;`
+4. From the psql console, connect to database_two. = `\c database_two`
+5. Display all of the databases that currently exist. = `\list`
+6. From the psql console, delete database_two. = `DROP DATABASE database_1;`
+7. From the Terminal, delete the database_one and ls_burger databases.
+
+```
+\q
+dropdb database_one
+dropdb ls_burger
+```
+
+### [6.Create and View Tables](https://launchschool.com/books/sql/read/create_table)
+
+- Now that we have created out `sql_book` database, we have the outer shell of our building.
+- Now we need to add some rooms (tables in this analogy AKA 'relations`).
+- 
+
+#### [Table Creation Syntax](https://launchschool.com/books/sql/read/create_table#tablecreationsyntax)
+
+- `CREATE TABLE some_table();`
+- with columns:
+
+```
+CREATE TABLE table_name (
+    column_1_name column_1_data_type [constraints, ...],  # the square brackets are for optional parts of the CREATE TABLE command.
+    column_2_name column_2_data_type [constraints, ...],   # constrainst can be added at the column level or at the table level.
+    .
+    .
+    .
+    constraints
+);
+```
+
+##### Creating a `users` table
+
+```
+CREATE TABLE users (
+       id serial UNIQUE NOT NULL,
+       username char(25),
+       enabled boolean DEFAULT TRUE
+);
+```
+
+- which means:
+  - `CREATE TABLE users` is the primary command.
+  - `users` The name of the table that will be created.
+  - `():` The information in the parentheses is related to the columns in the table.
+  - `id, username, enabled` These are the three columns of the table.
+  - `serial, char(25), boolean` These are the data types of the columns.
+  - `UNIQUE, NOT NULL` These are constraints.
+  - `DEFAULT TRUE` Specifies a default value for the column. 
+- This command is issued from the `psql` console while connected to `sql_book` database.
+
+# [Data Types](https://launchschool.com/books/sql/read/create_table#datatypes)
+# Keys and Constraints
+# View the Table
+# Schema and DCL
+# Summary
+# Exercises
 ### 7. Alter a Table
-- Alter Table Syntax
-- Renaming a Table
-- Renaming a Column
-- Changing a Column's Datatype
-- Adding a Constraint
-- Removing a Constraint
-- Adding a Column
-- Removing a Column
-- Dropping Tables
-- Summary
-- Exercises
+# Alter Table Syntax
+# Renaming a Table
+# Renaming a Column
+# Changing a Column's Datatype
+# Adding a Constraint
+# Removing a Constraint
+# Adding a Column
+# Removing a Column
+# Dropping Tables
+# Summary
+# Exercises
 ## YOUR FIRST DATABASE: DATA
 ### 8. Add Data with INSERT
-- Data and DML
-- Setup
-- Insertion Statement Syntax
-- Adding Rows of Data
-- Constraints and Adding Data
-- Summary
-- Exercises
+# Data and DML
+# Setup
+# Insertion Statement Syntax
+# Adding Rows of Data
+# Constraints and Adding Data
+# Summary
+# Exercises
 ### 9.Select Queries
-- Select Query Syntax
-- ORDER BY
-- Operators
-- Summary
-- Exercises
+# Select Query Syntax
+# ORDER BY
+# Operators
+# Summary
+# Exercises
 ### 10. More on Select
-- LIMIT and OFFSET
-- DISTINCT
-- Functions
-- GROUP BY
-- Summary
-- Exercises
+# LIMIT and OFFSET
+# DISTINCT
+# Functions
+# GROUP BY
+# Summary
+# Exercises
 ### 11. Update Data in a Table
-- Updating Data
-- Deleting Data
-- Update vs Delete
-- Use Caution
-- Summary
-- Exercises
+# Updating Data
+# Deleting Data
+# Update vs Delete
+# Use Caution
+# Summary
+# Exercises
 ## WORKING WITH MULTIPLE TABLES
 ### 12. Create Multiple Tables
-- Normalization
-- Database Design
-- Keys
-- One-to-One
-- Referential Integrity
-- One-to-Many
-- Many-to-Many
-- Summary
-- Exercises
+# Normalization
+# Database Design
+# Keys
+# One-to-One
+# Referential Integrity
+# One-to-Many
+# Many-to-Many
+# Summary
+# Exercises
 ### 13. SQL Joins
-- Join Syntax
-- Types of Joins
-- Multiple Joins
-- Aliasing
-- Subqueries
-- Summary
-- Exercises
+# Join Syntax
+# Types of Joins
+# Multiple Joins
+# Aliasing
+# Subqueries
+# Summary
+# Exercises
 ## CONCLUSION
 ### 14. Summary and Additional Resources
-- Summary
-- Next Steps
-- Resources
+# Summary
+# Next Steps
+# Resources
