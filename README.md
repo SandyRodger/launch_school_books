@@ -30,7 +30,7 @@ My note taking system changed in RB130, so some of the books from earlier in the
 ## [Introduction to Git and Github](https://github.com/SandyRodger/launch_school_books/blob/main/git_and_github.md)
 
 ## Introduction to programming with Ruby.
-## Object Oriented Programming with Ruby.
+## [Object Oriented Programming with Ruby.](https://github.com/SandyRodger/launch_school_books/tree/main#:~:text=8%20months%20ago-,OOP_book.md,-Create%20OOP_book.md)
 
 ## [Core Ruby Tools](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md)
 
