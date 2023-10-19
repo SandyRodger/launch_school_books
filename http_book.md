@@ -526,7 +526,7 @@ REMEMBER:
 - This google-search callback is updating the html with new search results.
 - AJAX requests are just like other requests except that instead of the browser refreshing and then processing the response the response is processed by a callback function, which is probably some client-side JavaScript code.
 
-### [summary](https://launchschool.com/books/http/read/statefulness#summary](https://launchschool.com/books/http/read/statefulness#summary)
+### [summary](https://launchschool.com/books/http/read/statefulness#summary)
 
 - Techniques used by devs to mimic statefulness with a stateless protocol (HTTP).
 - Cookies and sessions.
