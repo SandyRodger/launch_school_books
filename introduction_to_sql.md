@@ -149,22 +149,79 @@
 
 ### [4. SQL Basics Tutorial](https://launchschool.com/books/sql/read/basics_tutorial)
 
-## [Set Up](https://launchschool.com/books/sql/read/basics_tutorial#setup)
+#### [Set Up](https://launchschool.com/books/sql/read/basics_tutorial#setup)
 
-- 
+- `createdb ls_burger`
+- The instruction is then to download a file and save it as `ls_burger.sql`. The problem i encountered was that the command line did not recognise the file as SQL. I used chatGPT to translate the file into SQL and copied that into `ls_burger.sql` and it now works.
+- `psql -d ls_burger < ls_burger.sql`
 
-Connect
-Select all
-Selecting columns
-Selecting rows
-Selecting columns and rows
-Data vs Schema
-Summary
-Exercises
+#### [Connect](https://launchschool.com/books/sql/read/basics_tutorial#connect)
+
+- `psql -d ls_burger`
+
+#### [Select all](https://launchschool.com/books/sql/read/basics_tutorial#selectall)
+
+- The `SELECT` keyword is used to access data from a database. A basic example might look like this:
+- `SELECT * FROM orders;`
+
+<img width="829" alt="Screenshot 2023-10-19 at 11 06 34" src="https://github.com/SandyRodger/launch_school_books/assets/78854926/9a4e6d9f-759b-403a-aca7-96f6837328c1">
+
+- `SELECT` - the keyword that identifies the type of statement being issued. this one is for retrieving data.
+- `*` a wild card character
+- `FROM` another keyword identifying the table from which to retrieve the data
+- `orders` This is the nameof the table.
+
+#### [Selecting columns](https://launchschool.com/books/sql/read/basics_tutorial#selectcolumns)
+
+- like this `SELECT side FROM orders;`
+- or multiple columns with `SELECT drink, side FROM orders;`
+- you can choose a different order like this `SELECT side, drink FROM orders;`
+
+#### [Selecting rows](https://launchschool.com/books/sql/read/basics_tutorial#selectrows)
+
+- For example, to return the data from all of the columns for the row where `id` is `1`m we use `WHERE`:
+  - `SELECT * FROM orders WHERE id = 1;`
+- Note that in SQL `=` is an equality ioerator, not for assignment.
+
+#### [Selecting columns and rows](https://launchschool.com/books/sql/read/basics_tutorial#selectcolumnsandrows)
+
+- both together is like this:
+  - 'SELECT customer_name FROM orders WHERE side = 'Fries';'
+  - Notice `'Fries'` has quotes. Because it's a string. Before we were looking at `id`s which are ints.
+
+#### [Data vs Schema](https://launchschool.com/books/sql/read/basics_tutorial#datavsschema)
+
+- Schema is concerned with the structure of the database. Things like:
+  - names
+  - tables
+  - table columns
+  - data-types
+- Data is concerned with the contents of the database. THese are the actual values in the rows and columns.
+- Schema without data:
+
+![Screenshot 2023-10-19 at 11 28 42](https://github.com/SandyRodger/launch_school_books/assets/78854926/93d8733f-deaa-481c-b5d6-b1118e8f4663)
+
+- Data without schema:
+
+![Screenshot 2023-10-19 at 11 29 12](https://github.com/SandyRodger/launch_school_books/assets/78854926/21bb05c9-c5a1-4d0d-98f9-9785ed51f58a)
+
+#### [Summary](https://launchschool.com/books/sql/read/basics_tutorial#summary)
+
+#### [Exercises](https://launchschool.com/books/sql/read/basics_tutorial#exercises)
+
+1. Write a query that returns all of the customer names from the orders table. = 'SELECT customer_name FROM orders;'
+2. Write a query that returns all of the orders that include a Chocolate Shake. = `SELECT * FROM orders WHERE drink = 'Chocolate Shake';`
+3. Write a query that returns the burger, side, and drink for the order with an id of 2. = `SELECT burger, side, drink FROM orders WHERE id = 2;`
+4. Write a query that returns the name of anyone who ordered Onion Rings. =  `SELECT customer_name FROM orders WHERE side = 'Onion Rings';`
 
 ## YOUR FIRST DATABASE: SCHEMA
-### 5. Create and View Databases
-Create a database
+
+### [5. Create and View Databases](https://launchschool.com/books/sql/read/create_database)
+
+#### [Create a database](https://launchschool.com/books/sql/read/create_database)
+
+ 
+ 
  Connecting to a Database
 - Delete the Database
 - Summary
