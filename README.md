@@ -155,6 +155,119 @@
 
 ## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
 
+1. Introduction
+The importance of data
+Structured Data
+Spreadsheet as Database
+Relational Database Management Systems
+SQL
+Why learn SQL?
+Summary
+2. Preparations
+Vocabulary
+Installing PostgreSQL
+Summary
+3. Interacting With PostgreSQL
+Interacting with a database
+PostgreSQL Client Applications
+The psql console
+SQL Sub-languages
+Summary
+4. SQL Basics Tutorial
+Set Up
+Connect
+Select all
+Selecting columns
+Selecting rows
+Selecting columns and rows
+Data vs Schema
+Summary
+Exercises
+YOUR FIRST DATABASE: SCHEMA
+5. Create and View Databases
+Create a database
+Using a SQL statement
+Database naming
+Connecting to a Database
+Delete the Database
+Using dropdb
+Summary
+Exercises
+6.Create and View Tables
+Table Creation Syntax
+Creating a users table
+Data Types
+Keys and Constraints
+View the Table
+Schema and DCL
+Summary
+Exercises
+7. Alter a Table
+Alter Table Syntax
+Renaming a Table
+Renaming a Column
+Changing a Column's Datatype
+Adding a Constraint
+Removing a Constraint
+Adding a Column
+Removing a Column
+Dropping Tables
+Summary
+Exercises
+YOUR FIRST DATABASE: DATA
+8. Add Data with INSERT
+Data and DML
+Setup
+Insertion Statement Syntax
+Adding Rows of Data
+Constraints and Adding Data
+Summary
+Exercises
+9.Select Queries
+Select Query Syntax
+ORDER BY
+Operators
+Summary
+Exercises
+10. More on Select
+LIMIT and OFFSET
+DISTINCT
+Functions
+GROUP BY
+Summary
+Exercises
+11. Update Data in a Table
+Updating Data
+Deleting Data
+Update vs Delete
+Use Caution
+Summary
+Exercises
+WORKING WITH MULTIPLE TABLES
+12. Create Multiple Tables
+Normalization
+Database Design
+Keys
+One-to-One
+Referential Integrity
+One-to-Many
+Many-to-Many
+Summary
+Exercises
+13. SQL Joins
+Join Syntax
+Types of Joins
+Multiple Joins
+Aliasing
+Subqueries
+Summary
+Exercises
+CONCLUSION
+14. Summary and Additional Resources
+Summary
+Next Steps
+Resources
+
 ## Working with Web APIS.
 ## Agile Planning.
 ## Demystifying Rails.
