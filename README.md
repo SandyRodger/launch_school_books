@@ -1,6 +1,16 @@
 # [Open Book Shelf](https://launchschool.com/books)
 
-My note taking system changed in RB130, so some of the books from earlier in the course are not yet added. I intend to go back and include them. 
+## [Introduction to Git and Github](https://github.com/SandyRodger/launch_school_books/blob/main/git_and_github.md)
+
+- I read it, but took physical notes in a notebook
+
+## [Introduction to programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/intro_to_ruby_book.md)
+
+- I read it, but took physical notes in a notebook
+
+## [Object Oriented Programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/OOP_book.md)
+
+- I read it, but took physical notes in a notebook
 
 ## [Introduction to the Command Line](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_the_command_line.md)
 
@@ -26,12 +36,6 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - [Editors](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_the_command_line.md#editors)
 - [Conclusion](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_the_command_line.md#conclusion)
 - [My CLI vocab](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_the_command_line.md#my-cli-vocab)
-
-## [Introduction to Git and Github](https://github.com/SandyRodger/launch_school_books/blob/main/git_and_github.md)
-
-## [Introduction to programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/intro_to_ruby_book.md)
-
-## [Object Oriented Programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/OOP_book.md)
 
 ## [Core Ruby Tools](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md)
 
@@ -137,8 +141,6 @@ My note taking system changed in RB130, so some of the books from earlier in the
   - [Summary](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md#summary-4)
 - [Conclusions and next steps](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md#conclusions-and-next-steps)
 
-## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
-
 ## [Introduction to Regular Expressions](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md)
 
   - [Other resources](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_regex.md#other-resources)
@@ -151,7 +153,7 @@ My note taking system changed in RB130, so some of the books from earlier in the
 - [Quantifiers](https://launchschool.com/books/regex/read/quantifiers)
   - [Greediness](https://launchschool.com/books/regex/read/greediness)
 
-
+## [Introduction to SQL](https://github.com/SandyRodger/launch_school_books/blob/main/introduction_to_sql.md)
 
 ## Working with Web APIS.
 ## Agile Planning.
