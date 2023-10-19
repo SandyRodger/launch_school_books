@@ -84,7 +84,7 @@ My note taking system changed in RB130, so some of the books from earlier in the
   - [Useful links](https://github.com/SandyRodger/launch_school_books/blob/main/ruby_core_tools.md#useful-links)
 
 
-## [Introduction to HTTP]([https://launchschool.com/books/http](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md))
+## [Introduction to HTTP](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md)
 
 - [Background](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md#background)
 - [Introduction](https://github.com/SandyRodger/launch_school_books/blob/main/http_book.md#introduction)
