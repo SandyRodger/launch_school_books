@@ -326,6 +326,7 @@ CREATE TABLE users (
   - `UNIQUE, NOT NULL` These are constraints.
   - `DEFAULT TRUE` Specifies a default value for the column. 
 - This command is issued from the `psql` console while connected to `sql_book` database.
+- `SELECT * FROM users;` to see the table so far (it's just headers)
 
 # [Data Types](https://launchschool.com/books/sql/read/create_table#datatypes)
 # Keys and Constraints
