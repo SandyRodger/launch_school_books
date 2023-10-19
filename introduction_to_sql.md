@@ -139,13 +139,20 @@
 
 #### [SQL Sub-languages](https://launchschool.com/books/sql/read/interacting_with_postgresql#sqlsublanguages)
 
-- 
+- There are 3 sublanguages:
+  - Data Definition Language (DDL: for defining the structure of a database and the tables/columns within.
+  - Data Manipulation Language (DML): Used to retrieve or modify data stored in a database. `SELECT` queries for example.
+  - Data Control Language (DCL): Used to deteremine what various users are allowed to do when interacting with a database.
+- This book deals with only the first 2.
 
 #### [Summary](https://launchschool.com/books/sql/read/interacting_with_postgresql#summary)
 
+### [4. SQL Basics Tutorial](https://launchschool.com/books/sql/read/basics_tutorial)
 
-### 4. SQL Basics Tutorial
-Set Up
+## [Set Up](https://launchschool.com/books/sql/read/basics_tutorial#setup)
+
+- 
+
 Connect
 Select all
 Selecting columns
