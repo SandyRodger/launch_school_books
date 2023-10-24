@@ -5,7 +5,7 @@
 ### [1. Introduction](https://launchschool.com/books/sql/read/introduction)
 #### [The importance of data](https://launchschool.com/books/sql/read/introduction#data)
 
-- When it comes to the human ability to understand and remember large amounts of information there are hard limits. We can surpass these with our ability to handle large amounts of information.
+- When it comes to the human ability to understand and remember large amounts of information there are hard limits. We can surpass these with our ability to handle large amounts of information on databases.
   - collecting data.
   - organizing it.
   - studying it.
@@ -17,7 +17,7 @@
 #### [Structured Data](https://launchschool.com/books/sql/read/introduction#structureddata)
 
 - Structured data aims to solve the problem of unstructured data. Unstructured data is like a notice-board.
-- In small amounts, unstructured data is fine. THe larger the data, the more unwieldy it becomes. THink about searching through a notebook for a single quote.
+- In small amounts, unstructured data is fine. The larger the data, the more unwieldy it becomes. Think about searching through a notebook for a single quote.
 - One way to store data is in a table (rows and columns) like a spreadsheet. These are great for managing and finding information. We can sort it and do things like calculate totals.
 - A database is simply *a structured set of data held in a computer*.
   
@@ -335,6 +335,15 @@ CREATE TABLE users (
 - char(n): String of up to n chars. Anything less than n is filled with whitespace.
 - varchar(n): as above, but remaining char-spaces are not used.
 - boolean(n): often represented as t or f.
+  - Acceptable forms of booleans:
+    - 't' and 'f'
+    - true and false
+    - 'true' and 'false'
+    - 'y' and 'n'
+    - 'yes' and 'no'
+    - 'on' and 'off'
+    - '1' and '0'
+  - So basically only true and false can be valid without quote-marks.
 - INT or integer: just an int
 - decimal(precision, scale): 'precision' is total digits in the entire number, both sides of the decimal. 'scale' is total of digits to the right of the decimal.
 - timestamp: contains date and time like this YYYY-MM-DD HH:MM:SS
@@ -927,46 +936,1552 @@ INSERT INTO orders (customer_name,  burger, side, drink, customer_email, custome
 
 ### [9.Select Queries](https://launchschool.com/books/sql/read/select_queries)
 
-# Select Query Syntax
-# ORDER BY
-# Operators
-# Summary
-# Exercises
-### 10. More on Select
-# LIMIT and OFFSET
-# DISTINCT
-# Functions
-# GROUP BY
-# Summary
-# Exercises
-### 11. Update Data in a Table
-# Updating Data
-# Deleting Data
-# Update vs Delete
-# Use Caution
-# Summary
-# Exercises
+#### [Select Query Syntax](https://launchschool.com/books/sql/read/select_queries#selectquerysyntax)
+
+```
+SELECT column_name, ...
+  FROM table_name
+  WHERE condition;
+```
+
+```
+SELECT enabled, full_name FROM users
+WHERE id < 2;
+```
+##### Identifiers and key words
+
+- SQL is case-sensitive
+- SQL assumes anything that is not a keyword/operator/function is an identifier. (sort of like a ruby variable?)
+- For example, `year` is a reserved word in SQL, so to name a column that we would need to write `"year"`, but it's generally a bad idea to use reserved names as identifiers.
+
+#### [ORDER BY](https://launchschool.com/books/sql/read/select_queries#ordering)
+
+```
+SELECT column_name, ...
+       FROM table_name
+       WHERE condition
+       ORDER BY column_name;
+```
+
+- has to come after `FROM` and if there's a `WHERE`, after that too.
+
+```
+SELECT full_name, enabled FROM users
+ORDER BY enabled;
+```
+
+- for booleans, false comes before true. Within the `true`s order is arbitrary.
+- `ASC` and `DESC` for ascending and descending orders. Default is ascending.
+
+```
+SELECT full_name, enabled FROM users
+ORDER BY enabled DESC;
+```
+
+- We can have a second level of ordering, for values that are the same when sorted by the first value. ie. if `enabled` is the same, then order by `id`:
+
+```
+SELECT full_name, enabled FROM users
+ORDER BY enabled DESC, id DESC;
+```
+
+- You can order by a column even if it's not included in the output.
+- You can set a different sort order for different columns.
+
+#### [Operators](https://launchschool.com/books/sql/read/select_queries#operators)
+
+- usually part of a `WHERE` clause.
+- Here we'll be putting them in a `select` query in three categories:
+
+1. Comparison.
+2. Logical.
+3. String Matching.
+
+##### Comparison operators
+
+- `<`
+- `>`
+- `<=`
+- `>=`
+- `=` for comparison, not assignment
+- `<>` or `!=`
+
+```
+SELECT full_name, enabled, last_login
+       FROM users
+       WHERE id >= 2;
+```
+
+- There are also comparison predicates (not discussed in this book, except the last 2):
+  - `BETWEEN`
+  - `NOT BETWEEN`
+  - `IS DISTINCT FROM`
+  - `IS NOT DISTINCT FROM`
+  - `IS NULL`
+  - `IS NOT NULL`
+
+- `NULL` is special. You can't say `WHERE column_name = NULL`, you have to say `IS NULL`
+
+```
+SELECT * FROM my_table WHERE my_column IS NULL;
+```
+
+##### Logical operators
+
+- `AND`
+- `OR`
+- `NOT` (seldom used)
+
+```
+SELECT * FROM users
+         WHERE full_name = 'Harry Potter'
+            OR enabled = 'false';
+```
+
+```
+SELECT * FROM users
+         WHERE full_name = 'Harry Potter'
+           AND enabled = 'false';
+```
+
+##### String matching operators
+
+- `LIKE` (case-sensitive)
+- 'ILIKE` (case sensitive)
+
+```
+SELECT * FROM users WHERE full_name LIKE '%Smith';
+```
+
+- `%` is any number of characters followed by [string]. It will need a `%` at the end as well if you need it to scan before the matched-string!
+- `_` is a single character followed by [string]
+- `SIMILAR TO` is also available but compares to a Regex.
+
+#### [Summary](https://launchschool.com/books/sql/read/select_queries#summary)
+
+#### [Exercises](https://launchschool.com/books/sql/read/select_queries#exercises)
+
+
+1. Make sure you are connected to the `encyclopedia` database. Write a query to retrieve the population of the USA.
+
+Solution:
+
+```
+SELECT population FROM countries WHERE name = 'USA';
+```
+
+2. Write a query to return the population and the capital (with the columns in that order) of all the countries in the table.
+
+Solution:
+
+```
+SELECT population, capital FROM countries;
+```
+
+3. Write a query to return the names of all the countries ordered alphabetically.
+
+Solution:
+
+```
+SELECT name FROM countries ORDER BY name;
+```
+
+4. Write a query to return the names and the capitals of all the countries in order of population, from lowest to highest.
+
+Solution:
+
+```
+SELECT name, capital FROM countries ORDER BY population;
+```
+
+5. Write a query to return the same information as the previous query, but ordered from highest to lowest.
+
+Solution:
+
+```
+SELECT name, capital FROM countries ORDER BY population DESC;
+```
+
+6. Write a query on the `animals` table, using `ORDER BY`, that will return the following output:
+
+
+       name       |      binomial_name       | max_weight_kg | max_age_years
+------------------+--------------------------+---------------+---------------
+ Peregrine Falcon | Falco Peregrinus         |        1.5000 |            15
+ Pigeon           | Columbidae Columbiformes |        2.0000 |            15
+ Dove             | Columbidae Columbiformes |        2.0000 |            15
+ Golden Eagle     | Aquila Chrysaetos        |        6.3500 |            24
+ Kakapo           | Strigops habroptila      |        4.0000 |            60
+(5 rows)
+
+Use only the columns that can be seen in the above output for ordering purposes.
+
+Solution:
+
+```
+SELECT name, binomial_name, max_weight_kg, max_age_years FROM animals ORDER BY max_age_years, max_weight_kg, name DESC;
+```
+
+7. Write a query that returns the names of all the countries with a population greater than 70 million.
+
+Solution:
+
+```
+SELECT name FROM countries WHERE population > 70000000;
+```
+
+8. Write a query that returns the names of all the countries with a population greater than 70 million but less than 200 million.
+
+Solution:
+
+```
+SELECT name FROM countries WHERE population > 70000000 AND population < 200000000;
+```
+
+9. Write a query that will return the first name and last name of all entries in the celebrities table where the value of the deceased column is not true.
+
+Solution:
+
+```
+SELECT first_name, last_name FROM celebrities WHERE deceased = false OR deceased IS NULL;
+```
+
+10. Write a query that will return the first and last names of all the celebrities who sing.
+
+Solution:
+
+```
+SELECT first_name, last_name FROM celebrities WHERE occupation ILIKE '%sing%';
+```
+
+11. Write a query that will return the first and last names of all the celebrities who act.
+
+Solution:
+
+```
+SELECT first_name, last_name FROM celebrities WHERE occupation ILIKE '%act%';
+```
+
+LS prefers, the following because when scanning for strings it's best to be as specific as possible, to exclude any wrong matches:
+
+```
+SELECT first_name, last_name
+FROM celebrities
+WHERE occupation LIKE '%Actor%'
+OR occupation LIKE '%Actress%';
+```
+
+12. Write a query that will return the first and last names of all the celebrities who both sing and act.
+
+Solution:
+
+```
+SELECT first_name, last_name
+FROM celebrities
+WHERE (occupation LIKE '%Actor%'
+OR occupation LIKE '%Actress%')
+AND occupation ILIKE '%sing%';
+```
+
+
+13. Connect to the `ls_burger` database. Write a query that lists all of the burgers that have been ordered, from cheapest to most expensive, where the cost of the burger is less than $5.00.
+
+Solution:
+
+```
+SELECT burger FROM orders WHERE burger_cost <= 5.00 ORDER BY burger_cost;
+```
+
+14. Write a query to return the customer name and email address and loyalty points from any order worth 20 or more loyalty points. List the results from the highest number of points to the lowest.
+
+Solution:
+
+```
+SELECT customer_name, customer_email, customer_loyalty_points
+FROM orders
+WHERE customer_loyalty_points >= 20
+ORDER BY customer_loyalty_points DESC;
+```
+
+15. Write a query that returns all the burgers ordered by Natasha O'Shea.
+
+Solution:
+
+```
+SELECT burger FROM orders WHERE customer_name = 'Natasha O''Shea';
+```
+
+16. Write a query that returns the customer name from any order which does not include a drink item.
+
+Solution:
+
+```
+SELECT customer_name FROM orders WHERE drink IS NULL;
+```
+
+17. Write a query that returns the three meal items for any order which does not include fries.
+
+Solution:
+
+```
+SELECT burger, side, drink
+FROM orders
+WHERE side <> 'Fries'
+OR side IS NULL;
+```
+
+18. Write a query that returns the three meal items for any order that includes both a side and a drink.
+
+Solution:
+
+```
+SELECT burger, side, drink
+FROM orders
+WHERE side IS NOT NULL
+AND drink IS NOT NULL;
+```
+
+### [10. More on Select](https://launchschool.com/books/sql/read/more_on_select)
+
+- here we further filter our data by usinf `LIMIT`, `OFFSET` and `DISTINCT`.
+
+#### [LIMIT and OFFSET](https://launchschool.com/books/sql/read/more_on_select#limitoffset)
+
+- for limiting the data returned beyond the conditions already stated.
+- For example displaying portions of the data as separate pages. ("pagination")
+
+##### Pagination
+
+- `SELECT * FROM users LIMIT 1;` limits by `id`.
+- We skip the first fow with `OFFSET`: `SELECT * FROM users LIMIT 1 OFFSET 1;`
+- An example:
+
+```
+SELECT topic, author, publish_date, category,
+       replies_count, likes_count, last_activity_date
+    FROM posts
+    LIMIT 12
+    OFFSET 12;
+```
+
+- `LIMIT` can also be useful during development for preview a little bit of the data.
+
+#### [DISTINCT](https://launchschool.com/books/sql/read/more_on_select#distinct)
+
+- For the problem of duplicate data. Often happens when working with multiple tables.
+- Like this `SELECT DISTINCT full_name FROM users;`
+- We can use it together with SQL functions, like this: `SELECT count(DISTINCT full_name) FROM users;`
+
+#### [Functions](https://launchschool.com/books/sql/read/more_on_select#functions)
+
+- like Ruby methods.
+- Three types:
+  - String
+  - Date/time
+  - Aggregate
+
+##### String Functions
+
+- `length`
+- `trim` - removes leading whitespace
+
+##### Data/time functions
+
+- `date_part`
+- `age`
+
+##### Aggregate functions
+
+- `count`
+- `sum`
+- `min`
+- `max`
+- `avg`
+- These become really useful when grouping table-rows together
+
+#### [GROUP BY](https://launchschool.com/books/sql/read/more_on_select#groupby)
+
+- `SELECT enabled, count(id) FROM users GROUP BY enabled;`
+- The columns included in the column list, have to be included in teh `GROUP BY`clause. SO the following would return an error:
+
+```
+SELECT enabled, full_name, count(id)
+       FROM users
+       GROUP BY enabled;   -- full_name is not grouped
+```
+##### [Ian Austin article](https://medium.com/@iandaustin/grokking-group-by-bd0bfd7082ea)
+
+#### [Summary](https://launchschool.com/books/sql/read/more_on_select#summary)
+
+#### [Exercises](https://launchschool.com/books/sql/read/more_on_select#exercises)
+
+
+1. Make sure you are connected to the `encyclopedia` database. Write a query to retrieve the first row of data from the `countries` table.
+
+Solution:
+
+```
+SELECT * FROM countries LIMIT 1;
+```
+
+2. Write a query to retrieve the name of the country with the largest population.
+
+Solution:
+
+```
+SELECT name FROM countries
+ORDER BY population DESC
+LIMIT 1;
+```
+
+3. Write a query to retrieve the name of the country with the second largest population.
+
+Solution:
+
+```
+SELECT name FROM countries
+ORDER BY population DESC
+LIMIT 1 OFFSET 1;
+```
+
+4. Write a query to retrieve all of the unique values from the `binomial_name` column of the `animals` table.
+
+Solution:
+
+```
+SELECT DISTINCT binomial_name FROM animals;
+```
+
+5. Write a query to return the longest binomial name from the `animals` table.
+
+Solution:
+
+```
+SELECT binomial_name
+FROM animals
+ORDER BY length(binomial_name) DESC
+LIMIT 1;
+```
+
+6. Write a query to return the first name of any celebrity born in 1958.
+
+Solution:
+
+```
+SELECT first_name
+FROM celebrities
+WHERE date_part('year', date_of_birth) = 1958
+;
+```
+
+7. Write a query to return the highest maximum age from the animals table.
+
+Solution:
+
+```
+SELECT max_age_years
+FROM animals
+ORDER BY max_age_years DESC
+LIMIT 1
+;
+```
+
+LS solution: `SELECT max(max_age_years) FROM animals;`
+
+8. Write a query to return the average maximum weight from the `animals` table.
+
+Solution: `SELECT avg(max_weight_kg) FROM animals;`
+
+9. Write a query to return the number of rows in the `countries` table.
+
+Solution:
+
+```
+SELECT count(id) FROM countries;
+```
+
+10. Write a query to return the total population of all the countries in the `countries` table.
+
+Solution:
+
+```
+SELECT sum(population) FROM countries;
+```
+
+11. Write a query to return each unique conservation status code alongside the number of animals that have that code.
+
+Solution:
+
+```
+SELECT conservation_status, count(conservation_status)
+FROM animals
+GROUP BY conservation_status;
+```
+
+- LS solution was to use `count(id)`, but i don't think it makes a difference.
+
+12. Connect to the `ls_burger` database. Write a query that returns the average burger cost for all orders that include fries.
+
+Solution:
+
+```
+SELECT avg(burger_cost)
+FROM orders
+WHERE side = 'Fries'
+;
+```
+
+13. Write a query that returns the cost of the cheapest side ordered.
+
+Solution:
+
+```
+SELECT min(side_cost) FROM orders
+WHERE side_cost > 0
+;
+```
+
+LS did `IS NOT NULL` at the end.
+
+14. Write a query that returns the number of orders that include Fries and the number of orders that include Onion Rings.
+
+Solution:
+
+```
+SELECT side, count(id)
+FROM orders
+WHERE side = 'Fries'
+OR side = 'Onion Rings'
+GROUP BY side;
+```
+
+### [11. Update Data in a Table](https://launchschool.com/books/sql/read/update_and_delete_data)
+
+#### [Updating Data](https://launchschool.com/books/sql/read/update_and_delete_data#updatingdata)
+
+```
+UPDATE table_name
+SET column_name = value, ...
+WHERE expression;
+```
+
+- Without the `WHERE` clause it'll update every row.
+- This can be bad, so maybe check with a `SELECT` query first.
+
+##### Update all rows
+
+- we might disable users' ability to change things in response to a security issue. Like this: `UPDATE users SET enabled = false;`
+
+##### Update specific rows
+
+- More often you'll specify which rows with a `WHERE` clause.
+
+```
+UPDATE users SET enabled = true
+             WHERE full_name = 'Harry Potter'
+                OR full_name = 'Jane Smith';
+```
+
+```
+UPDATE users SET full_name='Alice Walker' WHERE id=2;
+```
+
+#### [Deleting Data](https://launchschool.com/books/sql/read/update_and_delete_data#deletingdata)
+
+- `DELETE FROM table_name WHERE expression;`
+
+##### Delete specific rows
+
+```
+DELETE FROM users
+WHERE full_name='Harry Potter' AND id > 3;
+```
+
+- Here using the name column as well as the id column gives the command extra protection.
+
+#### Delete all rows
+
+- Be careful! `DELETE FROM users;`
+
+#### [Update vs Delete](https://launchschool.com/books/sql/read/update_and_delete_data#updatevsdelete)
+
+- `DELETE` if fow whole rows. `UPDATE` can be more precise.
+- The closest you can do for deleting specific values is update them to NULL. Like this:
+
+```
+UPDATE table_name SET column_name1 = NULL
+WHERE expression;
+```
+
+- Here `=` is assignment, but in a `WHERE` clause it would be comparison.
+- If a column has a `NOT NULL` constraint then it's not possible to change it to `NULL`.
+
+#### [Use Caution](https://launchschool.com/books/sql/read/update_and_delete_data#usecaution)
+
+- You almost never want to update/delete ALL the values. So if the statement doesn't have a `WHERE` clause, be really sure.
+- Even with a `WHERE` clause, excercise caution.
+- It's normal to use a `SELECT` clause to test first.
+
+#### [Summary](https://launchschool.com/books/sql/read/update_and_delete_data#summary)
+
+#### [Exercises](Exercises)
+
+
+1. Make sure you are connected to the `encyclopedia` database. Add a column to the `animals` table called `class` to hold strings of up to 100 characters.
+
+Update all the rows in the table so that this column holds the value `Aves`.
+
+Solution:
+
+```
+ALTER TABLE animals
+ADD COLUMN class
+varchar(100);
+
+UPDATE
+animals
+SET class = 'Aves';
+```
+
+2. Add two more columns to the `animals` table called `phylum` and `kingdom`. Both should hold strings of up to 100 characters.
+
+Update all the rows in the table so that `phylum` holds the value `Chordata` and `kingdom` holds `Animalia` for all the rows in the table.
+
+Solution:
+
+```
+ALTER TABLE animals
+ADD COLUMN phylum varchar(100),
+ADD COLUMN kingdom varchar(100);
+
+UPDATE animals
+SET phylum = 'Chordata', kingdom = 'Animalia';
+```
+
+3. Add a column to the `countries` table called `continent` to hold strings of up to 50 characters.
+
+Update all the rows in the table so France and Germany have a value of `Europe` for this column, Japan has a value of `Asia` and the USA has a value of `North America`.
+
+Solution:
+
+```
+ALTER TABLE countries
+ADD COLUMN continent varchar(50);
+
+UPDATE countries SET continent = 'Europe' WHERE name = 'France' OR name = 'Germany';
+UPDATE countries SET continent = 'Asia' WHERE name = 'Japan';
+UPDATE countries SET continent = 'North America' WHERE name = 'USA';
+```
+
+4. In the `celebrities` table, update the Elvis row so that the value in the `deceased` column is true. Then change the column so that it no longer allows `NULL` values.
+
+Solution:
+
+```
+UPDATE celebrities SET deceased = true WHERE first_name = 'Elvis';
+ALTER TABLE celebrities ALTER COLUMN deceased SET NOT NULL;
+```
+
+5. Remove Tom Cruise from the `celebrities` table.
+
+Solution:
+
+```
+DELETE FROM celebrities WHERE first_name = 'Tom' AND last_name = 'Cruise';
+```
+
+6. Change the name of the `celebrities` table to `singers`, and remove anyone who isn't a singer.
+
+Solution:
+
+```
+ALTER TABLE celebrities RENAME TO singers;
+DELETE FROM singers WHERE occupation NOT ILIKE '%sing%';
+```
+
+7. Remove all the rows from the `countries` table.
+
+Solution:
+
+```
+DELETE FROM countries;
+```
+
+8. Connect to the `ls_burger` database. Change the drink on James Bergman's order from a Cola to a Lemonade.
+
+Solution:
+
+```
+UPDATE orders SET drink = 'Lemonade' WHERE customer_name ILIKE '%James%';
+```
+
+9.Add Fries to Aaron Muller's order. Make sure to add the cost ($0.99) to the appropriate field and add 3 loyalty points to the current total.
+
+Solution:
+
+```
+UPDATE orders SET side = 'Fries', side_cost = '0.99', customer_loyalty_points = 13 WHERE customer_name ILIKE '%James%';
+```
+
+10. The cost of Fries has increased to $1.20. Update the data in the table to reflect this.
+
+Solution:
+
+```
+UPDATE orders SET side_cost = '1.20' WHERE side = 'Fries';
+```
+
 ## WORKING WITH MULTIPLE TABLES
-### 12. Create Multiple Tables
-# Normalization
-# Database Design
-# Keys
-# One-to-One
-# Referential Integrity
-# One-to-Many
-# Many-to-Many
-# Summary
-# Exercises
-### 13. SQL Joins
-# Join Syntax
-# Types of Joins
-# Multiple Joins
-# Aliasing
-# Subqueries
-# Summary
-# Exercises
+
+### [12. Create Multiple Tables](https://launchschool.com/books/sql/read/table_relationships)
+
+#### [Normalization](https://launchschool.com/books/sql/read/table_relationships#normalization)
+
+- This topic goes deep. Here we cover the basics.
+  - We normalize to reduce data redundancy and improve data integrity.
+    - This means ensure that there are fewer chances for mis-entering data and less need for repetition.
+  - We normalize by arranging data in multiple tables and defining relationships between them.
+
+#### [Database Design](https://launchschool.com/books/sql/read/table_relationships#databasedesign)
+
+- defining 'entities'.
+- designing 'relationships'.
+
+##### Entitites
+
+- A real world object that we want to model within our data-base.
+- major nouns.
+- In the real-world data from an entity would probably exist over many databases. Here we will have 1 entity to 1 table of data.
+- Our sql_books entities:
+  - a user.
+  - a book.
+  - checkouts. This is a third entity that exists between users and books.
+  - reviews
+  - addresses. This could be part of the 'users' entity.
+
+
+![Screenshot 2023-10-22 at 10 35 03](https://github.com/SandyRodger/launch_school_books/assets/78854926/87afe16c-8470-4a72-9af3-65a8bbb2c379)
+
+##### Relationships
+
+![Screenshot 2023-10-22 at 10 41 21](https://github.com/SandyRodger/launch_school_books/assets/78854926/3852a50a-50c8-464b-a37f-869d90ae8658)
+
+- ERD: Entity relationship diagram
+
+#### [Keys](https://launchschool.com/books/sql/read/table_relationships#keys)
+
+- Keys are a type of constraint.
+- Primary Keys
+- Foreign Keys
+
+##### Primary keys
+
+- A primary key is a unique identifier for a row of data.
+- In order for it to be unique it has to be `NOT NULL` and `UNIQUE`. Making a column `PRIMARY KEY` automatically adds these constraints.
+
+```
+ALTER TABLE users ADD PRIMARY KEY (id);
+```
+
+- Each table can only have 1 primary key.
+- It's usually a column called `id`.
+
+##### Foreign keys
+
+- Allows us to associate a row in one table with a row in another table.
+- We do this by setting the column in one table as primary key, and a column in another table as foreign key and having the foreign reference the primary.
+- We do this with `REFERENCES`.
+
+```
+FOREIGN KEY (fk_col_name)
+REFERENCES target_table_name (pk_col_name);
+```
+
+- Think of this as creating a linear relationship between the tables.
+
+![Screenshot 2023-10-22 at 11 02 46](https://github.com/SandyRodger/launch_school_books/assets/78854926/5b04e86a-9627-492a-b005-17a66f722f96)
+
+- referencial integrity: the ensuring that a column within a record must reference an existing value. If it doesn't an error is thrown.
+- In order to implement our schema properly we should explicitly describe the types of relationships we want:
+  - A user can have 1 address. An address can have 1 user.
+  - A review is for 1 book. A book can have many reviews.
+  - A user can have many books checked out/returned. A book can be/have been checked-out by many users.
+- These are 3 relationship types:
+  - one-to-one.
+  - one-to-many.
+  - many-to-many.
+
+#### [One-to-One](https://launchschool.com/books/sql/read/table_relationships#onetoone)
+
+- Example: a user can have one address, a single address could apply to several users.
+- Implementation: the `PRIMARY KEY` is used as both `PRIMARY KEY` and `FOREIGN KEY` of the addresses table.
+
+```
+/*
+one-to-one: User has one address
+*/
+
+CREATE TABLE addresses (
+  user_id int, -- Both a primary and foreign key
+  street varchar(30) NOT NULL,
+  city varchar(30) NOT NULL,
+  state varchar(30) NOT NULL,
+  PRIMARY KEY (user_id),
+  FOREIGN KEY (user_id)
+      REFERENCES users (id)
+      ON DELETE CASCADE
+);
+```
+
+```
+INSERT INTO addresses
+         (user_id, street, city, state)
+  VALUES (1, '1 Market Street', 'San Francisco', 'CA'),
+         (2, '2 Elm Street', 'San Francisco', 'CA'),
+         (3, '3 Main Street', 'Boston', 'MA');
+```
+
+#### [Referential Integrity](https://launchschool.com/books/sql/read/table_relationships#referentialintegrity)
+
+- Example: the constraints we've added to our addresses table enforce a 1 to 1 relationship between it and `users`.
+- Entering another user into `addresses` with an existing `id` will throw an error.
+- Entering a new address with an `id` that doesn't exist in `users` will throw an error.
+- This is due to the "modality" of the relationship between the two entitites. You can not understand that word for the moment. It's an aspect of entity relationships.
+
+##### The ON DELETE clause
+
+- `ON DELTETE CASCADE` means if the row being referenced is deleted then delete the row it references also.
+- Alternatives to `CASCADE` are `SET NULL` and `SET DEFAULT`.
+- Determining what to do when references are deleted is an important part of design.
+
+#### [One-to-Many](https://launchschool.com/books/sql/read/table_relationships#onetomany)
+
+- Can't be the other way around.
+- Example: a review belongs to one book. A book has many reviews.
+
+```
+CREATE TABLE books (
+  id serial,
+  title varchar(100) NOT NULL,
+  author varchar(100) NOT NULL,
+  published_date timestamp NOT NULL,
+  isbn char(12),
+  PRIMARY KEY (id),
+  UNIQUE (isbn)
+);
+
+/*
+ one-to-many: Book has many reviews
+*/
+
+CREATE TABLE reviews (
+  id serial,
+  book_id integer NOT NULL,
+  reviewer_name varchar(255),
+  content varchar(255),
+  rating integer,
+  published_date timestamp DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (book_id)
+      REFERENCES books(id)
+      ON DELETE CASCADE
+);
+
+INSERT INTO books
+  (id, title, author, published_date, isbn)
+  VALUES
+      (1, 'My First SQL Book', 'Mary Parker',
+          '2012-02-22 12:08:17.320053-03',
+          '981483029127'),
+      (2, 'My Second SQL Book', 'John Mayer',
+          '1972-07-03 09:22:45.050088-07',
+          '857300923713'),
+      (3, 'My First SQL Book', 'Cary Flint',
+          '2015-10-18 14:05:44.547516-07',
+          '523120967812');
+
+INSERT INTO reviews
+  (id, book_id, reviewer_name, content, rating,
+       published_date)
+  VALUES
+      (1, 1, 'John Smith', 'My first review', 4,
+          '2017-12-10 05:50:11.127281-02'),
+      (2, 2, 'John Smith', 'My second review', 5,
+          '2017-10-13 15:05:12.673382-05'),
+      (3, 2, 'Alice Walker', 'Another review', 1,
+          '2017-10-22 23:47:10.407569-07');
+```
+
+- The order in which we add data is important. The data has to exist in order to be referenced.
+
+#### [Many-to-Many](https://launchschool.com/books/sql/read/table_relationships#manytomany)
+
+- Example: a user can check out many books and a book can be checked out by many users.
+- We do this with two one-to-many relationships, using a third cross-reference table (AKA a join table).
+- It can be helpful to think of them as 2 one-to-many relationships combined.
+- The join table holds the relationship between the two entities by having two `FOREIGN KEY`s each of which references the `PRIMARY KEY` of one table.
+
+![Screenshot 2023-10-22 at 12 20 51](https://github.com/SandyRodger/launch_school_books/assets/78854926/58ca4649-771e-4960-81e5-729267b09797)
+
+```
+CREATE TABLE checkouts (
+  id serial,
+  user_id int NOT NULL,
+  book_id int NOT NULL,
+  checkout_date timestamp,
+  return_date timestamp,
+  PRIMARY KEY (id),
+  FOREIGN KEY (user_id) REFERENCES users(id)
+                        ON DELETE CASCADE,
+  FOREIGN KEY (book_id) REFERENCES books(id)
+                        ON DELETE CASCADE
+);
+```
+
+- the `FOREIGN KEY`` in many-to-many relationships should never alow `NULL`, because it makes no sense to have a check-out entry if the book hasn't been checked out by a specific user.
+
+```
+INSERT INTO checkouts
+  (id, user_id, book_id, checkout_date, return_date)
+  VALUES
+    (1, 1, 1, '2017-10-15 14:43:18.095143-07',
+              NULL),
+    (2, 1, 2, '2017-10-05 16:22:44.593188-07',
+              '2017-10-13 13:0:12.673382-05'),
+    (3, 2, 2, '2017-10-15 11:11:24.994973-07',
+              '2017-10-22 17:47:10.407569-07'),
+    (4, 5, 3, '2017-10-15 09:27:07.215217-07',
+              NULL);
+```
+
+#### [Summary](https://launchschool.com/books/sql/read/table_relationships#summary)
+
+#### [Exercises](https://launchschool.com/books/sql/read/joins#exercises)
+
+1. Solution:
+
+```
+CREATE TABLE continents (
+  id serial PRIMARY KEY,
+  continent_name varchar(50)
+);
+
+ALTER TABLE countries DROP COLUMN continent;
+
+ALTER TABLE countries
+      ADD COLUMN continent_id integer;
+
+ALTER TABLE countries
+      ADD FOREIGN KEY (continent_id)
+      REFERENCES continents(id);
+```
+
+2. Solution:
+
+```
+INSERT INTO countries (name, capital, population, continent)
+                 VALUES ('France', 'Paris', 67158000, 'Europe'),
+                        ('USA', 'Washington D.C.', 325365189, 'North America'),
+                        ('Germany', 'Berlin', 82349400, 'Europe'),
+                        ('Japan', 'Tokyo', 126672000, 'Asia'),
+                        ('Egypt', 'Cairo', 96308900, 'Africa'),
+                        ('Brazil', 'Brasilia', 208385000, 'South America')
+                       ;
+```
+
+LS solution:
+
+```
+INSERT INTO continents (continent_name) VALUES
+('Africa'),
+('Asia'),
+('Europe'),
+('North America'),
+('South America');
+
+INSERT INTO countries (name, capital, population, continent_id)
+VALUES ('Brazil', 'Brasilia', 208385000, 5),
+('Egypt', 'Cairo', 96308900, 1),
+('France', 'Paris', 67158000, 3),
+('Germany', 'Berlin', 82349400, 3),
+('Japan', 'Tokyo', 126672000, 2),
+('USA', 'Washington D.C.', 325365189, 4);
+```
+
+3. Solution:
+
+WRONG:
+
+```
+CREATE TABLE albums (
+  id serial PRIMARY KEY,
+  album_name varchar(100),
+  released date,
+  genre varchar(100),
+  label varchar(100),
+  singer_id int,                   # => one to one needs no PRIMARY KEY here
+  FOREIGN KEY (singer_id)
+    REFERENCES singers (id)
+);
+ 
+ALTER TABLE singers      # = > this is wrong, but why? Is UNIQUE not a constraint that one can apply to a column?
+      ALTER COLUMN id
+      SET UNIQUE;
+
+INSERT INTO albums ...
+```
+
+LS SOLUTION:
+
+```
+ALTER TABLE singers
+ADD CONSTRAINT unique_id UNIQUE (id);
+
+CREATE TABLE albums (
+id serial PRIMARY KEY,
+album_name varchar(100),
+released date,
+genre varchar(100),
+label varchar(100),
+singer_id int,
+FOREIGN KEY (singer_id) REFERENCES singers(id)
+);
+
+INSERT INTO albums (album_name, released, genre, label, singer_id)
+VALUES ('Born to Run', '1975-08-25', 'Rock and roll', 'Columbia', 1),
+('Purple Rain', '1984-06-25', 'Pop, R&B, Rock', 'Warner Bros', 6),
+('Born in the USA', '1984-06-04', 'Rock and roll, pop', 'Columbia', 1),
+('Madonna', '1983-07-27', 'Dance-pop, post-disco', 'Warner Bros', 5),
+('True Blue', '1986-06-30', 'Dance-pop, Pop', 'Warner Bros', 5),
+('Elvis', '1956-10-19', 'Rock and roll, Rhythm and Blues', 'RCA Victor', 7),
+('Sign o'' the Times', '1987-03-30', 'Pop, R&B, Rock, Funk', 'Paisley Park, Warner Bros', 6),
+('G.I. Blues', '1960-10-01', 'Rock and roll, Pop', 'RCA Victor', 7);
+```
+
+4. Solution:
+
+```
+ALTER TABLE users               # => not necessary. How is this different from problem 3?
+ADD CONSTRAINT unique_id UNIQUE (id);
+
+CREATE TABLE customers (        # => WRONG
+  id int,
+  customer_name varchar(100),
+  PRIMARY KEY (id),      
+  FOREIGN KEY (order_id)
+    REFERENCES orders (id)
+    ON DELETE CASCADE
+);
+
+CREATE TABLE email_addresses (         
+  id int,                             # => only missing the PRIMARY KEY key
+  customer_email varchar(100),      
+  FOREIGN KEY (customer_id)
+    REFERENCES customers (id)
+    ON DELETE CASCADE
+);
+```
+
+LS Solution:
+
+```
+CREATE TABLE customers (      # => so, we don't need to set a foreign key, because this is the table that other tables reference. It does not look at other tables, it is looked at.
+id serial PRIMARY KEY,
+customer_name varchar(100)
+);
+
+CREATE TABLE email_addresses (                  # => this is looking at the 'customers' table.
+customer_id integer PRIMARY KEY,         # If another table is referencing this table, this SETS the key.
+customer_email varchar(50),
+FOREIGN KEY (customer_id)           # This table is BROADCASTING the key, which is 'customer_id')
+REFERENCES customers (id)           # It is found at 'customers' and within that, at  'id'
+ON DELETE CASCADE
+);
+
+INSERT INTO customers (customer_name)
+VALUES ('James Bergman'),
+('Natasha O''Shea'),
+('Aaron Muller');
+
+INSERT INTO email_addresses (customer_id, customer_email)
+VALUES (1, 'james1998@email.com'),
+(2, 'natasha@osheafamily.com');
+```
+
+5. Solution:
+
+```
+CREATE TABLE products (     # => correct, just missing the default 0
+id serial PRIMARY KEY,
+product_name varchar(50),
+product_cost decimal(4,2) DEFAULT 0,
+product_type varchar(20),
+product_loyalty_points int
+);
+
+INSERT INTO products (product_name, product_cost, product_type, product_loyalty_points)
+VALUES ('LS Burger', 3.00, 'Burger', 10 ),
+('LS Cheeseburger', 3.50, 'Burger', 15 ),
+('LS Chicken Burger', 4.50, 'Burger', 20 ),
+('LS Double Deluxe Burger', 6.00, 'Burger', 30 ),
+('Fries', 1.20, 'Side', 3 ),
+('Onion Rings', 1.50, 'Side', 5 ),
+('Cola', 1.50, 'Drink', 5 ),
+('Lemonade', 1.50, 'Drink', 5 ),
+('Vanilla Shake', 2.00, 'Drink', 7 ),
+('Chocolate Shake', 2.00, 'Drink', 7 ),
+('Strawberry Shake', 2.00, 'Drink', 7);
+
+```
+
+6. Solutiom:
+
+```
+
+# Create an order_items table so that an order can have one or more products associated with it.
+
+CREATE TABLE order_items (
+id serial PRIMARY KEY,
+
+);
+
+# Alter the orders table so that we can associate a customer with one or more orders (
+
+ALTER TABLE orders
+      ADD FOREGIN KEY (customer_id)
+           REFERENCES customers(id)
+
+# we also want to record an order status in this table). Assume that the order_status field of the orders table can hold strings of up to 20 characters.
+
+ALTER TABLE orders
+      ADD COLUMN order_status varchar(20)
+                 NOT NULL
+                 DEFAULT false;
+
+ALTER TABLE orders DROP COLUMN customer_name;
+
+# James has one order, consisting of a Chicken Burger, Fries, Onion Rings, and a Lemonade. It has a status of 'In Progress'.
+
+INSERT INTO orders VALUES (Chicken Burger, Fries, Onion Rings, Lemonade, 'In Progress'); # how to do 2 sides in one order?
+INSERT INTO orders VALUES (Fries);
+INSERT INTO orders VALUES (Chicken Burger, Fries, Onion Rings, Lemonade, 'In Progress');
+
+# Natasha has two orders. The first consists of a Cheeseburger, Fries, and a Cola, and has a status of 'Placed'; the second consists of a Double Deluxe Burger, a Cheeseburger, two sets of Fries, Onion Rings, a Chocolate Shake and a Vanilla Shake, and has a status of 'Complete'.
+
+# Aaron has one order, consisting of an LS Burger and Fries. It has a status of 'Placed'.
+
+[ OK, i'm peaking]
+```
+
+LS solution:
+
+```
+DROP TABLE orders;
+
+CREATE TABLE orders (
+id serial PRIMARY KEY,
+customer_id integer,
+order_status varchar(20),
+FOREIGN KEY (customer_id)
+REFERENCES customers (id)
+ON DELETE CASCADE
+);
+
+CREATE TABLE order_items (   # is this a join table? It exists to facilitatea many to many relationship between 'orders' and 'products', so yes(?)
+id serial PRIMARY KEY,
+order_id integer NOT NULL,
+product_id integer NOT NULL,
+FOREIGN KEY (order_id)
+REFERENCES orders (id)
+ON DELETE CASCADE,
+FOREIGN KEY (product_id)
+REFERENCES products (id)
+ON DELETE CASCADE
+);
+
+INSERT INTO orders (customer_id, order_status)
+VALUES (1, 'In Progress'),
+(2, 'Placed'),
+(2, 'Complete'),
+(3, 'Placed');
+
+INSERT INTO order_items (order_id, product_id)
+VALUES (1, 3),
+(1, 5),
+(1, 6),
+(1, 8),
+(2, 2),
+(2, 5),
+(2, 7),
+(3, 4),
+(3, 2),
+(3, 5),
+(3, 5),
+(3, 6),
+(3, 10),
+(3, 9),
+(4, 1),
+(4, 5);
+```
+
+- Not sure how completely I've understood/internalised/grokked this
+  
+### [13. SQL Joins](https://launchschool.com/books/sql/read/joins)
+
+- SQL handles queries across many tables like this with JOINs
+- These are clausesin SQL statements taht link 2 tables, usually based on the keys that define their relationship.
+- Types:
+  - INNER
+  - LEFT OUTER
+  - RIGHT OUTER
+  - FULL OUTER
+  - CROSS
+
+#### [Join Syntax](https://launchschool.com/books/sql/read/joins#joinsyntax)
+
+```
+SELECT table_nameN.column_name, ...
+       FROM table_name1
+       join_type JOIN table_name2
+                 ON join_condition;
+```
+
+![Screenshot 2023-10-23 at 11 12 12](https://github.com/SandyRodger/launch_school_books/assets/78854926/a631ff60-5cfb-411e-a05a-ba69b2d0ec3c)
+
+- For this relationship we could run the following command to get a list of colours and their shapes.
+
+```
+SELECT colors.color, shapes.shape
+       FROM colors
+       JOIN shapes
+            ON colors.id = shapes.color_id;
+```
+
+##### transient tables
+
+- Imagine them as containing all the columns of both tables for the brief momeny they exist.
+
+#### [Types of Joins](https://launchschool.com/books/sql/read/joins#typesofjoins)
+
+- INNER
+- LEFT OUTER
+- RIGHT OUTER
+- FULL OUTER
+- CROSS
+
+##### INNER JOIN
+
+- the default
+
+```
+SELECT users.*, addresses.*
+       FROM users
+       INNER JOIN addresses
+             ON users.id = addresses.user_id;
+```
+
+- I am not concentrating right now.
+
+##### LEFT JOIN 
+
+- AKA `LEFT JOIN OUTER`.
+
+```
+SELECT users.*, addresses.*
+       FROM users
+       LEFT JOIN addresses
+            ON users.id = addresses.user_id;
+```
+
+##### RIGHT JOIN
+
+- Just like `LEFT JOIN` but the other way around.
+
+```
+ SELECT reviews.book_id, reviews.content,
+       reviews.rating, reviews.published_date,
+       books.id, books.title, books.author
+    FROM reviews
+    RIGHT JOIN books
+          ON reviews.book_id = books.id;
+```
+
+##### FULL JOIN
+
+- combination of the two above.
+
+##### CROSS JOIN
+
+- AKA a Cartesian join.
+- doesn't need/have an ON clause.
+- Rarely used.
+- Merges the tables?
+
+```
+SELECT * FROM users CROSS JOIN addresses;
+```
+
+![Screenshot 2023-10-23 at 12 20 48](https://github.com/SandyRodger/launch_school_books/assets/78854926/ebcf7577-7876-4354-9590-5a5ade3976c7)
+
+#### [Multiple Joins](https://launchschool.com/books/sql/read/joins#multiplejoins)
+
+- It is common to join more than 2 tables.
+
+```
+SELECT users.full_name, books.title,
+       checkouts.checkout_date
+    FROM users
+    INNER JOIN checkouts
+          ON users.id = checkouts.user_id
+    INNER JOIN books
+          ON books.id = checkouts.book_id;
+```
+
+#### [Aliasing](https://launchschool.com/books/sql/read/joins#aliasing)
+
+- because the query lists can get rather long.
+- The above example using aliasing looks like this:
+
+```
+SELECT u.full_name, b.title, c.checkout_date
+       FROM users AS u
+       INNER JOIN checkouts AS c
+           ON u.id = c.user_id
+       INNER JOIN books AS b
+           ON b.id = c.book_id;
+```
+
+- You can go one step further by removing the `AS`.
+
+##### Column aliasing
+
+```
+SELECT count(id) AS "Number of Books Checked Out"
+       FROM checkouts;
+```
+
+returns
+
+```
+Number of Books Checked Out
+-----------------------------
+                          4
+(1 row)
+```
+
+Which makes it easier to read and understand.
+
+#### [Subqueries](https://launchschool.com/books/sql/read/joins#subqueries)
+
+- An alternative to `JOIN`s
+
+```
+SELECT u.full_name FROM users u
+       WHERE u.id NOT IN (
+           SELECT c.user_id FROM checkouts c
+       );
+```
+
+- This will be returned to in LS180 (oh whoops, that's where i am)
+
+##### Subquery expressions
+
+- `IN`
+- `NOT IN`
+- `ANY`
+- `SOME`
+- `ALL`
+  
+#### [Summary](https://launchschool.com/books/sql/read/joins#summary)
+
+
+#### [Exercises](https://launchschool.com/books/sql/read/joins#exercises)
+
+
+1. Connect to the encyclopedia database. Write a query to return all of the country names along with their appropriate continent names.
+
+```
+SELECT countries.name, continents.continent_name
+FROM countries JOIN continents
+ON countries.id = continents.id;  # here is where I made my mistake
+```
+
+LS solution:
+
+```
+SELECT countries.name, continents.continent_name
+FROM countries JOIN continents
+ON countries.continent_id = continents.id;
+```
+
+2. Write a query to return all of the names and capitals of the European countries.
+
+```
+SELECT countries.name, countries.capital
+FROM countries JOIN continents
+ON continents.continent_name = 'Europe';     #=> Wrong. This just returns all 6 countries and capitals.
+``` 
+
+LS solution:
+
+```
+SELECT countries.name, countries.capital
+FROM countries JOIN continents
+ON countries.continent_id = continents.id
+WHERE continents.continent_name = 'Europe';
+```
+
+3. Write a query to return the first name of any singer who had an album released under the Warner Bros label.
+
+```
+SELECT singers.first_name    #=> LS used 'SELECT DISTINCT singers.first_name'
+FROM singers JOIN albums
+ON singers.id = albums.singer_id
+WHERE albums.label = 'Warner Bros';    #=> LS used 'WHERE albums.label LIKE '%Warner Bros%';'
+```
+
+4. Write a query to return the first name and last name of any singer who released an album in the 80s and who is still living, along with the names of the album that was released and the release date. Order the results by the singer's age (youngest first).
+
+```
+SELECT singers.first_name, singers.last_name 
+FROM singers JOIN albums
+ON singers.id = albums.singer_id
+WHERE albums.released = CAST(1975 AS date);
+WHERE (singers.deceased = 'f');                  # => fail
+```
+
+LS solution:
+
+```
+SELECT singers.first_name, singers.last_name, albums.album_name, albums.released
+FROM singers JOIN albums
+ON singers.id = albums.singer_id
+WHERE albums.released >= '1980-01-01'
+AND albums.released < '1990-01-01'
+AND singers.deceased = false
+ORDER BY singers.date_of_birth DESC;
+```
+
+5. Write a query to return the first name and last name of any singer without an associated album entry.
+
+```
+SELECT singers.first_name, singers.last_name
+FROM singers JOIN albums
+ON singers.id = albums.singer_id
+WHERE singers.id NOT IN albums.singer_id;          # => give up.
+```
+
+```
+SELECT singers.first_name, singers.last_name
+FROM singers LEFT JOIN albums
+ON singers.id = albums.singer_id
+WHERE albums.id IS NULL;
+```
+
+6. Rewrite the query for the last question as a sub-query.
+
+```
+SELECT singers.first_name, singers.last_name      # => not necessary to specify 'singers'
+FROM singers
+WHERE singers.id NOT IN (SELECT a.singer_id FROM albums a);
+```
+
+LS:
+
+```
+SELECT first_name, last_name
+FROM singers
+WHERE id NOT IN (SELECT singer_id FROM albums);
+```
+7. Connect to the ls_burger database. Return a list of all orders and their associated product items.
+
+```
+SELECT *
+FROM orders LEFT JOIN products
+ON orders.id = products.id;
+```
+
+LS:
+
+```
+SELECT orders.*, products.*
+FROM orders JOIN order_items
+ON orders.id = order_items.order_id
+JOIN products
+ON order_items.product_id = products.id;
+```
+
+8. Return the id of any order that includes Fries. Use table aliasing in your query.
+
+```
+SELECT o.id
+FROM orders AS o JOIN order_items AS oi
+ON o.id = oi.order_id
+
+JOIN products AS P
+ON oi.product_id = p.id
+
+WHERE p.product_name LIKE 'Fries';
+```
+- LS solution same as mine.
+
+9. Build on the query from the previous question to return the name of any customer who ordered fries. Return this in a column called 'Customers who like Fries'. Don't repeat the same customer name more than once in the results.
+
+```
+SELECT DISTINCT c.customer_name AS "Customers who like Fries"
+FROM customers c WHERE c.id IN 
+
+(SELECT o.id
+FROM orders AS o JOIN order_items AS oi ON o.id = oi.order_id
+                 JOIN products AS p ON oi.product_id = p.id
+WHERE p.product_name LIKE 'Fries');
+```
+
+10. Write a query to return the total cost of Natasha O'Shea's orders.
+
+```
+SELECT o.id, p.product_name, c.customer_name    # => fail
+FROM orders AS o JOIN products AS p ON o.id = p.id
+FROM customers AS c JOIN oi.product_id
+;
+```
+
+
+LS solution:
+
+```
+SELECT sum(p.product_cost)
+FROM customers AS c JOIN orders as o
+ON c.id = o.customer_id
+JOIN order_items AS oi
+ON o.id = oi.order_id
+JOIN products AS p
+ON oi.product_id = p.id
+WHERE c.customer_name = 'Natasha O''Shea';
+```
+
+- Boy, I do not understand this.
+
+11. Write a query to return the name of every product included in an order alongside the number of times it has been ordered. Sort the results by product name, ascending.
+
+LS solution
+
+```
+SELECT p.product_name, COUNT(oi.id)
+FROM products AS p JOIN order_items AS oi
+ON p.id = oi.product_id
+GROUP BY p.product_name
+ORDER BY p.product_name ASC;
+```
+
 ## CONCLUSION
+
+- I need to re-do this book. Especially the last 2 pages.
+
 ### 14. Summary and Additional Resources
-# Summary
-# Next Steps
-# Resources
+
+#### [Summary](https://launchschool.com/books/sql/read/resources#summary)
+
+#### [Next Steps](https://launchschool.com/books/sql/read/resources#nextsteps)
+
+#### [Resources](https://launchschool.com/books/sql/read/resources#resources)
