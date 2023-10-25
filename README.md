@@ -1,8 +1,7 @@
 # [Open Book Shelf](https://launchschool.com/books)
 
-## [Introduction to Git and Github](https://github.com/SandyRodger/launch_school_books/blob/main/git_and_github.md)
+## [Introduction to Git and Github](https://github.com/SandyRodger/RB_101/blob/main/Github%20book%20(2nd%20go)%20%20copy.md)
 
-- I read it, but took physical notes in a notebook
 
 ## [Introduction to programming with Ruby.](https://github.com/SandyRodger/launch_school_books/blob/main/intro_to_ruby_book.md)
 
