@@ -576,6 +576,13 @@ ALTER TABLE all_users
       SET NOT NULL;
 ```
 
+
+- THIS SECTION IS REALLY VAGUE AND INCOMPLETE, SO HERE ARE SOME EXAMPLES THAT WORK:
+
+- `ALTER TABLE films ADD CONSTRAINT title_unique UNIQUE (title);`
+- `ALTER TABLE films ALTER COLUMN year SET NOT NULL;`
+- `ALTER TABLE films DROP CONSTRAINT title_unique;`
+
 #### [Removing a Constraint](https://launchschool.com/books/sql/read/alter_table#removingaconstraint)
 
 - For most constraints we can use the same syntax for table and column.
