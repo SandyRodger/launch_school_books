@@ -582,6 +582,7 @@ ALTER TABLE all_users
 - `ALTER TABLE films ADD CONSTRAINT title_unique UNIQUE (title);`
 - `ALTER TABLE films ALTER COLUMN year SET NOT NULL;`
 - `ALTER TABLE films DROP CONSTRAINT title_unique;`
+- `ALTER TABLE films ADD CONSTRAINT title_length CHECK (length(title) >= 1);`
 
 #### [Removing a Constraint](https://launchschool.com/books/sql/read/alter_table#removingaconstraint)
 
