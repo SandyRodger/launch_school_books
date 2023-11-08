@@ -583,6 +583,7 @@ ALTER TABLE all_users
 - `ALTER TABLE films ALTER COLUMN year SET NOT NULL;`
 - `ALTER TABLE films DROP CONSTRAINT title_unique;`
 - `ALTER TABLE films ADD CONSTRAINT title_length CHECK (length(title) >= 1);`
+- `ALTER TABLE films ADD CONSTRAINT year_range CHECK (year BETWEEN 1900 AND 2100);`
 
 #### [Removing a Constraint](https://launchschool.com/books/sql/read/alter_table#removingaconstraint)
 
