@@ -12,7 +12,7 @@
   - looking for patterns and meaning.
 - In order to do this we need to store it in a structured way that lends itself to studying.
 - Video of Hans Rosling interpreting life-expectancy data in 20th century.
-
+F
 
 #### [Structured Data](https://launchschool.com/books/sql/read/introduction#structureddata)
 
@@ -584,6 +584,7 @@ ALTER TABLE all_users
 - `ALTER TABLE films DROP CONSTRAINT title_unique;`
 - `ALTER TABLE films ADD CONSTRAINT title_length CHECK (length(title) >= 1);`
 - `ALTER TABLE films ADD CONSTRAINT year_range CHECK (year BETWEEN 1900 AND 2100);`
+- `ALTER TABLE films DROP CONSTRAINT films_pkey;`
 
 #### [Removing a Constraint](https://launchschool.com/books/sql/read/alter_table#removingaconstraint)
 
