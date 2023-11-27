@@ -358,6 +358,7 @@ CREATE TABLE users (
 - decimal(precision, scale): 'precision' is total digits in the entire number, both sides of the decimal. 'scale' is total of digits to the right of the decimal.
 - timestamp: contains date and time like this YYYY-MM-DD HH:MM:SS
 - data: as above, but without the time.
+- Real: stores single-precision floating point numbers.
 
 #### [Keys and Constraints](https://launchschool.com/books/sql/read/create_table#keysandconstraints)
 
