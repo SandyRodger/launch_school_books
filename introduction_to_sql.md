@@ -12,7 +12,6 @@
   - looking for patterns and meaning.
 - In order to do this we need to store it in a structured way that lends itself to studying.
 - Video of Hans Rosling interpreting life-expectancy data in 20th century.
-F
 
 #### [Structured Data](https://launchschool.com/books/sql/read/introduction#structureddata)
 
@@ -141,8 +140,19 @@ F
 
 - There are 3 sublanguages:
   - Data Definition Language (DDL: for defining the structure of a database and the tables/columns within.
-  - Data Manipulation Language (DML): Used to retrieve or modify data stored in a database. `SELECT` queries for example.
+    - `CREATE`
+    - `ALTER`
+    - `DROP
+    - `RENAME`
+  - Data Manipulation Language (DML): Used to retrieve or modify data stored in a database.
+    - `SELECT`
+    - `INSERT`
+    - `UPDATE`
+    - `DELETE`
   - Data Control Language (DCL): Used to deteremine what various users are allowed to do when interacting with a database.
+    - `GRANT`
+    - `REVOKE`
+    - `DENY`
 - This book deals with only the first 2.
 
 #### [Summary](https://launchschool.com/books/sql/read/interacting_with_postgresql#summary)
