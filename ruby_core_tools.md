@@ -335,6 +335,13 @@ rbenv local 2.0.0
 
 ### [Useful links](https://launchschool.com/books/core_ruby_tools/read/conclusion#usefullinks)
 
+## Anki deck
 
-
-
+1. Homebrew
+ - a package manager designed for Macs; you may need this to install some programs that are useful with Ruby, like PostgreSQL.
+2. `which ruby`
+   -  determine where your system finds the ruby command.
+3. `ruby -v`
+ - To determine what version of Ruby is current
+4. what is `rake`?
+   - a tool to automate Ruby development tasks.
