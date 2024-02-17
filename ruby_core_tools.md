@@ -28,6 +28,7 @@ And Ruby tools for later:
  ## [Your Ruby Installation](https://launchschool.com/books/core_ruby_tools/read/your_ruby_installation)
  
  - Most systems come with Ruby pre-installed.
+ - Did you know: Homebrew is a package manager.
  
  How did Ruby get on my system?
  
@@ -50,7 +51,7 @@ And Ruby tools for later:
    - The system Ruby also stores additional commands, like `irb` and `rake` in the same directory.
    - `usr/bin/ruby` contains other Ruby libraries and gems, but actually it's an alias for the real directories, nestled more deeply in `/System/Library/Frameworks`, which is a place you should never modify directly.
    - other responses to `which ruby` are: 
-     - `/usr/local/rbenv/shims/ruby`
+     - `/usr/local/rbenv/shims/ruby`     ** NB: 'rbenv' or 'shims' indicates you're using an rbenv-managed ruby.
      - `/usr/local/rvm/rubies/ruby-2.2.2/bin/ruby`
     
    - `ruby -v` tells you which version of ruby you have installed. 
