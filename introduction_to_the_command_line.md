@@ -16,6 +16,18 @@ Why use the CLI?
  - Understand the commands that tutorials tell you to use. (install software, see under the hood for computer commands and processes)
  - Have power of precision over the computer. (monitor your computer and its resources, diagnose software issues)
 
+### CHATGPT3 ON 'SHELL'
+
+In coding, the term "shell" typically refers to a command-line interface (CLI) or a shell program that provides a text-based interface for interacting with the operating system or executing commands. The shell is a program that takes commands from the user, interprets them, and then communicates with the operating system to perform the requested actions.
+
+There are different types of shells, and they may have varying features and syntax. Two common types of shells are:
+
+Bourne Shell (sh): The original Unix shell, known as the Bourne Shell, provides a simple and basic command-line interface. It serves as the foundation for many other shells.
+Bash (Bourne Again SHell): Bash is an enhanced version of the Bourne Shell and is widely used on Unix-like systems, including Linux. It includes additional features and improvements over the original Bourne Shell.
+Shells are essential for tasks like navigating the file system, running programs, and managing system configurations. They allow users to interact with the underlying operating system by entering commands and receiving output. In addition to the Bourne Shell and Bash, there are other shells like the C Shell (csh), Korn Shell (ksh), and Zsh (Z Shell), each with its own set of features and syntax.
+
+- So the take-away is the SHELL = CLI
+
 ## [Preparations](https://launchschool.com/books/command_line/read/preparations)
 
  - Setting up a virtual server on your computer.
@@ -105,6 +117,35 @@ $PATH
 - `which [executable file]` is used here to see where a command is to be found.
 - The path lookup rules for all commands relies heavily on managing the `$PATH` environment carefully.
 
+### CHATGPT ON '$PATH'
+
+In coding, the "PATH" is an environment variable used by the operating system to locate executable programs or scripts. The PATH variable contains a list of directories where the operating system should look for the executable files associated with the commands entered by the user.
+
+When you type a command in a command-line interface or shell, the operating system searches for the corresponding executable file in the directories listed in the PATH variable. If the executable is found in one of these directories, the command is executed; otherwise, the system reports that the command is not found.
+
+Here's a brief overview of how the PATH variable works:
+
+1. **Command Entry:** When you enter a command in the terminal or command prompt, the operating system needs to find the executable file associated with that command.
+
+2. **PATH Variable:** The PATH variable is a colon-separated list of directories that the system searches in order when looking for executable files. The directories in the PATH variable are searched from left to right.
+
+3. **Searching for Executables:** The system looks for the executable file associated with the entered command in each directory listed in the PATH. If it finds the executable, it executes the command; otherwise, it reports that the command is not found.
+
+For example, if you have a script called "myscript" in the directory "/usr/local/bin," and "/usr/local/bin" is in your PATH, you can execute the script by simply typing "myscript" in the terminal.
+
+You can view the current PATH variable on most Unix-like systems using the following command:
+
+```bash
+echo $PATH
+```
+
+On Windows, you can use:
+
+```cmd
+echo %PATH%
+```
+
+Users can customize their PATH variable to include additional directories based on their needs, allowing them to execute commands from any location in the terminal.
 ## [Permissions](https://launchschool.com/books/command_line/read/permissions)
 
 - Ownership
