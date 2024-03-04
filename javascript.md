@@ -202,9 +202,16 @@ undefined
 let foo = "bar";
 console.log(foo);
 foo;
-VM176:2 bar
+bar
 'bar'
 ```
+
+5.
+- `String.prototype.substring()` = Instance
+- `Object.create()` = Static
+- `String.fromCharCode()` (static)
+- `Array.prototype.slice()` (instance) OR String
+- `Date.prototype.toString()` (instance)
 
 
 ## The Basics
