@@ -5,7 +5,7 @@
 ### A brief Javascript History
 
 - 2008: Google's open-source Chrome V8: a high-performance JavaScript Engine.
-- Ryn Dahl's Node.js: cross-platform environment.
+- Ryan Dahl's Node.js: cross-platform environment.
 
 ### Javascript's Future
 
@@ -39,7 +39,7 @@
   - Almost every browser has a Javascript engine built in.
   - JS in the browser has 2 main purposes:
     - To change web-pages based on the user actions
-    - TO exchange mesages with a server over a network.
+    - To exchange messages with a server over a network.
 - Node.js:
   - This turns JavaScript into a general purpose programming language, which can runs apps on almost any system.
   - It needs at a minimum to do these:
@@ -53,6 +53,31 @@
   - GNOME shell
 
 #### Application Programming interface
+
+- When an app reahes into an operating system's resources, this API makes sure that it happens in a safe way.
+- It outlines a scheme and format that the dev can use to securely access resouces with the Operating System being the mediary between them.
+- Compiler + Operating system's API = runtime environment
+
+##### Browser
+
+- Main JS enviroment A:
+  - The original.
+  - Does 2 things:
+    - change web-pages as the user manipulates it
+      - Needs an API for this, to change a HTML page.
+    - Exchange messages with a server.
+      - Needs an API for this, to use the operating system's ability to send and receive messages over a network.
+- Almost all browsers do this, but not necessarily in a compatible way.
+- This is where dev-tools come in. All major browsers provide  this feature which includes a:
+  - REPL
+  - Debugger
+  - Network Inspector
+  - Performance profiler
+  - and more...
+
+##### Node.js
+
+- Main JS enviroment B:
 
 ### Installation
 
