@@ -35,22 +35,6 @@
 ### Runtime Environments
 
 - Mainly node.js and the browser.
-- Browser:
-  - Almost every browser has a Javascript engine built in.
-  - JS in the browser has 2 main purposes:
-    - To change web-pages based on the user actions
-    - To exchange messages with a server over a network.
-- Node.js:
-  - This turns JavaScript into a general purpose programming language, which can runs apps on almost any system.
-  - It needs at a minimum to do these:
-    - read/write disk files
-    - read/write via the terminal
-    - send/receive messages over a network
-    - interact with a database
-- Other JavaScript Runtime environemnets:
-  - Adobe's Acrobat
-  - Actionscript
-  - GNOME shell
 
 #### Application Programming interface
 
@@ -60,6 +44,10 @@
 
 ##### Browser
 
+- Almost every browser has a Javascript engine built in.
+- JS in the browser has 2 main purposes:
+  - To change web-pages based on the user actions
+  - To exchange messages with a server over a network.
 - Main JS enviroment A:
   - The original.
   - Does 2 things:
@@ -77,11 +65,35 @@
 
 ##### Node.js
 
+- Node.js:
+  - This turns JavaScript into a general purpose programming language, which can runs apps on almost any system.
+  - It needs at a minimum to do these:
+    - read/write disk files
+    - read/write via the terminal
+    - send/receive messages over a network
+    - interact with a database
 - Main JS enviroment B:
+  - A "runtime environment" (do i know what that is, well enough to explain it to a 4 year old?) that turns JS into a programming-language that can run basically anywhere.
+  - A programming environment (like node.js) must be able to:
+    - read/write disk files
+    - read/write via the terminal
+    - send/receive messages over a network
+    - interact with a database.
+
+##### Other Javascript runtime environments
+
+- Adobe's Acrobat
+- Actionscript
+- GNOME shell
 
 ### Installation
 
+- `node -v` -> v21.6.2
+- npm -v` -> 10.2.4
+
 ### Using a code editor
+
+- Use VSCode
 
 ### Stylish JavaScript
 
@@ -98,13 +110,20 @@
 
 <img width="675" alt="Screenshot 2024-03-01 at 07 44 28" src="https://github.com/SandyRodger/launch_school_books/assets/78854926/18037797-cb36-44b1-9cf4-a7904db7daec">
 
-- SCREAMING_SNAKE_CASE 
+- SCREAMING_SNAKE_CASE for constants and "magic-numbers"
 
 ### On semicolons
 
+- JS will input these invisibly, but you should be explicit, because if JS puts them somewhere you didn't want them it cna cause bugs. 
+
 ### The command Line
+ 
+ - Just a primer
 
 #### Command line commands
+
+- I know all this.
+
 #### The Node REPL
 
 - `console.log('Hello, world!')`
@@ -120,6 +139,73 @@
 #### Running Javascript in the browser
 
 - You have to embed the JS in an HTML file.
+
+### The chrome console
+
+- it's, among other things, a REPL.
+
+### Documentation
+
+- Programming environments provide 2 main types of reuseable code:
+  - The standard library:
+    - components and operations that make up the core language
+  - Components and operations specific to one runtime environemnt.
+- We're just going to deal with the first one.
+- Offical docs : [ECMA International](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
+- [Standards docs](https://ecma-international.org/publications-and-standards/standards/ecma-262/)
+- MDN = [Mozilla Development Network](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (not always reliable)
+
+#### Constructors and Type names
+
+- Constructors are little factories that output values of that type
+- String: Uses PascalCase
+
+#### Method names
+
+- call methods on objects:
+  - `'xyzzy'.toUpperCase()`
+- Instance methods
+- Static methods
+
+#### Property name
+
+- `"hello".length` => 5
+- Instance method v static method:
+  - `'Hello, '.concat('Bob!')` => 'Hello, Bob!'`
+  - `String.fromCharCode(97)` => 'a'
+
+#### Searching for documentation online
+
+- precede your search wiht 'mdn'
+
+### About the Exercises
+
+- Yup
+
+### Exercises
+
+1. tick
+2. tick
+3. tick
+4. 
+```node
+> let foo = "bar";
+undefined
+> console.log(foo);
+bar
+undefined
+> foo;
+'bar'
+```
+
+```console
+let foo = "bar";
+console.log(foo);
+foo;
+VM176:2 bar
+'bar'
+```
+
 
 ## The Basics
 ## Variables
