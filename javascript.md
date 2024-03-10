@@ -213,8 +213,224 @@ bar
 - `Array.prototype.slice()` (instance) OR String
 - `Date.prototype.toString()` (instance)
 
+6. Valid variable names? camelCase (letters, nums and underscores only)
+
+- index : Yes
+- CatName : No - catName (pascal case)
+- snake_case : No - snakeCase (snake case)
+- lazyDog - yes
+- quick_Fox : no - quickFox
+- 1stCharacter : no - firstCharacter (nums are allowed, but not in first place)
+- operand2 : yes
+- BIG_NUMBER : No - bigNumber (screaming snake case)
+
+7. Valid function name? 
+
+- index : yes
+- CatName : yes (constructor functions are allowed to use Pascal case)
+- snake_case : No - SnakeCase or snakeCase
+- lazyDog : yes
+- quick_Fox : No - quickFox or QuickFox
+- 1stCharacter : No FirstCharacter or firstCharacter
+- operand2 : Yes
+- BIG_NUMBER : No - BigNumber or bigNumber
+
+8. Valid constant name ? 
+
+- index : no
+- CatName : no
+- snake_case : no
+- lazyDog : no
+- quick_Fox : no
+- 1stCharacter : no
+- operand2 : no
+- BIG_NUMBER : yes
+
+9.
+- snake_case
+- quick_Fox
+- 1stCharacter
 
 ## The Basics
+
+### DataTypes
+
+- 5 primitive data-types
+  - String
+  - Number
+  - Undefined
+  - Null
+  - Boolean
+- 6 Data-type literals
+  - String literals
+  - Numeric literals
+  - Boolean literals
+  - Object literals
+  - Array literals
+  - Undefined
+
+#### Strings
+#### Numbers
+#### Booleans
+#### Undefined
+#### Null
+#### The typeof Operator
+
+- `typeof 1` => `'number'`
+- `typeof true` => `'boolean'`
+- `typeof null` => `'object'`  ?! This is an original error, now too deeply coded in to change.
+- `typeof [1, 2, 3]` => `'object'`
+
+### Arithmetic Operators
+
+#### Adding, subtracting and multiplying numbers
+
+- Same as ruby
+- EXCEPT `%` isn't modulo. THere's an edge-case difference which is:
+  - remainder (in JS) returns positive when the 1st operand is opsitive, and negative if 1st is negative. Modulo is this for the 2nd operand.
+  - So if either number is negative - bear this in mind. Otherwise, forget it. 
+
+### NaN
+
+- Not A Number
+- `typeof NaN` => `'number'`, because this error is the result of numbers.
+- `NaN` is a mathematical term and different to JS `undefined`.
+- `NaN` is the only thing in JS that is not equal to itself.
+- You can use `Number. isNaN` or `Object.is`
+
+### Infinity and -Infinity
+
+- Practically there's little difference between NaN and Imfinity, but they are very different ideas.
+- `1/0 = Infinity`
+- It does odd things:
+
+```
+> Infinity * Infinity
+= Infinity
+
+> Infinity + Infinity
+= Infinity
+
+> Infinity - Infinity
+= NaN
+
+> Infinity / Infinity
+= NaN
+
+> 1234567890 / Infinity
+= 0
+```
+- There is also -Infinity, which is the result of `-1/0`
+- Use `===` to determine whether a value is infinity or not
+
+### Equality Comparison
+
+```
+> 42 === 42
+= true
+
+> 42 === 43
+= false
+
+> 'foo' === 'foo'   // It works with strings too
+= true
+
+> 'FOO' === 'foo'   // Case is different
+= false
+```
+
+- It's like `==` in Ruby. The JS `==` is weird.
+
+### String Concatenation
+
+```
+> 'foo' + 'bar'
+= 'foobar'
+
+> '1' + '2'
+= '12'
+
+> '1' + 2
+= '12'
+```
+
+#### Implicit type coercion
+
+- In JS Anything plus string = string
+- Any other arithmetic operation results in a number
+
+### Explicit Coercion
+
+- `Number('1')` => 1
+- `Number('foo')` => NaN
+- `parseInt('12')` => NaN
+  ```
+> parseInt('12xyz')
+= 12
+
+> parseInt('3.1415')
+= 3
+
+> parseFloat('12.5foo')
+= 12.5
+> 
+```
+
+- If the int is longer than about 300 digits, JS can't handle it and returns Infinity.
+
+#### Numbers to strings
+
+```
+> String(20)
+= '20'
+```
+
+### Data Structures
+
+#### Arrays
+
+- access elements like this `[1, 2, 3, 4, 5][0]`
+- You can and should use trailing commas:
+
+```
+[
+  "Eric Idle",
+  "John Cleese",
+  "Terry Gilliam",
+  "Graham Chapman",
+  "Michael Palin",
+  "Terry Jones",
+]
+```
+#### Objects
+
+```
+> { dog: 'barks' }
+= { dog: 'barks' }
+> { dog: 'barks', cat: 'meows', pig: 'oinks' }
+= { dog: 'barks', cat: 'meows', pig: 'oinks' }
+> ({ dog: 'barks', cat: 'meows', pig: 'oinks' })['cat']
+= 'meows'
+```
+
+```
+{
+  title: "Monty Python's Flying Circus",
+  cast: [
+    "Eric Idle",
+    "John Cleese",
+    "Terry Gilliam",
+    "Graham Chapman",
+    "Michael Palin",
+    "Terry Jones",
+  ],
+  firstSeason: 1969,
+  lastSeason: 1974,
+}
+```
+
+### Expressions and return values
+
 ## Variables
 ## Input/Output
 ## Functions
