@@ -524,11 +524,126 @@ console.log(foo[3]);      // will this result in an error?
   - `npm install readline-sync --save`
 
 ### Command Line Input
+
+- 
+
 ### Input in the Browser
+
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing Prompt</title>
+</head>
+<body>
+  <script src="personalized_greeting_browser.js"></script>
+</body>
+</html>
+```
+
 ### Summary
 ### Exercises
 
+- Done
+
 ## Functions
+
+### Using Functions
+
+### Arguments & Parameters
+
+- 
+
+### Return Values
+
+- "predicates" : methods that always return booleans.
+
+### Default Parameters
+
+- Same as Ruby
+
+### Nested Functions
+
+- 
+
+### Functions & Scope
+
+#### Global variables
+
+#### Local Variables
+
+### Functions vs. Methods
+
+- `'xyzzy'.toUpperCase()`
+- `functionName(obj)`
+
+### Reassignment and Mutation
+
+- 
+
+### Mutating the Caller
+
+- 
+
+### Function Composition
+
+- 
+
+### Three Ways to Define a Function
+
+ Function declaration. (You can call it before declaring it)
+
+```
+greetPeople();
+
+function greetPeople() {
+  console.log("Good Morning!");
+}
+```
+
+2. Function expression:
+  - just, saving the function in a var.
+  - Can't be called before declared.
+  - JS functions are "first-class functions", which means we can assign function expressions to variables. I THINK?!
+
+```
+let greetPeople = function () {
+  console.log("Good Morning!");
+};
+
+greetPeople();
+```
+
+  - Any expression that doesn't have the word `function` right at the beginning is a function expression. Even this:
+
+```
+(function greetPeople() { // This is a function expression, not a declaration
+  console.log("Good Morning!");
+});
+```
+
+3. Arrow function
+
+```
+let add = (a, b) => a + b;
+let getNumber = (text) => {
+  let input = prompt(text);
+  return Number(input);
+};
+
+let number1 = getNumber("Enter a number: ");
+let number2 = getNumber("Enter another number: ");
+console.log(add(number1, number2));
+```
+
+### The Call Stack
+
+- like Ruby
+
+### Summary
+### Exercises
+
+
 ## Flow Control
 ## Loops & Iterating
 ## Arrays
