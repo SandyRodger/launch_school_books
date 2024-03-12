@@ -364,7 +364,8 @@ bar
 - `Number('1')` => 1
 - `Number('foo')` => NaN
 - `parseInt('12')` => NaN
-  ```
+
+```
 > parseInt('12xyz')
 = 12
 
@@ -373,7 +374,6 @@ bar
 
 > parseFloat('12.5foo')
 = 12.5
-> 
 ```
 
 - If the int is longer than about 300 digits, JS can't handle it and returns Infinity.
@@ -431,8 +431,103 @@ bar
 
 ### Expressions and return values
 
+### Statements
+
+### Exercises
+
+1.
+
+```
+> let first = "Sandy"
+undefined
+> let space = " "
+undefined
+> let last = "Rodger"
+undefined
+> first + space + last
+'Sandy Rodger'
+```
+
+2. `Number(String(4936)[3])`
+
+3. 
+
+- 'true' = string
+- false = Boolean
+- 1.5 = Number
+- 2 = Number
+- undefined = Undefined
+- { foo: 'bar' } = Object
+
+4. ` console.log('5' + 10);` logs '510' instead of 15 because using + where the first operand is a string implicitly coerces the other operand into a string. 
+
+5. `console.log(Number(5)+Number('10'))`
+
+"two incomensurate date-types"
+
+6.
+```
+> console.log('The value of 5 + 10 is ' + Number('5') + 10)
+The value of 5 + 10 is 510
+
+> console.log(`The value of 5 + 10 is ${Number('5') + 10}.`);
+The value of 5 + 10 is 15.
+```
+
+7. returns 'undefined'
+
+```
+let foo = ['a', 'b', 'c'];
+console.log(foo.length);  // => 3
+console.log(foo[3]);      // will this result in an error?
+```
+
+8. `names = ['ab', 'ac', 'ad', 'ae', 'af'];`
+9. 'namesObj = {ab: 1, ac: 2, ad:3, ae: 4, af:5}
+10. False ("Strict equality operator")
+11. 3
+12. true, strings are compared digit by digit.
+
 ## Variables
+### Variables and Variable Names
+#### Variable naming
+#### What else is a variable ?
+### Variables and Variable Names 
+### Declaring and Assigning Variables
+
+- "initializer"
+- expresions return values, statements don't
+
+### Declaring Constants
+
+
+### Variable Scope
+
+- block scoped
+
+### A Common Gotcha
+
+- missing out let or var - this has myriad strange consequences, like global scope.
+
+### Summary
+
+### Exercises
+
+- done in VSC
+
 ## Input/Output
+
+### Command Line output
+
+- get package.json with
+  - `npm init -y`
+  - `npm install readline-sync --save`
+
+### Command Line Input
+### Input in the Browser
+### Summary
+### Exercises
+
 ## Functions
 ## Flow Control
 ## Loops & Iterating
