@@ -210,8 +210,8 @@ bar
 - `String.prototype.substring()` = Instance
 - `Object.create()` = Static
 - `String.fromCharCode()` (static)
-- `Array.prototype.slice()` (instance) OR String
-- `Date.prototype.toString()` (instance)
+- `Array.prototype.slice()` Array or String = instance
+- `Date.prototype.toString()` = Sting/Object/Array/Number = instance
 
 6. Valid variable names? camelCase (letters, nums and underscores only)
 
