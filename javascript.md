@@ -479,19 +479,225 @@ answer = 42
 console.log(answer)
 ```
 
+#### Variable naming
+
+- "identifiers" can refer to:
+  - variable names declared by `let` and `var`
+  - Consant names declared by `const`
+  - Property names of objects (?)
+  - Function names
+  - Function params 
+  - Class names     
+- Variable name can refer to all of the above, except 'Property names of objects'.
+- THIS IS FINICKY BULLSHIT AND I WANT TO PUNCH THE SCREEN.
+
+#### What else is a variable?
+
+- Variables declared with `let` and `var`
+- Constants declared with `const` (They are constant, even though they're under the umbrella of variables)
+- Properties of the global object
+- Function names
+- Function Params (weird that these are vars, but that's how JS stores them)
+- Class names     (weird that these are vars, but that's how JS stores them)
+
 ### [Declaring and Assigning Variables](https://launchschool.com/books/javascript/read/variables#declaringandassigningvariables)
+
+- You can create a variable without a value. It's usually done with `let`. That would be declaring the variable: `let firstName` => undefined
+- To assign a more useful value we use an **initializer** AKA `=` : `let firstName = 'John'` => undefined.
+- Assignments and reassignments return values, but declarations don't. So the example above isn't returning `undefined`, the NODE repl is supplying that automatically.
+- UUUUURRRRGGHHHHHH `=` is a "syntactic token" when used in a declaration. But it is a "assignment operator" in assignemnt. FUCKING FUCK BALLS KILL ME NOW.
+- In the following example, b still equals 4 because reassignment does not also reassign all previous assignments that used that variable (OBVIOUSLY)
+
+```javascript
+let a = 4 // = undefined
+let b = a // = undefined
+let a = 7 // = 7
+b         // = 4
+```
+
 ### [Declaring Constants](https://launchschool.com/books/javascript/read/variables#declaringconstants)
+
+- `const` is `let` for constants.
+
+```javascript
+const firstName = 'Mitchell' // = undefined
+firstName // = Mitchell
+```
+
+- They have an immutable binding.
+
+```
+const INTEREST_RATE = 0.0783;
+INTEREST_RATE = 0.0788; // Uncaught Type Error
+```
+
+- this is better:
+
+```
+const INTEREST_RATE = 0.0783;
+let interest = amount * INTEREST_RATE;
+```
+
+- Unlike vars, const declarations require a value.
+
+```
+const TEST_1; // Uncaught SyntaxError: Missing initializer in const declaration
+let test_1; // undefined
+```
+
 ### [Variable Scope](https://launchschool.com/books/javascript/read/variables#variablescope)
+
+- Where you declare a variable defines its scope.
+- `let` or `const` means a block scope.
+- Not everything between curly braces is a block (BLUE BOX) = Finicky Bullshit
+
+- The following example shows that assignment within a block cannot be accessed outside the block:
+
+```
+if (1 === 1) {
+  let a = 'foo';
+}
+
+console.log(a); // ReferenceError: a is not defined
+```
+
+- But if you assign it outside the block first then it is (same as Ruby)
+
+```javascript
+let a = 'foo';
+if (1 === 1) {
+  a = 'bar';
+}
+
+console.log(a);    // => 'bar'
+```
+
+- Same for `const`s. `var` is different.
+
 ### [A Common Gotcha](https://launchschool.com/books/javascript/read/variables#acommongotcha)
+
+- If you forgo `const` or `let`, JS will still assign the value, but it can have unintended consequenses. Notably: undeclared vars have global scope. So avoid that, because it fucks up the whole code-base.
+
 ### [Summary](https://launchschool.com/books/javascript/read/variables#summary)
+
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/variables#exercises)
 
+1. 
+```javascript
+const NAME = 'Victor';
+console.log(`Good Morning, ${NAME}.`);
+console.log(`Good Afternoon, ${NAME}.`);
+console.log(`Good Evening, ${NAME}.`);
+```
+
+2. 
+```
+let age = 34;
+let years = 10;
+console.log(`In ${years} years, you will be ${age + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${age + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${age + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${age + years} years old.`);
+```
+
+3. Error because initializing a var within a scope makes it inaccessible outside the block
+
+4. Prints first three then const reassignment error.
+
+5. `Bar` because it can't see `qux`.
+
+6. No because CONSTs are also bound by block scoping rules.
 
 ## [Input/Output](https://launchschool.com/books/javascript/read/input_output)
+
+### [Command Line Output](https://launchschool.com/books/javascript/read/input_output#commandlineoutput)
+### [Command Line Input](https://launchschool.com/books/javascript/read/input_output#commandlineinput)
+### [Input in the Browser](https://launchschool.com/books/javascript/read/input_output#inputinthebrowser)
+### [Summary](https://launchschool.com/books/javascript/read/input_output#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/input_output#exercises)
+
 ## [Functions](https://launchschool.com/books/javascript/read/functions)
+
+### [Using Functions](https://launchschool.com/books/javascript/read/functions#usingfunctions)
+### [Arguments & Parameters](https://launchschool.com/books/javascript/read/functions#argumentsparameters)
+### [Return Values](https://launchschool.com/books/javascript/read/functions#returnvalues)
+### [Default Parameters](https://launchschool.com/books/javascript/read/functions#defaultparameters)
+### [Nested Functions](https://launchschool.com/books/javascript/read/functions#nestedfunctions)
+### [Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)
+### [Functions vs. Methods](https://launchschool.com/books/javascript/read/functions#functionsvsmethods)
+### [Reassignment and Mutation](https://launchschool.com/books/javascript/read/functions#reassignmentandmutation)
+### [Mutating the Caller](https://launchschool.com/books/javascript/read/functions#mutatingthecaller)
+### [Function Composition](https://launchschool.com/books/javascript/read/functions#functioncomposition)
+### [Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction)
+### [The Call Stack](https://launchschool.com/books/javascript/read/functions#callstack)
+### [Summary](https://launchschool.com/books/javascript/read/functions#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/functions#exercises)
+
 ## [Flow Control](https://launchschool.com/books/javascript/read/flow_control)
+
+### [Conditionals](https://launchschool.com/books/javascript/read/flow_control#conditionals)
+### [Comparisons](https://launchschool.com/books/javascript/read/flow_control#comparisons)
+### [Logical Operators](https://launchschool.com/books/javascript/read/flow_control#logicaloperators)
+### [Short Circuits](https://launchschool.com/books/javascript/read/flow_control#shortcircuits)
+### [Truthiness](https://launchschool.com/books/javascript/read/flow_control#truthiness)
+### [Nullish Coalescing Operator](https://launchschool.com/books/javascript/read/flow_control#nullishcoalescing)
+### [Operator Precedence](https://launchschool.com/books/javascript/read/flow_control#operatorprecedence)
+### [The Ternary Operator](https://launchschool.com/books/javascript/read/flow_control#theternaryoperator)
+### [Switch Statement](https://launchschool.com/books/javascript/read/flow_control#switchstatement)
+### [Summary](https://launchschool.com/books/javascript/read/flow_control#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/flow_control#exercises)
+
 ## [Loops & Iterating](https://launchschool.com/books/javascript/read/loops_iterating)
+
+### [while Loops](https://launchschool.com/books/javascript/read/loops_iterating#whileloops)
+### [for Loops](https://launchschool.com/books/javascript/read/loops_iterating#forloops)
+### [Controlling Loops](https://launchschool.com/books/javascript/read/loops_iterating#controllingloops)
+### [Array Iteration](https://launchschool.com/books/javascript/read/loops_iterating#arrayiteration)
+### [Recursion](https://launchschool.com/books/javascript/read/loops_iterating#recursion)
+### [Summary](https://launchschool.com/books/javascript/read/loops_iterating#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/loops_iterating#exercises)
+
 ## [Arrays](https://launchschool.com/books/javascript/read/arrays)
+
+### [What is an Array?](https://launchschool.com/books/javascript/read/arrays#whatisanarray)
+### [Modifying Arrays](https://launchschool.com/books/javascript/read/arrays#modifyingarrays)
+### [Iteration Methods](https://launchschool.com/books/javascript/read/arrays#iterationmethods)
+### [Arrays Can Be Odd](https://launchschool.com/books/javascript/read/arrays#arrayscanbeodd)
+### [Nested Arrays](https://launchschool.com/books/javascript/read/arrays#nestedarrays)
+### [Array Equality](https://launchschool.com/books/javascript/read/arrays#arrayequality)
+### [Other Array Methods](https://launchschool.com/books/javascript/read/arrays#otherarraymethods)
+### [Summary](https://launchschool.com/books/javascript/read/arrays#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/arrays#exercises)
+
 ## [Objects](https://launchschool.com/books/javascript/read/objects)
-## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
+
+### [What are Objects?](https://launchschool.com/books/javascript/read/objects#whatareobjects)
+### [Objects vs. Primitives](https://launchschool.com/books/javascript/read/objects#objectsvsprimitives)
+### [Prototypes](https://launchschool.com/books/javascript/read/objects#prototypes)
+### [Iteration](https://launchschool.com/books/javascript/read/objects#iteration)
+### [Common Operations](https://launchschool.com/books/javascript/read/objects#commonoperations)
+### [Objects vs. Arrays](https://launchschool.com/books/javascript/read/objects#objectvsarrays)
+### [Summary](https://launchschool.com/books/javascript/read/objects#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/objects#exercises)
+
+## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff
+
+### [Variables as Pointers](https://launchschool.com/books/javascript/read/more_stuff#variablesaspointers)
+### [for/in and for/of](https://launchschool.com/books/javascript/read/more_stuff#forinforof)
+### [Method Chaining](https://launchschool.com/books/javascript/read/more_stuff#methodchaining)
+### [Regex](https://launchschool.com/books/javascript/read/more_stuff#regex)
+### [The Math Object](https://launchschool.com/books/javascript/read/more_stuff#themathobject)
+### [Dates](https://launchschool.com/books/javascript/read/more_stuff#dates)
+### [Exceptions](https://launchschool.com/books/javascript/read/more_stuff#exceptions)
+### [Stack Traces](https://launchschool.com/books/javascript/read/more_stuff#readingstacktraces)
+### [ES6 and Beyond](https://launchschool.com/books/javascript/read/more_stuff#essixandbeyond)
+### [Exercises](https://launchschool.com/books/javascript/read/more_stuff#exercises)
+
 ## [Conclusions](https://launchschool.com/books/javascript/read/next_steps)
+
+### [Conclusion & Next Steps](https://launchschool.com/books/javascript/read/next_steps)
