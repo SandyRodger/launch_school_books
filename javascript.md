@@ -470,6 +470,23 @@ let pets2 = {
 12. true
 
 ## [Variables](https://launchschool.com/books/javascript/read/variables)
+
+### [Variables and Variable Names](https://launchschool.com/books/javascript/read/variables#variablesandvariablenames)
+
+```javascript
+let answer = 41;
+answer = 42
+console.log(answer)
+```
+
+### [Declaring and Assigning Variables](https://launchschool.com/books/javascript/read/variables#declaringandassigningvariables)
+### [Declaring Constants](https://launchschool.com/books/javascript/read/variables#declaringconstants)
+### [Variable Scope](https://launchschool.com/books/javascript/read/variables#variablescope)
+### [A Common Gotcha](https://launchschool.com/books/javascript/read/variables#acommongotcha)
+### [Summary](https://launchschool.com/books/javascript/read/variables#summary)
+### [Exercises](https://launchschool.com/books/javascript/read/variables#exercises)
+
+
 ## [Input/Output](https://launchschool.com/books/javascript/read/input_output)
 ## [Functions](https://launchschool.com/books/javascript/read/functions)
 ## [Flow Control](https://launchschool.com/books/javascript/read/flow_control)
@@ -478,4 +495,3 @@ let pets2 = {
 ## [Objects](https://launchschool.com/books/javascript/read/objects)
 ## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
 ## [Conclusions](https://launchschool.com/books/javascript/read/next_steps)
-![Uploading image.png…]()
