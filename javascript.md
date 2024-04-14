@@ -1,38 +1,38 @@
 # [Javascript](https://launchschool.com/books/javascript/read/introduction)
 
-## Introduction
+## [Introduction](https://launchschool.com/books/javascript/read/introduction)
 
-### A brief Javascript History
+### [A brief Javascript History](https://launchschool.com/books/javascript/read/introduction#briefhistory)
 
 - 2008: Google's open-source Chrome V8: a high-performance JavaScript Engine.
 - Ryan Dahl's Node.js: cross-platform environment.
 
-### Javascript's Future
+### [Javascript's Future](https://launchschool.com/books/javascript/read/introduction#javascriptsfuture)
 
-### Abstraction
+### [Abstraction](https://launchschool.com/books/javascript/read/introduction#abstraction)
 
 - It can go lower or higher
   - lower is writing for the computer
   - higher is writing libraries and frameworks for the user/dev.
 
-### Who this book is for
+### [Who this book is for](https://launchschool.com/books/javascript/read/introduction#whothisbookisfor)
 
 - beginners
 
-### What's not covered
+### [What's not covered](https://launchschool.com/books/javascript/read/introduction#whatsnotcovered)
 
 - The DOM API
 - Asynchronous programming
 - Object-Oriented Javascript
 - Testing
 
-### How to read this book
+### [How to read this book](https://launchschool.com/books/javascript/read/introduction#howtoreadthisbook)
 
 - Code along
 
-## Preparations
+## [Preparations](https://launchschool.com/books/javascript/read/preparations)
 
-### Runtime Environments
+### [Runtime Environments](https://launchschool.com/books/javascript/read/preparations#runtimeenvironments)
 
 - Mainly node.js and the browser.
 
@@ -86,16 +86,16 @@
 - Actionscript
 - GNOME shell
 
-### Installation
+### [Installation](https://launchschool.com/books/javascript/read/preparations#installation)
 
 - `node -v` -> v21.6.2
 - npm -v` -> 10.2.4
 
-### Using a code editor
+### [Using a code editor](https://launchschool.com/books/javascript/read/preparations#usingacodeeditor)
 
 - Use VSCode
 
-### Stylish JavaScript
+### [Stylish JavaScript](https://launchschool.com/books/javascript/read/preparations#stylishjavascript)
 
 - `//` for comments
 - `/*` for multiline comments or mid-line comments
@@ -103,7 +103,7 @@
 
 <img width="687" alt="Screenshot 2024-03-01 at 07 39 57" src="https://github.com/SandyRodger/launch_school_books/assets/78854926/b0e63e29-9e6d-471f-a6ab-c1dc719cde84">
 
-### Naming Conventions
+### [Naming Conventions](https://launchschool.com/books/javascript/read/preparations#namingconventions)
 
 - camelCase for var and function names ie: `let answerToUltimateQuestion = 42;`
 - Which is different from CamelCase (AKA PascalCase) for constructor functions
@@ -112,11 +112,11 @@
 
 - SCREAMING_SNAKE_CASE for constants and "magic-numbers"
 
-### On semicolons
+### [On semicolons](https://launchschool.com/books/javascript/read/preparations#onsemicolons)
 
 - JS will input these invisibly, but you should be explicit, because if JS puts them somewhere you didn't want them it cna cause bugs. 
 
-### The command Line
+### TThe command Line](https://launchschool.com/books/javascript/read/preparations#thecommandline)
  
  - Just a primer
 
@@ -130,7 +130,7 @@
 - Node prints return values in grey.
 - Exit with ctrl-d or ctrl-c twice
 
-### Running JavaScript
+### [Running JavaScript](https://launchschool.com/books/javascript/read/preparations#runningjavascript)
 
 - `node example.js`
 - When you run code from your command line it gets executed bny the interpreter, which takes JS code and makes it readable to the computer.
@@ -140,11 +140,11 @@
 
 - You have to embed the JS in an HTML file.
 
-### The chrome console
+### [The chrome console](https://launchschool.com/books/javascript/read/preparations#thechromeconsole)
 
 - it's, among other things, a REPL.
 
-### Documentation
+### [Documentation](https://launchschool.com/books/javascript/read/preparations#documentation)
 
 - Programming environments provide 2 main types of reuseable code:
   - The standard library:
@@ -178,11 +178,11 @@
 
 - precede your search wiht 'mdn'
 
-### About the Exercises
+### [About the Exercises](https://launchschool.com/books/javascript/read/preparations#aboutexercises)
 
 - Yup
 
-### Exercises
+### [Preparations Exercises](https://launchschool.com/books/javascript/read/preparations#exercises)
 
 1. tick
 2. tick
@@ -251,9 +251,9 @@ bar
 - quick_Fox
 - 1stCharacter
 
-## The Basics
+## [The Basics](https://launchschool.com/books/javascript/read/basics)
 
-### DataTypes
+### [DataTypes](https://launchschool.com/books/javascript/read/basics#datatypes)
 
 - 5 primitive data-types
   - String
@@ -281,7 +281,7 @@ bar
 - `typeof null` => `'object'`  ?! This is an original error, now too deeply coded in to change.
 - `typeof [1, 2, 3]` => `'object'`
 
-### Arithmetic Operators
+### [Arithmetic Operators](https://launchschool.com/books/javascript/read/basics#arithmeticoperations)
 
 #### Adding, subtracting and multiplying numbers
 
@@ -290,28 +290,28 @@ bar
   - remainder (in JS) returns positive when the 1st operand is po  sitive, and negative if 1st is negative. Modulo is this for the 2nd operand.
   - So if either number is negative - bear this in mind. Otherwise, forget it. 
 
-### NaN
+### [NaN](https://launchschool.com/books/javascript/read/basics#nan)
 
 - Not A Number
 - `typeof NaN` => `'number'`, because this error is the result of numbers.
 - `NaN` is a mathematical term and different to JS `undefined`.
 - NaN is not equal to itself.
 
-### Infinity and -Infinity
+### [Infinity and -Infinity](https://launchschool.com/books/javascript/read/basics#infinity)
 
 - It's a number, it does unexpected things
 
-### Equality comparison
+### [Equality comparison](https://launchschool.com/books/javascript/read/basics#equalitycomparison)
 
 - `===`
 - For now, avoid `==`
 
-### String concatenation
+### [String concatenation](https://launchschool.com/books/javascript/read/basics#stringconcatenation)
 
 - `'foo' + 'bar'`
 - `'1' + 2` => 12 (num plus string add as a number)
 
-### Explicit coercion
+### [Explicit coercion](https://launchschool.com/books/javascript/read/basics#explicitcoercion)
 
 - Implicit lets the engine choose how to coerce the objects. Explicit coercion is where you choose.
 
@@ -329,7 +329,7 @@ bar
 
 - `String(20)` => '20'
 
-### Data Structures
+### [Data Structures](https://launchschool.com/books/javascript/read/basics#datastructures)
 
 - "data structures" AKA "complex data types"
 - 2 most common:
@@ -379,7 +379,7 @@ bar
 
 - Rememeber you set keys to retrieve values.
 
-### Expressions and Return Values
+### [Expressions and Return Values](https://launchschool.com/books/javascript/read/basics#expressionsandreturnvalues)
 
 - Expression are what you write at the `>` prompt.
 - Almost everything you write in JS is an expression.
@@ -396,7 +396,7 @@ Howdy
 = undefined
 ```
 
-### Statements
+### [Statements](https://launchschool.com/books/javascript/read/basics#statements)
 
 - Not an expression, but often contains expressions:
   - `let foo = 3;` This is a statement, but `3` is an expression. If you use `foo` later, it will be an expression.
@@ -410,9 +410,9 @@ Howdy
 - There is some quibbling about what constitutes a statement, but LS will use the term more loosely, so don't worry about it.
 - Just remember: Expressions can be part of a statement, but not all statements can be part of an expression.
 
-### Summary
+### [Summary](https://launchschool.com/books/javascript/read/basics#summary)
 
-### Exercises
+### [Exercises](https://launchschool.com/books/javascript/read/basics#exercises)
 
 1. `'Sandy' + ' ' + 'Rodger'`
 2.  (Gross, but not a million miles away from LS solution)
@@ -469,13 +469,13 @@ let pets2 = {
 11. 3
 12. true
 
-## Variables
-## Input/Output
-## Functions
-## Flow Control
-## Loops & Iterating
-## Arrays
-## Objects
-## More Stuff
-## Conclusions
+## [Variables](https://launchschool.com/books/javascript/read/variables)
+## [Input/Output](https://launchschool.com/books/javascript/read/input_output)
+## [Functions](https://launchschool.com/books/javascript/read/functions)
+## [Flow Control](https://launchschool.com/books/javascript/read/flow_control)
+## [Loops & Iterating](https://launchschool.com/books/javascript/read/loops_iterating)
+## [Arrays](https://launchschool.com/books/javascript/read/arrays)
+## [Objects](https://launchschool.com/books/javascript/read/objects)
+## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
+## [Conclusions](https://launchschool.com/books/javascript/read/next_steps)
 ![Uploading image.png…]()
