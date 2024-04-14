@@ -616,19 +616,180 @@ console.log(`In ${years} years, you will be ${age + years} years old.`);
 ## [Input/Output](https://launchschool.com/books/javascript/read/input_output)
 
 ### [Command Line Output](https://launchschool.com/books/javascript/read/input_output#commandlineoutput)
+
+```
+let name = 'Jane';
+console.log(`Good morning, ${name}!`);
+```
+
 ### [Command Line Input](https://launchschool.com/books/javascript/read/input_output#commandlineinput)
+
+- readline API
+- readline-sync (simplified version)
+- `package.json` in current directory.
+  - no, then `npm init -y`
+  - `npm install readline-sync --save`
+
+#### Example: Greet the User By Name
+
+```javascript
+let rlSync = require('readline-sync');
+
+let number1 = Number(rlSync.question('Enter the first number\n'));
+let number2 = Number(rlSync.question('Enter the second number\n'));
+let sum = number1 + number2;
+
+console.log(`The numbers ${number1} and ${number2} add to ${sum}`);
+```
+
 ### [Input in the Browser](https://launchschool.com/books/javascript/read/input_output#inputinthebrowser)
+
+- Very different from Node.
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Testing Prompt</title>
+</head>
+<body>
+  <script src="personalized_greeting_browser.js"></script>
+</body>
+</html>
+```
+
 ### [Summary](https://launchschool.com/books/javascript/read/input_output#summary)
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/input_output#exercises)
+
+1. 
+```javascript
+let rlSync = require('readline-sync');
+
+let name = rlSync.question('What is your name!?\n');
+
+console.log(`Fuck you ${name}!`);
+```
+
+2.
+
+```
+let rlSync = require('readline-sync');
+
+let name = rlSync.question('What is your name!?\n');
+let secondName = rlSync.question('What is your last name!?\n');
+
+console.log(`Fuck you ${name} ${secondName}!`);
+```
+
+3.
+```javascript
+let rlSync = require('readline-sync');
+
+let age = rlSync.question('How old are you?\n');
+
+let years = 10;
+console.log(`In ${years} years, you will be ${Number(age) + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${Number(age) + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${Number(age) + years} years old.`);
+years += 10;
+console.log(`In ${years} years, you will be ${Number(age) + years} years old.`);
+```
 
 ## [Functions](https://launchschool.com/books/javascript/read/functions)
 
+- Ruby methods?
+
 ### [Using Functions](https://launchschool.com/books/javascript/read/functions#usingfunctions)
+
+```javascript
+function funcName() {
+  func_body;
+}
+```
+
+```javascript
+function say() {
+  console.log("Hi!");
+}
+```
+
+```javascript
+function say() {
+  console.log("Output from say()");
+}
+
+console.log("First");
+say(); // this is the function call (Like method call). It doesn't work without the parentheses
+console.log("Last");
+```
+
 ### [Arguments & Parameters](https://launchschool.com/books/javascript/read/functions#argumentsparameters)
+
+```javascript
+function say(text) {
+  console.log(text);
+}
+
+say("hello");
+say("hi");
+say("how do you do");
+say("Quite all right");
+```
+
+- function names are local variable when they are defined within another function. Otherwise global.
+- THIS IS ALL FAMILIAR FROM RUBY.
+
 ### [Return Values](https://launchschool.com/books/javascript/read/functions#returnvalues)
+
+- Implicit return v explicit return.
+
+```javascript
+function add(a, b) {
+  return a + b;
+}
+
+add(2, 3); // returns 5
+```
+
+- Functions that always return a boolean are called predicates.
+
 ### [Default Parameters](https://launchschool.com/books/javascript/read/functions#defaultparameters)
+
+```
+function say(text = "hello") {
+  console.log(text + "!");
+}
+
+say("Howdy"); // => Howdy!
+say();        // => hello!
+```
+
 ### [Nested Functions](https://launchschool.com/books/javascript/read/functions#nestedfunctions)
+
+```
+function foo() {
+  function bar() {
+    console.log("BAR");
+  }
+
+  bar(); // => BAR
+  bar(); // => BAR
+}
+
+foo();
+bar(); // ReferenceError: bar is not defined
+```
+
+- Such nested functions are created and destroyed every time the outer function runs.
+
 ### [Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)
+
+- 
+
 ### [Functions vs. Methods](https://launchschool.com/books/javascript/read/functions#functionsvsmethods)
 ### [Reassignment and Mutation](https://launchschool.com/books/javascript/read/functions#reassignmentandmutation)
 ### [Mutating the Caller](https://launchschool.com/books/javascript/read/functions#mutatingthecaller)
@@ -685,7 +846,7 @@ console.log(`In ${years} years, you will be ${age + years} years old.`);
 ### [Summary](https://launchschool.com/books/javascript/read/objects#summary)
 ### [Exercises](https://launchschool.com/books/javascript/read/objects#exercises)
 
-## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff
+## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
 
 ### [Variables as Pointers](https://launchschool.com/books/javascript/read/more_stuff#variablesaspointers)
 ### [for/in and for/of](https://launchschool.com/books/javascript/read/more_stuff#forinforof)
