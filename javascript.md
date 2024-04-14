@@ -286,8 +286,8 @@ bar
 #### Adding, subtracting and multiplying numbers
 
 - Same as ruby
-- EXCEPT `%` isn't modulo. THere's an edge-case difference which is:
-  - remainder (in JS) returns positive when the 1st operand is opsitive, and negative if 1st is negative. Modulo is this for the 2nd operand.
+- EXCEPT `%` isn't precisely equivalent to modulo. There's an edge-case difference which is:
+  - remainder (in JS) returns positive when the 1st operand is po  sitive, and negative if 1st is negative. Modulo is this for the 2nd operand.
   - So if either number is negative - bear this in mind. Otherwise, forget it. 
 
 ### NaN
@@ -296,6 +296,178 @@ bar
 - `typeof NaN` => `'number'`, because this error is the result of numbers.
 - `NaN` is a mathematical term and different to JS `undefined`.
 - NaN is not equal to itself.
+
+### Infinity and -Infinity
+
+- It's a number, it does unexpected things
+
+### Equality comparison
+
+- `===`
+- For now, avoid `==`
+
+### String concatenation
+
+- `'foo' + 'bar'`
+- `'1' + 2` => 12 (num plus string add as a number)
+
+### Explicit coercion
+
+- Implicit lets the engine choose how to coerce the objects. Explicit coercion is where you choose.
+
+#### Strings to numbers
+
+- `Number('1')` => 1
+- `Number('foo')` => NaN (No error message!)
+- Also available is `ParseInt('12')`, which ignores invalid characters.
+  - `ParseInt('12xyz')` => 12
+  - `ParseInt('3.1315')` => 3
+- Javascript cannot represent numbers longer than 300 digits, so above that `ParseInt` will return `Infinity`
+- `ParseFloat` is also a thing.
+
+#### Numbers to Strings
+
+- `String(20)` => '20'
+
+### Data Structures
+
+- "data structures" AKA "complex data types"
+- 2 most common:
+  - Arrays
+  - Objects
+
+#### Arrays
+
+- Same as Ruby? To begin with, but then...
+  - `[1, 2, 3, 4, 5][0]` => 1  (Unlike Ruby, index numbers can't be negative)
+- We can also write them like this: (the trailing comma is common practice)
+
+```
+[
+  "Eric Idle",
+  "John Cleese",
+  "Terry Gilliam",
+  "Graham Chapman",
+  "Michael Palin",
+  "Terry Jones",
+]
+```
+
+#### Objects
+
+- In Ruby these would be called hashes.
+- Keys are always strings, but they look like this `dog:`.
+  - `{ dog: 'barks' }`
+- Items in an object are not ordered. So we retrieve values by the key, not the index.
+  - `({ dog: 'barks', cat: 'meows', pig: 'oinks' })['cat']` => meows
+ 
+```
+{
+  title: "Monty Python's Flying Circus",
+  cast: [
+    "Eric Idle",
+    "John Cleese",
+    "Terry Gilliam",
+    "Graham Chapman",
+    "Michael Palin",
+    "Terry Jones",
+  ],
+  firstSeason: 1969,
+  lastSeason: 1974,
+}
+```
+
+- Rememeber you set keys to retrieve values.
+
+### Expressions and Return Values
+
+- Expression are what you write at the `>` prompt.
+- Almost everything you write in JS is an expression.
+-  Even without operators, it's an expression:
+  -  `"hi"` => 'hi'
+
+#### Printing (logging) vs returning values
+
+- I know this from Ruby...
+
+```
+> console.log('Howdy')
+Howdy
+= undefined
+```
+
+### Statements
+
+- Not an expression, but often contains expressions:
+  - `let foo = 3;` This is a statement, but `3` is an expression. If you use `foo` later, it will be an expression.
+  - KEY DIFF: CAN'T CAPTURE A VALUE FROM A STATEMENT :
+    - `console.log(3 * 5);` => 15
+    - `console.log(let answer = 3 * 5);` => Error
+
+#### Statements in Practice
+
+- "A statement is a line of code commanding a task. Every program consists of a sequence of statements".
+- There is some quibbling about what constitutes a statement, but LS will use the term more loosely, so don't worry about it.
+- Just remember: Expressions can be part of a statement, but not all statements can be part of an expression.
+
+### Summary
+
+### Exercises
+
+1. `'Sandy' + ' ' + 'Rodger'`
+2.  (Gross, but not a million miles away from LS solution)
+
+```
+let num = 4936
+
+rightmost_digit = num % 10
+console.log(rightmost_digit)
+
+let num2 = (num - rightmost_digit) / 10
+
+rightmost_digit = num2 % 10
+console.log(rightmost_digit)
+
+let num3 = (num2 - rightmost_digit) / 10
+
+rightmost_digit = num3 % 10
+console.log(rightmost_digit)
+
+let num4 = (num3 - rightmost_digit) / 10
+
+rightmost_digit = num4 % 10
+console.log(rightmost_digit)
+
+```
+
+3. 
+
+- String
+- Boolean
+- Float NOPE -number
+- Number
+- Undefines
+- Object
+
+4. Implicit coersion : regardless of the order of operands, if one is a string, they are concatenated as strings.
+
+5. `console.log(5 + Number('10'));`
+6. `console.log(`The value of 5 + 10 is ${Number('5') + 10}.`);`
+7. Undefined
+8. `let names = ['a', 'b', 'c', 'd', 'e'];`
+9. 
+```
+let pets2 = {
+  asta:	'dog',
+  butterscotch:	'cat',
+  pudding:	'cat',
+  neptune:	'fish',
+  darwin: 'lizard',
+};
+```
+10. False
+11. 3
+12. true
 
 ## Variables
 ## Input/Output
