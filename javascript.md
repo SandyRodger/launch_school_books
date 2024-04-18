@@ -788,35 +788,739 @@ bar(); // ReferenceError: bar is not defined
 
 ### [Functions & Scope](https://launchschool.com/books/javascript/read/functions#functionsscope)
 
-- 
+- Globs and locks baby.
+
+#### Global variables
+
+- Any var declared within a function or block is local. Everything else is global.
+- Devs discourage global vars because in almost all cases they cause bugs.
+
+#### Local Vars
+
+- Short lived. When the function within which they were defined stops running, they stop being available. (Like the winter king in Game of Thrones)
 
 ### [Functions vs. Methods](https://launchschool.com/books/javascript/read/functions#functionsvsmethods)
+
+- In JS Functions look like this: `aFunction()` and methods look like this `var.aMethod()`
+- In Ruby this is Instance methods and Class methods ? 
+
 ### [Reassignment and Mutation](https://launchschool.com/books/javascript/read/functions#reassignmentandmutation)
+
+- The only part of the following example I'm not sure on is the "object property" reassignemnt...
+
+```javascript
+let num = 3;              // A variable assigned to a primitive value
+let arr = [1, 2, 3];      // A variable assigned to an array
+let obj = { a: 1, b: 2 }; // A variable assigned to an object
+
+num = 42;    // Reassignment
+arr[1] = 42; // Reassignment of array element, but NOT the variable
+             // The array referenced by arr is mutated!
+obj.a = 42;  // Reassignment of object property, but NOT the variable
+             // The object referenced by obj is mutated.
+
+// You can still reassign the variables
+arr = 42;                 // Reassignment; array is lost
+obj = { b: 1, c: 2 }      // Reassignment: now refers to a different object
+```
+
 ### [Mutating the Caller](https://launchschool.com/books/javascript/read/functions#mutatingthecaller)
+
+```javascript
+let oddNumbers = [1, 3, 5, 7, 9];
+oddNumbers.pop();
+console.log(oddNumbers); // => [1, 3, 5, 7]
+```
+
+- Strings are immutable. Actually. Operations on a String will return a brand new string.
+- JS is pass-by-value when dealing with Primative values and pass-by-reference when dealing with objects and arrays.
+
 ### [Function Composition](https://launchschool.com/books/javascript/read/functions#functioncomposition)
+
+#### Function composition
+
+```javascript
+console.log(add(20, 45)); // => 65
+console.log(subtract(80, 10)); // => 70
+```
+
+```javascript
+function times(num1, num2) {
+  return num1 * num2;
+}
+
+console.log(times(add(20, 45), subtract(80, 10))); // => 4550
+// 4550 == ((20 + 45) * (80 - 10))
+```
+
+```javascript
+add(subtract(80, 10), times(subtract(20, 6), add(30, 5))); // => 560
+```
+
 ### [Three Ways to Define a Function](https://launchschool.com/books/javascript/read/functions#threewaystodefineafunction)
+
+#### Function declaration
+
+```javascript
+function functionName(zeroOrMoreArguments...) {
+  // function body
+}
+```
+
+- You can call functions before you declare them.
+
+#### Function expression
+
+```javascript
+let greetPeople = function () {
+  console.log("Good Morning!");
+};
+
+greetPeople();
+```
+
+- assigning it to a variable makes it an expression rather than a declaration.
+- You cannot invoke a function expression before it appears in the program.
+
+#### First class functions
+
+- The example above declares a variable named `greetPeople` and assigns it to the function expression after the `=` sign. We can do that because JS functions are **first class functions** WHAR?!
+- All JS functions are objects. So you can assign them to vars and pass them around. This is going to be a big deal going forward.
+- Any function definition that doesn't have the word `function` right at the beginning is a function expression.
+
+```javascript
+(function greetPeople() { // This is a function expression, not a declaration
+  console.log("Good Morning!");
+});
+```
+
+and the following (not a function declaration, it's a function expression)
+
+```
+function makeGreeter(name) {
+  return function greeter() {
+    console.log(`Hello ${name}`);
+  };
+}
+```
+
+### Arrow functions
+
+-Thirdly there's this bullshit:
+
+```
+let greetPeople = () => console.log("Good Morning!");
+greetPeople();
+```
+
+- These are (similar to) function expressions with an alternate syntax. Not totally the same because:
+  - implicit returns `let add = (a, b) => a + b;`
+  - We can omit the `return` keyword when A) the function contains a single expression (It can have subexpressions, but must evaluate to a single value) B) it isn't surrounded by curly braces
+
+```
+let add = (a, b) => a + b;
+let getNumber = (text) => {
+  let input = prompt(text);
+  return Number(input);
+};
+
+let number1 = getNumber("Enter a number: ");
+let number2 = getNumber("Enter another number: ");
+console.log(add(number1, number2));
+```
+
 ### [The Call Stack](https://launchschool.com/books/javascript/read/functions#callstack)
+
+- new frame is "pushed" to the stack.
+- Frames are "popped" from the stack.
+- If the stack runs out of room you will see a `RangeError`
+
 ### [Summary](https://launchschool.com/books/javascript/read/functions#summary)
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/functions#exercises)
+
+1. 1, no, because the `bar` assigned in the function is local and therefore not visible to the console.log call on line 7.
+2. 
+```
+function getName(prompt) {
+  let readlineSync = require('readline-sync');
+  let name = readlineSync.question(prompt);
+  return name;
+}
+
+let firstName = getName('What is your first name? ');
+let lastName = getName('What is your last name? ');
+console.log(`Hello, ${firstName} ${lastName}!`);
+```
+
+3. 
+```
+let rlSync = require('readline-sync');
+
+function multiply() {
+  let first = rlSync.question('Enter the first operand:\n');
+  let second = rlSync.question('Enter the second operand:\n');
+  console.log(`${first} * ${second} = ${first * second}`)
+};
+
+multiply();
+```
+
+4. Nothing, the `return` escapes the method before it can print anything.
+5. Nothing, it returns a value, but prints nothing.
+6
+```
+function multiplyNumbers(num1, num2, num3) { 
+  let result = num1 * num2 * num3; 
+  return result;
+}
+
+let product = multiplyNumbers(2, 3, 4); 
+
+// function arguments are 2, 3, 4
+// function body is lines 2 and 3 (between the curly braces)
+// function declaration is everything on lines 1 to 4
+// function invocation is line 6: multiplyNumbers(2, 3, 4);
+// function name is multiplyNumbers on lines 1 and 6
+// function parameters is (num1, num2, num3) on line 1
+// function return value will be 24
+// the names of all the vars are num1, num2, num3, result, product also multiplyNumbers
+```
+
+7. `'Hello'` and `undefined`
+8. `42` and `3.1415`
+9. 
+```
+function multiply(left, right) { // multiply, left, right
+  let product = left * right; // product, left, right
+  return product; // product
+}
+
+function getNumber(prompt) { //getNumber, prompt
+  return parseFloat(question(prompt)); // parseFloat, question, prompt
+}
+
+let left = getNumber('Enter the first number: '); // left, getNumber
+let right = getNumber('Enter the second number: '); // right, getNumber
+console.log(`${left} * ${right} = ${multiply(left, right)}`); // console, left, right, multiply
+```
+10.
+```
+function multiply(left, right) { // multiply, left, right
+  let product = left * right; // product, left, right
+  return product; // product
+}
+
+function getNumber(prompt) { //getNumber, prompt
+  return parseFloat(question(prompt)); // parseFloat, question, prompt
+}
+
+let left = getNumber('Enter the first number: '); // left, getNumber
+let right = getNumber('Enter the second number: '); // right, getNumber
+console.log(`${left} * ${right} = ${multiply(left, right)}`); // console, left, right, multiply
+
+// Global vars: multiply, getNumber, parseFloat, question, left(line 10), right(line 11), getNumber, console
+// Local vars: left, right, product, prompt
+```
+
+11. Nope, the left and right definied within a function are local variables completely seperate to the global variables left and right defined outside the function. Variable shadowing.
 
 ## [Flow Control](https://launchschool.com/books/javascript/read/flow_control)
 
 ### [Conditionals](https://launchschool.com/books/javascript/read/flow_control#conditionals)
+
+- `if` + logical operators:
+  - `>=`
+  - `==`
+  - `===`
+  - `!=`
+  - `!==`
+  - `&&`
+  - `||`
+- also `else`.
+
+```
+// Run this code in your browser with an HTML file
+
+let a = prompt('Enter a number');
+
+if (a === '3') {
+  console.log("a is 3");
+} else if (a === '4') {
+  console.log("a is 4");
+} else {
+  console.log("a is neither 3, nor 4");
+}
+```
+
 ### [Comparisons](https://launchschool.com/books/javascript/read/flow_control#comparisons)
+
+- `===` is the strict equality operator and compares type and value
+- `!==` is the strict inequality operator.
+- `==` the non-strict equality operator (AKA 'loose equality oeprator'). Attempts to coerce one oeprand to the other's type. Or sometimes both! (can you imagine).
+  - `5 == '5'` => true
+  - `'' == 0` => true
+- `==` is governed by complex and difficult rules, so stick to `===` when you can.
+- `"42" < 420` => true because the first operand is coerced into a number. 
+
 ### [Logical Operators](https://launchschool.com/books/javascript/read/flow_control#logicaloperators)
+
+- `!`
+  - `!true` => false
+  - `!(4 === 4)` => false
+  - `!(4!==4)` => true
+
 ### [Short Circuits](https://launchschool.com/books/javascript/read/flow_control#shortcircuits)
+
+```
+> isRed(item) && isPortable(item)
+> isGreen(item) || hasWheels(item)
+```
+
+- In the 2nd example JavaScript doesn't check the seond condition if the first condition is true.
+
 ### [Truthiness](https://launchschool.com/books/javascript/read/flow_control#truthiness)
+
+- Same as Ruby... EXCEPT JS doesn't evaluate the same things as truthy and falsy. For example: in Ruby 0 is truthy.
+- The return value in `&&` and `||` is always the operand evaluated last.
+- Using a string as if it is a Boolean:
+
+```
+let foo = null;
+let bar = 'qux';
+let isOk = foo || bar;
+```
+
+- but more clearly:
+
+```
+// if statement
+let isOk;
+if (foo || bar) {
+  isOk = true;
+} else {
+  isOk = false;
+}
+```
+
+```
+// ternary expression
+let isOk = (foo || bar) ? true : false;
+```
+
+- And finally the most common way to assign a non-boolean value evaluated by truthiness is with `!!`:
+
+```
+let isOk = !!(foo || bar);
+```
+
+- `!!` is just two consecutive `!`s. So `!!a` is the same as `!(1a)`
+
 ### [Nullish Coalescing Operator](https://launchschool.com/books/javascript/read/flow_control#nullishcoalescing)
+
+- `??` evaluates the right-hand operand if the left-hand operand is nullish.
+- 'nullish' is `null` or `undefined`
+- So it's simillar to `||`, but  with nullish instead of falsy, as seen below:
+
+```
+> null ?? "over here!"    // does not short-circuit
+= 'over here!
+
+> undefined ?? "pick me!" // does not short-circuit
+= 'pick me!'
+
+> false ?? "not me"       // short-circuits
+= false
+
+> 0 ?? "not me either"    // short-circuits
+= 0
+```
+
+- So it's most appropriate when you're likely to run up against `null` or `undefined`. As below:
+
+```
+function foo(str) {
+  let found = ["Pete", "Alli", "Chris"].find(name => name === str);
+  return found ?? "Not found";
+}
+
+console.log(foo("Alli"));     // => Alli
+console.log(foo("Allison"));  // => Not found
+```
+
+- `??` isn't used a lot in Core, more in Capstone.
+
 ### [Operator Precedence](https://launchschool.com/books/javascript/read/flow_control#operatorprecedence)
+
+- highest to lowest:
+  - Comparison: `<=`, `<`, `>`, `>=`
+  - Equality: `===`, `!==`, `==`, `!=`
+  - Logical AND: `&&`
+  - Logical OR: `||`
+
+```
+if (x || y && z) {
+  // do something
+}
+```
+
+- "evaluated [...] at the same depth" ?
+
+```
+if ((x || y) && z) {
+  // do something
+}
+```
+
+- Parentheses help programmers understand your intentions.
+- JS evaluates JS in usual algebraic order. THat means innermost bracketed items first and working outwards.
+- SHort circuit evaluation does not change presedence rules.
+
 ### [The Ternary Operator](https://launchschool.com/books/javascript/read/flow_control#theternaryoperator)
+
+```
+> 1 == 1 ? 'this is true' : 'this is not true'
+= 'this is true'
+
+> 1 == 0 ? "this is true" : "this is not true"
+= 'this is not true'
+
+```
+
+- It does the same thing as an `if/else` statement, but one cannot capture the result of a statement in a variable or argument. With a ternary operator we can:
+
+```
+> let message = true ? 'this is true' : 'this is not true'
+= undefined
+
+> message
+= 'this is true'
+
+> console.log(false ? 'this is true' : 'this is not true')
+this is not true
+= undefined
+```
+
+#### When should I use a Ternary expression?
+
+- CHoosing between two values, rather than between two actions.
+- Yes:
+
+```
+let foo = hitchhiker ? 42 : 3.1415;    // Assign result of ?: to a variable
+console.log(hitchhiker ? 42 : 3.1415); // Pass result as argument
+return hitchhiker ? 42: 3.1415;        // Return result
+```
+
+- No:
+
+```
+hitchhiker ? foo = 42 : bar = 3.1415;               // Setting variables
+hitchhiker ? console.log(42) : console.log(3.1415); // Printing
+```
+
 ### [Switch Statement](https://launchschool.com/books/javascript/read/flow_control#switchstatement)
+
+- Like a `case` statement in Ruby?
+- The key difference with `if` statements is that it can compare a single value with multiple values, rather than a one to one comparison.
+- They use the key words `switch`, `case`, `default` and `break`.
+
+```
+let a = 5;
+
+switch (a) {
+  case 5:
+    console.log('a is 5');
+    break;
+  case 6:
+    console.log('a is 6');
+    break;
+  default:
+    console.log('a is neither 5, nor 6');
+    break;
+} // => a is 5
+```
+
+- Which does the same thing as this:
+
+```
+let a = 5;
+
+if (a === 5) {
+  console.log('a is 5');
+} else if (a === 6) {
+  console.log('a is 6');
+} else {
+  console.log('a is neither 5, nor 6');
+} // => a is 5
+```
+
+- Without `break` it does each option (Why that would ever be helpful is beyond me). It's called 'fall-throughs' apparently. Even when it's correct it looks wrong.
+
+```
+let a = 5;
+
+switch (a) {
+  case 5:
+    console.log('a is 5');
+  case 6:
+    console.log('a is 6');
+  default:
+    console.log('a is neither 5, nor 6');
+} // => a is 5
+  //    a is 6
+  //    a is neither 5, nor 6
+```
+
+- Here's a situation where it is correct:
+
+```
+let a = 5;
+
+switch (a) {
+  case 5:
+  case 6:
+  case 7:
+    // executed if a is 5, 6, or 7
+    console.log("a is either 5, 6, or 7");
+    break;
+  case 8:
+  case 9:
+    // executed if a is 8 or 9
+    console.log('a is 8 or 9');
+    break;
+  default:
+    // executed if a is anything else
+    console.log('a is not 5, 6, 7, 8, or 9');
+    break;
+}
+```
+
 ### [Summary](https://launchschool.com/books/javascript/read/flow_control#summary)
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/flow_control#exercises)
+
+1.
+```
+false || (true && false); // => false TICK
+true || (1 + 2); // => true TICK
+(1 + 2) || true; // => 3 TICK
+true && (1 + 2); // => true CROSS 3
+false && (1 + 2); // => false TICK
+(1 + 2) && true; // => true TICK
+(32 * 4) >= 129; // => false TICK
+false !== !true; // => false TICK
+true === 4; // => false TICK
+false === (847 === '847'); // => true TICK
+false === (847 == '847'); // => false TICK
+(!true || (!(100 / 5) === 20) || ((328 / 4) === 82)) || false; // => true TICK
+```
+
+2. 
+```
+function evenOrOdd(num) {
+  if (num % 2 === 0) {
+    console.log("even");
+  } else {
+    console.log("odd");
+  }
+}
+
+evenOrOdd(4)
+evenOrOdd(5)
+```
+
+3.
+```
+function evenOrOdd(num) {
+  if (typeof num !== 'number') {
+    console.log(`${num} is not num`);
+  } else if (num % 2 === 0) {
+    console.log(`${num} is even`);
+  } else {
+    console.log(`${num} is odd`);
+  }
+}
+
+evenOrOdd('bacon')
+evenOrOdd(4)
+evenOrOdd(5)
+```
+
+4. The lack of `break`s will make this following code print all the outputs. NO : it won't print the first one, because the inpout doesn't match, but once it matches it prints all the remaining options in a 'fall-through'.
+
+```
+function barCodeScanner(serial) {
+  switch (serial) {
+    case '123':
+      console.log('Product1');
+    case '113':
+      console.log('Product2');
+    case '142':
+      console.log('Product3');
+    default:
+      console.log('Product not found!');
+  }
+}
+
+barCodeScanner('113');
+```
+
+5. 
+
+```
+if (foo()) {
+  return 'bar';
+} else {
+  return qux();
+}
+```
+
+6. 'Not Empty', because `[]` is a truthy value.
+
+```
+function isArrayEmpty(arr) {
+  if (arr) {
+    console.log('Not Empty');
+  } else {
+    console.log('Empty');
+  }
+}
+
+isArrayEmpty([]);
+```
+
+7. 
+
+```
+function capitalize_(str) {
+  if (str.length > 10) {
+    return str.toUpperCase();
+  } else {
+    return str;
+  }
+}
+
+capitalize_('hello world')
+capitalize_('goodbye')
+```
+
+8.
+
+```
+function numberRange(num) {
+  if (num >= 0 && num <= 50) {
+    console.log(`${num} is between 0 and 50`);
+  } else if (num >= 51 && num <= 100) {
+    console.log(`${num} is between 51 and 100`);
+  } else if (num >= 100) {
+    console.log(`${num} is greater than 100`);
+  } else if (num < 0) {
+    console.log(`${num} is less than 0`);
+  }
+}
+
+numberRange(25);
+numberRange(75);
+numberRange(125);
+numberRange(-25);
+```
+
+9.
+
+```
+console.log(false ?? null); // false
+console.log(true ?? (1 + 2)); // true
+console.log((1 + 2) ?? true); // 3
+console.log(null ?? false); // false
+console.log(undefined ?? (1 + 2)); // 3
+console.log((1 + 2) ?? null); // 3
+console.log(null ?? undefined); // undefined
+console.log(undefined ?? null); // null
+```
+
+10.
+
+```
+function show(foo = undefined, bar = null) {
+  console.log(`foo is ${foo ?? 3}, bar is ${bar ?? 42}`);
+}
+
+show(5, 7); // foo is 5, bar is 7
+show(0, 0); // foo is 0, bar is 0
+show(4); // foo is 4, bar is 42
+show(); // foo is 3, bar is 42
+```
 
 ## [Loops & Iterating](https://launchschool.com/books/javascript/read/loops_iterating)
 
 ### [while Loops](https://launchschool.com/books/javascript/read/loops_iterating#whileloops)
+
+- post-incremenet operator, v pre-increment operator.
+- Some devs think they're to be avoided.
+
+```
+let a = 1;
+
+console.log(a); // 1  (Difference is not apparent when printing)
+
+++a; // pre-increment operator: returns the new value
+
+console.log(a); // 2 (Here is the result of the addition)
+
+a++ // post-increment operator: returns the old value
+
+console.log(a); // 3 (Difference is not apparent when printing)
+```
+
+#### Looping over Arrays with While
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+let upperNames = [];
+let index = 0;
+
+while (index < names.length) {
+  let upperCaseName = names[index].toUpperCase();
+  upperNames.push(upperCaseName);
+  index += 1;
+}
+
+console.log(upperNames); // => ['CHRIS', 'KEVIN', 'NAVEED', 'PETE', 'VICTOR']
+console.log(names); // [ 'Chris', 'Kevin', 'Naveed', 'Pete', 'Victor' ] because #toUpperCase doesn't mutate the original value.
+```
+
+#### Do/While loop
+
+```
+let answer;
+do {
+  answer = prompt("Do you want to do that again?");
+} while (answer === 'y');
+```
+
 ### [for Loops](https://launchschool.com/books/javascript/read/loops_iterating#forloops)
+
+```
+for (initialization; condition; increment) {
+  // loop body
+}
+```
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+let upperNames = [];
+
+for (let index = 0; index < names.length; index += 1) {
+  let upperCaseName = names[index].toUpperCase();
+  upperNames.push(upperCaseName);
+}
+
+console.log(upperNames); // => ['CHRIS', 'KEVIN', 'NAVEED', 'PETE', 'VICTOR']
+```
+
 ### [Controlling Loops](https://launchschool.com/books/javascript/read/loops_iterating#controllingloops)
 ### [Array Iteration](https://launchschool.com/books/javascript/read/loops_iterating#arrayiteration)
 ### [Recursion](https://launchschool.com/books/javascript/read/loops_iterating#recursion)
