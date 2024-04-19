@@ -1522,10 +1522,218 @@ console.log(upperNames); // => ['CHRIS', 'KEVIN', 'NAVEED', 'PETE', 'VICTOR']
 ```
 
 ### [Controlling Loops](https://launchschool.com/books/javascript/read/loops_iterating#controllingloops)
+
+#### `continue`
+
+- means skip ?
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+let upperNames = [];
+
+for (let index = 0; index < names.length; index += 1) {
+  if (names[index] === 'Naveed') {
+    continue;
+  }
+
+  let upperCaseName = names[index].toUpperCase();
+  upperNames.push(upperCaseName);
+}
+
+console.log(upperNames); // => ['CHRIS', 'KEVIN', 'PETE', 'VICTOR']
+```
+
+- which has the same effect as a negated `if` in the following code:
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+let upperNames = [];
+
+for (let index = 0; index < names.length; index += 1) {
+  if (names[index] !== 'Naveed') {
+    let upperCaseName = names[index].toUpperCase();
+    upperNames.push(upperCaseName);
+  }
+}
+
+console.log(upperNames); // ['CHRIS', 'KEVIN', 'PETE', 'VICTOR']
+```
+
+- `continue` can be avoided, but it tends to make code more concise and explicit:
+
+- This:
+
+```
+for (let i = 0; i < someNumber; i += 1) {
+  if (someCondition) {
+    // execute 10 lines
+  }
+}
+```
+
+- can become this:
+
+```
+for (let i = 0; i < someNumber; i += 1) {
+  if (!someCondition) continue;
+  // execute 10 lines
+}
+```
+
+- And this:
+
+```
+for (let i = 0; i < someNumber; i += 1) {
+  if (someCondition) {
+    // some code here
+    if (anotherCondition) {
+      // some more code here
+    }
+  }
+}
+```
+
+- Can become this:
+
+```
+for (let i = 0; i < someNumber; i += 1) {
+  if (!someCondition) continue;
+  // some code here
+
+  if (!anotherCondition) continue;
+  // some more code here
+}
+```
+
+- At an earlier point this this book it was recommended to ALWAYS use a block with an `if` statement. One common exception is with `continue`, `break` and `return`. In that case the keyword is acting as a block.
+
+#### `break`
+
+- I know this from Ruby.
+
 ### [Array Iteration](https://launchschool.com/books/javascript/read/loops_iterating#arrayiteration)
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+
+names.forEach(function(name) {
+  console.log(name);
+});
+```
+
+- This is not a function definition which we pass to `forEach`, it is in fact a function expression.
+- The function has no name. It is an "anonymous function".
+- JS has "first-class functions", which means functions are values and so you can assign them to variables and pass them around etc.
+- We can make it more concise by using arrow functions:
+
+```
+let names = ['Chris', 'Kevin', 'Naveed', 'Pete', 'Victor'];
+
+names.forEach(name => console.log(name));
+```
+
+- Most devs prefer **array looping abstractions** like `forEach` rather than loops.
+
 ### [Recursion](https://launchschool.com/books/javascript/read/loops_iterating#recursion)
+
+- 'functions that call themselves'. They are close cousins to loops. You could say (and "we do") that recursion is another way to create loops in JS.
+
+```
+function doubler(number) {
+  console.log(number);
+
+  if (number <= 50) {
+    doubler(number * 2);
+  }
+}
+
+doubler(5); // => 5
+            // => 10
+            // => 20
+            // => 40
+            // => 80
+```
+
+- Fibonacci:
+
+```
+function fibonacci(number) {
+  if (number < 2) return number; // 0 if number is 0, 1 if number is 1
+  return fibonacci(number - 1) + fibonacci(number - 2);
+}
+
+console.log(fibonacci(6));  // => 8
+console.log(fibonacci(20)); // => 6765
+```
+
+- Every recursive function has a baseline condition. (`number < 2` above).
+
 ### [Summary](https://launchschool.com/books/javascript/read/loops_iterating#summary)
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/loops_iterating#exercises)
+
+1. 
+
+```
+let age = 34
+
+ages = [10, 20, 30, 40];
+for (let index = 0; index < ages.length; index += 1) {
+  console.log(`In ${ages[index]} years, you will be ${Number(age) + ages[index]} years old.`);
+}
+```
+
+2. 
+
+```
+function factorial(num) {
+  let output = 1;
+  for (let counter = 1; counter <= num; counter ++) {
+    output *= counter;
+  }
+  return output; // without the 'return' the function returns 'undefined'
+}
+console.log(factorial(1));     // => 1
+console.log(factorial(2));     // => 2
+console.log(factorial(3));     // => 6
+console.log(factorial(4));     // => 24
+console.log(factorial(5));     // => 120
+console.log(factorial(6));     // => 720
+console.log(factorial(7));     // => 5040
+console.log(factorial(8));     // => 40320
+```
+
+3. Because in line 3 `counter` is reassigned to 1 every iteration. (it's assignment, but should be comparison with `===`)
+
+4. No, the block provides an increment and JS seems ok with it. ALL 3 COMPONENTS IN A `for` LOOP ARE OPTIONAL. The guiding wisdom is to limit the scope of your variables to the smallest possible.
+
+```
+for (let i = 0; i < 5;) {
+  console.log(i += 1);
+}
+
+let i;
+for (i = 0; i < 5;) {
+  console.log(i += 1);
+}
+```
+
+5.
+
+```
+  function randomNumberBetween(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  let tries = 1;
+
+  while (randomNumberBetween(1, 6) <= 2) { tries += 1; }
+
+  console.log('It took ' + String(tries) + ' tries to get a number greater than 2');
+```
+
+6. 
 
 ## [Arrays](https://launchschool.com/books/javascript/read/arrays)
 
