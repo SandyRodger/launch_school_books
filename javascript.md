@@ -1853,16 +1853,61 @@ array2.forEach(num => console.log(num + 2)); // => 3, 4, 5
 - `forEach` always returns undefined
 
 
-#### Transforming Arrays with `map`
+#### `map`
 
 - like `forEach` when you need to return a new array. (like Ruby!)
 -   `forEach` performs simple iteration and teurns `undefined`, while `map` transforms an array's elements and returns a new array with transformed values.
 
-#### Filtering Arrays with `filter`
+#### `filter`
 
-- 
+- returns a new array populated by values that returned truthy from the block.
+
+```
+let numbers = [1, 2, 3, 4, 5, 6, 7 ,8, 9, 10, 1, 2];
+numbers.filter(num => num > 4)
+console.log(numbers) // => [1, 2, 3, 4, 5, 6, 7 ,8, 9, 10, 1, 2] so, doesn't mutate the caller
+console.log(numbers.filter(num => num > 4)); // => [ 5, 6, 7, 8, 9, 10 ]
+```
+
+#### `reduce`
+
+- squeezes the array down to one value.
+- Same as Ruby
 
 ### [Arrays Can Be Odd](https://launchschool.com/books/javascript/read/arrays#arrayscanbeodd)
+
+- 0 based index (easy) So length will always be 1 greater than the index of the final element (easy)
+- Arrays are objects, so `console.log(typeof [1, 2, 3]); // => object`
+  - If you need to see if an object is an Array, do it like this: `console.log(Array.isArray([1, 2, 3])); // => true`
+- If you reassign `arr.length` to a new number, JS will chop down the arr:
+
+```
+let a = [1, 2, 3]
+console.log(a); // => [1, 2, 3]
+a.length = 1;
+console.log(a); // => [1]
+```
+
+- And if you lengthen the arr, it fills it with empty spaces!
+
+```
+a.length = 7;
+console.log(a); // => [ 1, <6 empty items> ]
+```
+
+- what's more, all of this:
+
+```
+console.log(a[2]); // => undefined                                             The empty spaces evaluate as undefineds
+console.log(a.filter(element => element === undefined)); // => []              But if you look for undefineds, they won't be found
+a.forEach(element => console.log(element)); // => 1                            and if you look for elements you can't see these empty spaces
+a[5] = 'bugger me sideways';                                                   and you can put a real item in the middle of the empty spaces
+console.log(a); // => [ 1, <4 empty items>, 'bugger me sideways', <1 empty item> ] 
+console.log(a.length); // => 7                                                 and the length will count the empty spaces
+a.forEach(element => console.log(element)); // => 1, bugger me sideways        but a block won't treat them as elements
+console.log(Object.keys(a)); // => [ '0', '5' ]                                and this method also ignores them.
+```
+
 ### [Nested Arrays](https://launchschool.com/books/javascript/read/arrays#nestedarrays)
 ### [Array Equality](https://launchschool.com/books/javascript/read/arrays#arrayequality)
 ### [Other Array Methods](https://launchschool.com/books/javascript/read/arrays#otherarraymethods)
