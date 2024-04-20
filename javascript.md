@@ -1747,8 +1747,121 @@ function factorial(number) {
 ## [Arrays](https://launchschool.com/books/javascript/read/arrays)
 
 ### [What is an Array?](https://launchschool.com/books/javascript/read/arrays#whatisanarray)
+
+
+- same as Ruby (heterogenous - can include different types of thing)
+- "An **ordered** list of items.
+- An **indexed** list of items.
+
+```
+myArray[myArray.length - 1]
+```
+
 ### [Modifying Arrays](https://launchschool.com/books/javascript/read/arrays#modifyingarrays)
+
+#### Replacing and Adding Elements with `[]`
+
+`array[1] = 4`
+
+`array[array.length] = 10` => to add new elems to the end.
+
+- With a `const` array you can reassign elements, but not the array itself.
+  - If you want the content to be constant, you have to use `Object.freeze`.
+
+```
+const MyArr = Object.freeze([1, 2, 3]);
+console.log(MyArr[1] = 5); // => 5
+console.log(MyArr); // => [1, 2, 3]
+```
+
+- A detail of `Object.freeze` is that it only goes one level deep. So the contents of nested Arrays can be modified (unless they themselves are frozen).
+
+#### Adding elements with `push`
+
+```
+let array = [1, 2, 3];
+console.log(array.push(true)); // => 4, because push returns the new length of the array.
+console.log(array) 
+console.log(array.push('eat', 'my', 'sparenky')); // => 7
+console.log(array)
+```
+
+- `push` mutates the array, but returns the updated length.
+
+#### Adding elements with concat
+
+- like `push` without mutating the caller.
+
+```
+let array = [1, 2, 3];
+console.log(array.concat('another thing', 'and another thing')); // => [ 1, 2, 3, 'another thing', 'and another thing' ]
+console.log(array); // => [1, 2, 3]
+```
+
+#### Removing elements with `pop`
+
+- What you think of as taking the top of the call-stack off. Mutating.
+
+```
+let arr = [1, 2, 3];
+console.log(arr.pop); // => [Function: pop]        ...WHAT?
+console.log(arr.pop()); // => 3
+console.log(arr); // => [1, 2]
+```
+
+#### Removing elements with `splice`
+
+- Remove one or more elements from an Array, even if they aren't at the end.
+
+```
+let arr = [1, 2, 3, '4', 'Elk', true, [1, 2, 3]];
+console.log(arr); // => [ 1, 2, 3, '4', 'Elk', true, [ 1, 2, 3 ] ]
+console.log(arr.splice(4, 2)); [ 'Elk', true ]
+console.log(arr); // => [ 1, 2, 3, '4', [ 1, 2, 3 ] ]
+```
+
+- (`splice` can also insert elements, more on that later)
+
 ### [Iteration Methods](https://launchschool.com/books/javascript/read/arrays#iterationmethods)
+
+#### `forEach`
+
+- a **callback** function is required. That means a function that is passed into another function:
+
+```
+let array = [1, 2, 3];
+array.forEach(function(num) {
+  console.log(num); // on first iteration  => 1
+                    // on second iteration => 2
+                    // on third iteration  => 3
+}); // returns `undefined`
+
+/// OR 
+
+[1, 2, 3].forEach(function(num) { console.log(num); });
+
+/// OR 
+
+[1, 2, 3].forEach(num => console.log(num));
+
+/// OR 
+
+let array2 = [1, 2, 3]
+array2.forEach(num => console.log(num + 2)); // => 3, 4, 5
+```
+
+- `forEach` always returns undefined
+
+
+#### Transforming Arrays with `map`
+
+- like `forEach` when you need to return a new array. (like Ruby!)
+-   `forEach` performs simple iteration and teurns `undefined`, while `map` transforms an array's elements and returns a new array with transformed values.
+
+#### Filtering Arrays with `filter`
+
+- 
+
 ### [Arrays Can Be Odd](https://launchschool.com/books/javascript/read/arrays#arrayscanbeodd)
 ### [Nested Arrays](https://launchschool.com/books/javascript/read/arrays#nestedarrays)
 ### [Array Equality](https://launchschool.com/books/javascript/read/arrays#arrayequality)
