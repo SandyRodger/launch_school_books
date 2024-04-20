@@ -1735,6 +1735,15 @@ for (i = 0; i < 5;) {
 
 6. 
 
+```
+function factorial(number) {
+  while (number > 1) {
+    return number *= (factorial(number - 1));
+  };
+  return number;
+}
+```
+
 ## [Arrays](https://launchschool.com/books/javascript/read/arrays)
 
 ### [What is an Array?](https://launchschool.com/books/javascript/read/arrays#whatisanarray)
