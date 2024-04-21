@@ -1908,12 +1908,277 @@ a.forEach(element => console.log(element)); // => 1, bugger me sideways        b
 console.log(Object.keys(a)); // => [ '0', '5' ]                                and this method also ignores them.
 ```
 
+- If you assign elements to indexes that aren't positive numbers, JS will enter them as what look like kv pairs. They look like elements, but are actually "properties" and are not counted in `length`:
+
+```
+> arr = [1, 2, 3]
+= [ 1, 2, 3 ]
+
+> arr[-3] = 4
+= 4
+
+> arr
+= [ 1, 2, 3, '-3': 4 ]
+
+> arr[3.1415] = 'pi'
+= 'pi'
+
+> arr["cat"] = 'Fluffy'
+= 'Fluffy'
+
+> arr
+= [ 1, 2, 3, '-3': 4, '3.1415': 'pi', cat: 'Fluffy' ]
+```
+
+- `Object.keys(arr)` returns all the properties, which means the indexes and (what look to me like) values.
+
+- I need to look at this when I have more brain-power:
+
+```
+let a = new Array(3);
+console.log(a); // => [ <3 empty items> ]
+console.log(a[0] === undefined); // =>true
+
+let b = [];
+b.length = 3
+console.log(b) // => [ <3 empty items> ]
+console.log(b[0] === undefined); // => true
+
+
+let c = [undefined, undefined, undefined];
+console.log(c); //=> [ undefined, undefined, undefined ]
+console.log(c[0] === undefined); // => true
+
+let aKeys = Object.keys(a)
+console.log(aKeys); // => []
+console.log(a.length); // => 3
+console.log(aKeys.length); // => 0
+
+let bKeys = Object.keys(b)
+console.log(bKeys); // => []
+console.log(b.length); // => 3
+console.log(bKeys.length); // => 0
+
+let cKeys = Object.keys(c);
+console.log(cKeys); // => [ '0', '1', '2' ]
+console.log(c.length); // => 3
+console.log(cKeys.length); // => 3
+```
+
 ### [Nested Arrays](https://launchschool.com/books/javascript/read/arrays#nestedarrays)
+
+```
+let hornburg = ['seventh', ['sixth', ['fifth', ['fourth', ['third', ['second', ['first']]]]]]]
+
+console.log(hornburg[0]); // => seventh
+console.log(hornburg[1][0]); // => sixth
+console.log(hornburg[1][1][0]); // => fifth
+console.log(hornburg[1][1][1][0]); // => fourth
+console.log(hornburg[1][1][1][1][0]); // => third
+console.log(hornburg[1][1][1][1][1][0]); // => second
+console.log(hornburg[1][1][1][1][1][1][0]); // => first
+```
+
 ### [Array Equality](https://launchschool.com/books/javascript/read/arrays#arrayequality)
+
+
+- `[1, 2, 3] === [1, 2, 3]` => false. Because it compares their memory address (object id)
+
+```
+// One way to compare arrays is by writing the following function:
+
+function arraysEqual(arr1, arr2) {
+  if (arr1.length !== arr2.length) return false;
+
+  for (let i = 0; i < arr1.length; i += 1) {
+    if (arr1[i] !== arr2[i]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(arraysEqual([1, 2, 3], [1, 2, 3])); // => true
+console.log(arraysEqual([1, 2, 3], [4, 5, 6])); // => false
+console.log(arraysEqual([1, 2, 3], [1, 2, 3, 4])); // => false
+```
+
 ### [Other Array Methods](https://launchschool.com/books/javascript/read/arrays#otherarraymethods)
+
+#### `includes`
+
+- `[1, 2, 3, 4, 5].includes(2) // => true`
+
+#### indexOf
+
+- `[1, 2, 3].indexOf(2) // => 1`  
+- Returns the first match it finds, but you can give it a staring index: `[1, 2, 3, 4, 5, 1, 2, 3, 4, 5].indexOf(2, 4) // => 6`
+
+#### `sort`
+
+- `['a', 'z', 'f', 'b', 'c'].sort() // =>[ 'a', 'b', 'c', 'f', 'z' ]`
+- Mutates the caller
+
+#### `slice`
+
+- Extracts and returns a copied portion of the array.
+- `['a', 'z', 'f', 'b', 'c'].slice(1, 3) // => [ 'z', 'f' ]`
+- If you omit the second argument it takes the rest of the array (just like `splice`).
+- Without argument it retruns a copy.
+
+#### `reverse`
+
+- is destructive. Avoid destruction with `slice`: `[1, 2, 3, 4].slice().reverse()`
+
 ### [Summary](https://launchschool.com/books/javascript/read/arrays#summary)
+
 ### [Exercises](https://launchschool.com/books/javascript/read/arrays#exercises)
 
+1. 
+
+```
+let array1 = [1, 2, undefined, 4]; // => 4
+
+let array2 = [1]; 
+array2.length = 5; // => 5
+
+let array3 = [];
+array3[-1] = [1]; // => 1 NO - 0, because negative numbers are not taken into account when determining an Array's length.
+
+let array4 = [1, 2, 3, 4, 5];
+array4.length = 3; // => 3
+
+let array5 = [];
+array5[100] = 3; // => 100 NO - it's 101, obvs.
+```
+
+2. 
+
+```
+let myArray = [1, 3, 6, 11, 4, 2,
+  4, 9, 17, 16, 0];
+
+output = myArray.filter(num => num % 2 == 0)
+console.log(output);
+
+// LS solution:
+
+for (let i = 0; i < myArray.length; i += 1) {
+  let value = myArray[i];
+  if (value % 2 === 0) {
+    console.log(value);
+  }
+};
+```
+
+3.
+
+```
+let myArray = [
+  [1, 3, 6, 11],
+  [4, 2, 4],
+  [9, 17, 16, 0],
+];
+
+let result = myArray.map(arr => arr.filter(num => num % 2 == 0));
+
+console.log(result);
+
+// LS solution:
+
+for (let outer_i = 0; outer_i < myArray.length; outer_i += 1) {
+  for (let inner_i = 0; inner_i < myArray[outer_i].length; inner_i += 1) {
+    let value = myArray[outer_i][inner_i];
+    if (value % 2 === 0) {
+      console.log(value);
+    }
+  }
+}
+
+// OR
+
+myArray.forEach(function(nestedArray) {
+  nestedArray.forEach(function(value) {
+    if (value % 2 == 0) {
+      console.log(value);
+    }
+  });
+});
+```
+
+4.
+
+```
+let myArray = [1, 3, 6, 11, 4, 2,
+  4, 9, 17, 16, 0];
+
+let output = myArray.map(num => num % 2 == 0 ? 'even' : 'odd');
+
+console.log(output);
+
+// LS solution:
+
+let newArray = myArray.map(function(value) {
+  if (value % 2 == 0) {
+    return 'even';
+  } else {
+    return 'odd';
+  }
+});
+
+console.log(newArray);
+
+// LS solution 2:
+
+let newArray2 = [];
+
+for (let i = 0; i < myArray.length; i += 1) {
+  let value = myArray[i];
+  if (value % 2 === 0) {
+    newArray2.push('even');
+  } else {
+    newArray2.push('odd');
+  }
+}
+
+console.log(newArray2);
+```
+
+5.
+
+```
+function findIntegers(array) {
+  return array.filter(elem => Number.isInteger(elem));
+};
+
+let things = [1, 'a', '1', 3, NaN, 3.1415, -4, null, false];
+let integers = findIntegers(things);
+console.log(integers); // => [1, 3, -4]
+ 
+```
+
+6.
+
+```
+function oddLengths(arr) {
+  return arr.map(str => str.length).filter(n => n % 2 == 1);
+};
+
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr)); // => [1, 5, 3]
+
+```
+
+- Why does it return `77` when no accumulator is provided?
+
+7. 
+```
+
+```
+
+10.
 ## [Objects](https://launchschool.com/books/javascript/read/objects)
 
 ### [What are Objects?](https://launchschool.com/books/javascript/read/objects#whatareobjects)
