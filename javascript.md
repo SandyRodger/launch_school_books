@@ -2171,9 +2171,21 @@ console.log(oddLengths(arr)); // => [1, 5, 3]
 
 ```
 
-- Why does it return `77` when no accumulator is provided?
-
 7. 
+```
+let array = [3, 5, 7];
+
+function sumOfSquares(arr) {
+  return arr.reduce((accumulator, element) => accumulator + (element * element));
+};
+
+console.log(sumOfSquares(array)); // => 83
+
+// if no accumulator is provided, reduce takes the first element as an accumulator and begins with the second element. Therefore the calculation would be 3 + ((5*5)+(7*7)) =77
+```
+
+8. 
+
 ```
 
 ```
