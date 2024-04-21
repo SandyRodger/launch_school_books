@@ -2184,9 +2184,19 @@ console.log(sumOfSquares(array)); // => 83
 // if no accumulator is provided, reduce takes the first element as an accumulator and begins with the second element. Therefore the calculation would be 3 + ((5*5)+(7*7)) =77
 ```
 
-8. 
+8. WTF!!!!!!!!!!!!!?????????
 
 ```
+// function oddLengths(arr) {
+//   return arr.reduce((accumulator, element) => accumulator.concat(element.length), [])
+// };
+
+function oddLengths(arr) {
+  return arr.reduce((accumulator, element) => (element.length % 2 != 1) ? accumulator.concat(element.length) : ('whatever'), [])
+};
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr)); // => [1, 5, 3]
 
 ```
 
