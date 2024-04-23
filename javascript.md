@@ -2184,7 +2184,9 @@ console.log(sumOfSquares(array)); // => 83
 // if no accumulator is provided, reduce takes the first element as an accumulator and begins with the second element. Therefore the calculation would be 3 + ((5*5)+(7*7)) =77
 ```
 
-8. WTF!!!!!!!!!!!!!?????????
+8. 
+
+- This represents an unsuccessful attempt. I can't explain the output.
 
 ```
 // function oddLengths(arr) {
@@ -2200,17 +2202,543 @@ console.log(oddLengths(arr)); // => [1, 5, 3]
 
 ```
 
+- I didn't find a solution. 
+
+LS solution:
+
+```
+function oddLengths(strings) {
+  return strings.reduce((filteredNumbersArray, letters) => {
+    let length = letters.length;
+    if (length % 2 === 1) {
+      filteredNumbersArray.push(length);
+    }
+
+    return filteredNumbersArray;
+  }, []);
+}
+
+let arr = ['a', 'abcd', 'abcde', 'abc', 'ab'];
+console.log(oddLengths(arr));
+```
+
+9.
+
+```
+let numbers1 = [1, 3, 5, 7, 9, 11];
+let numbers2 = [];
+let numbers3 = [2, 4, 6, 8];
+
+function checkForThree(arr) {
+  return arr.includes(3);
+};
+
+console.log(checkForThree(numbers1)); // => true
+console.log(checkForThree(numbers2)); // => false
+console.log(checkForThree(numbers3)); // => false
+```
+
 10.
+
+```
+let arr = [
+  ["hello", "world"],
+  ["example", "mem", null, 6, 88],
+  [4, 8, 12]
+];
+
+console.log(arr);
+
+arr[1][3] = 606 // but with 'let' it won't work ?
+
+console.log(arr);
+```
+
 ## [Objects](https://launchschool.com/books/javascript/read/objects)
 
+- Objects, behaviour and state.
+
 ### [What are Objects?](https://launchschool.com/books/javascript/read/objects#whatareobjects)
+
+- Ruby hashes (with key differences)
+  - store key value pairs.
+  - The keys are strings or symbols.
+  - Values can be type
+  - We create an object with the **object literal** syntax.
+
+```
+let person = {
+  name:    'Jane',
+  age:     37,
+  hobbies: ['photography', 'genealogy'],
+};
+```
+
+- Or on a single line:
+
+```
+let person = { name: 'Jane', age: 37, hobbies: ['photography', 'genealogy'] }
+```
+
+- We can access the values in two ways:
+  - 'person.name' => 'Jane' (dot notation).
+  - 'person[name]` => 'Jane' (bracket notation).
+- dot notation is prefereable, but when the key is stored in a variable, you need to use bracket notation:
+
+```
+let key = 'name'
+person[key]
+```
+
+- Adding pairs:
+  - `person.height = '5 ft'
+  - `person[;gender'] = 'female'`
+
+- It's the same for adding kv pairs.
+
+```
+let person = {
+  name: 'Jane',
+  age: 37,
+  hobbies: ['photography', 'genealogy']
+};
+
+let personOneLine = { name: 'Jane', age: 37, hobbies: ['photography', 'genealogy'] }
+let ageVar = 'age'
+
+console.log(person.name);
+console.log(person['name']); // has to be as a string
+console.log(person[ageVar]);
+
+person.height = '5 ft';
+person['gender'] = 'female'
+
+console.log(person); 
+
+// {
+//   name: 'Jane',
+//   age: 37,
+//   hobbies: [ 'photography', 'genealogy' ],
+//   height: '5 ft',
+//   gender: 'female'
+// }
+
+console.log(delete person.age); // true
+console.log(delete person['gender']); // => true
+console.log(delete person['blah']) // => true
+
+console.log(person);
+
+// {
+//   name: 'Jane',
+//   hobbies: [ 'photography', 'genealogy' ],
+//   height: '5 ft'
+// }
+```
+
+#### `delete`
+
+- key-word for deleting kv pairs. Returns a boolean. 
+
+```
+const MyObj = { foo: "bar", qux: "xyz" }
+MyObj.qux = "hey there"
+MyObj.pi = 3.2415
+console.log(MyObj)
+
+MyObj = {} // TypeError: Assignment to constant variable.
+```
+
+### `freeze`
+
+```
+const MyObj = Object.freeze({ foo: "bar", qux: "xyz"})
+MyObj.qux = "hey there"
+console.log(MyObj); // => { foo: 'bar', qux: 'xyz' }
+```
+
 ### [Objects vs. Primitives](https://launchschool.com/books/javascript/read/objects#objectsvsprimitives)
+
+- Primitives:
+  - Strings
+  - Numbers
+  - Booleans
+  - `null`
+  - `undefined`
+  - `bigints`
+  - `symbols`
+- Objects
+  - Simple Objects
+  - Arrays
+  - Dates
+  - Functions
+
+- Objects are complex values composed of primitive values or other objects. For example an array (as an object) has a `length` property that contains the number corresponding to its length.
+- Objects are usually mutable.
+#### atomic
+- Primitives on the other hand are always immutable, in that they don't have parts that one can change. They are therefore called 'atomic', because they are 'indivisible.
+- Variables that contain primitives can only be used in an expression or reassigned to some other value.
+- All operations on primitive values return new values. Even in `0 + 0` the resulting `0` is a new `0`. **question** -> if `0` is an unchanging value in memory, how can there be a new or different `0` ?
+
+#### functions are objects
+
+- They can be:
+  - assigned to variables.
+  - passed to other functions as arguments.
+  - returned by functions.
+
+```
+function hello() {
+  console.log("Hello there!");
+}
+
+hello(); // => Hello there!
+
+let greet = hello;
+greet(); // => Hello there!
+
+// --------------------------- --------------------------- ---------------------------
+
+let sandy = function() {     // this is a function expression rather than a function declaration
+  console.log("I am Sandy");
+}
+
+sandy(); // => I am Sandy
+
+// --------------------------- --------------------------- ---------------------------
+
+Array.prototype.push = function(newValue) {
+  this[this.length] = newValue;
+}
+
+let array = [1, 2, 3];
+array.push(4);
+console.log(array); // => [ 1, 2, 3, 4 ]
+
+// We can use this aspect of JS to define methods as object methods.
+
+// --------------------------- --------------------------- ---------------------------
+
+// And we can pass functions around as arguments and return values, like this:
+
+Array.prototype.forEach = function(thisIsACallback) {
+  for (let index = 0; index < this.length; index += 1) {
+    thisIsACallback(this[index]);
+  }
+}
+
+let array1 = [1, 2, 3];
+
+array1.forEach(function  callback(value) { console.log(value) }) // 1 2 3
+
+// --------------------------- --------------------------- ---------------------------
+
+function greeter(greeting) {
+  return function(name) {
+    return console.log(`${greeting} ${name}`);
+  }
+}
+
+let hello2 = greeter('Hello');
+// let hi = greeter('Hi');
+
+hello2('Trevor');
+hello2('Jeremiah');
+
+// This example uses a 'closure'. This is how the returned function still has acess to the value of `greeting` after `greeter` is finished (or more correcty: "returns").
+```
+
+#### What isn't either an Object or a Primative?
+
+- Anything which is not data/a function:
+  - variables & other identifiers (like function names).
+  - Statements:
+    - `if`
+    - `return`
+    - `try`
+    - `while`
+    - `break`
+  - Keywords:
+    - `new`
+    - `function`
+    - `let`
+    - `const`
+    - `class`
+  - comments
+  - There's more...
+
 ### [Prototypes](https://launchschool.com/books/javascript/read/objects#prototypes)
+
+- JS objects can inherit. Parents are called "prototypes of ${child}".
+- This would mean that the child now has access to properties **defined on** the parent.
+- Prototypes implement inheritence in JS.
+- We can demonstate this with the static method (?) `Object.create`
+
+```
+let bob = { name: 'Bob', age: 22 };
+let studentBob = Object.create(bob);
+studentBob.year = 'Senior';
+
+console.log(studentBob.name); // 'Bob'
+
+// Even though the creation of studentBob does not define a name property, it has one by virtue of inheriting it from its parent
+```
+
+- We'll look at other ways to inherit later.
+
 ### [Iteration](https://launchschool.com/books/javascript/read/objects#iteration)
+
+- You can choose to iterate over an objects keys, values or both simultaneously.
+
+#### The for/in loop
+
+- You don't need an:
+  - initializer
+  - ending condition
+  - incremenet clause
+- It iterates over all the keys in the object and on each iteration assigns the key to a var for you to use.
+
+```
+let person = {
+  name: 'Bob',
+  age: 30,
+  height: '6 ft',
+};
+
+for (let prop in person) {
+  console.log(person[prop]);
+}
+
+// Bob
+// 30
+// 6 ft
+```
+
+- A notable feature of this feature is that it will iterate over an object including both original (inherited) properties, and new ones. Apparently this is sometimes undesireable.
+
+```
+let hairyMary = { allTheWayFrae: 'Brixton'};
+let hairyMary2 = Object.create(hairyMary)
+hairyMary2.iHaveA = 'pair o sand-shoes';
+hairyMary2.codLiverOil = 'and the Oh-orange juice'
+
+for (let prop in hairyMary2) {
+  console.log(hairyMary2[prop]);
+}
+
+// Brixton
+// pair o sand-shoes
+// and the Oh-orange juice
+```
+
+- We can use `hasOwnProperty` method to circumvent this. As below:
+
+```
+let obj1 = { a: 1, b: 2};
+let obj2 = Object.create(obj1);
+obj2.c = 3;
+obj2.d = 4;
+
+for (let prop in obj2) {
+  if (obj2.hasOwnProperty(prop)) {
+    console.log(obj2[prop]);
+  }
+} // => 3 and 4, because they were not inherited.
+```
+
+#### Object.keys
+
+```
+let person = {
+  name: 'Bob',
+  age: 30,
+  height: '6 ft',
+};
+
+person.numberOfEars = '2 ears';
+
+let personKeys = Object.keys(person);
+console.log(personKeys); // => [ 'name', 'age', 'height' ]
+personKeys.forEach(key => {
+  console.log(person[key]);
+});
+
+// Bob
+// 30
+// 6 ft
+// 2 ears
+```
+
+#### Order ofobject properties
+
+- Older versions (ES6 and previous) jumbled order. Modern ones don't.
+- Most of the time the order s the order in which items are added.
+- Exceptions to this are symbols and integers, which will be grouped in the following order:
+  - symbol keys
+  - strings
+  - positive integers ( **question** why "non-negative" ?)
+  - **question** (but in my example the order is numbers, then everything else alphabetised).
+- So only rely on key order when all keys use only the alphabet.
+
+```
+let snape = Symbol("Snape");
+let hagrid = Symbol("Hagrid");
+
+let hogwarts = {
+  hagrid: "Rubeus",
+  ron: 'deSantis',
+  1: 'what is this',
+  hermione: 'granger',
+  snape: 'Severus',
+  400: 'yup',
+  harry: 'potter',
+};
+
+const sortedHogwartsArray = Object.entries(hogwarts).sort(([keyA], [keyB]) => keyA.localeCompare(keyB));
+const sortedHogwartsObject = Object.fromEntries(sortedHogwartsArray);
+
+console.log(sortedHogwartsObject); // => { harry: 'potter', hermione: 'granger', ron: 'deSantis' }
+
+// {
+//   '1': 'what is this',
+//   '400': 'yup',
+//   hagrid: 'Rubeus',
+//   harry: 'potter',
+//   hermione: 'granger',
+//   ron: 'deSantis',
+//   snape: 'Severus'
+// }
+```
+
 ### [Common Operations](https://launchschool.com/books/javascript/read/objects#commonoperations)
+
+- Unlike JS Arrays, objects don't have many methods. Mostly you just iterate over them. But here are some:
+
+#### Object.values
+
+```
+let sizes = {
+  big: 'Ooooh, it\'s ever so large',
+  medium: 'medium, I\'d say',
+  small: 'oh ho, look at the dinky little thing',
+};
+
+let sizesValues = Object.values(sizes);
+console.log(sizesValues);
+
+// [
+//   "Ooooh, it's ever so large",
+//   "medium, I'd say",
+//   'oh ho, look at the dinky little thing'
+// ]
+```
+
+### Object.entries
+
+- returns an array of nested arrays containing a kv pair each.
+
+```
+let bones = {
+  leg: ['tibia', 'femur', 'fibia'],
+  arm: ['cloaca', 'lizard-eyes', 'hairy disaster'],
+  back: ['spoon', 'ribs'],
+}
+
+console.log(Object.entries(bones));
+
+// [
+//   [ 'leg', [ 'tibia', 'femur', 'fibia' ] ],
+//   [ 'arm', [ 'cloaca', 'lizard-eyes', 'hairy disaster' ] ],
+//   [ 'back', [ 'spoon', 'ribs' ] ]
+// ]
+```
+
+#### Object.assign
+
+- mutates the first argument, leaves the second argument unchanged :
+
+```
+let sizes = {
+  big: 'Ooooh, it\'s ever so large',
+  medium: 'medium, I\'d say',
+  small: 'oh ho, look at the dinky little thing',
+};
+
+let bones = {
+  leg: ['tibia', 'femur', 'fibia'],
+  arm: ['cloaca', 'lizard-eyes', 'hairy disaster'],
+  back: ['spoon', 'ribs'],
+}
+
+Object.assign(sizes, bones); // mutates the first argument
+console.log(sizes);
+
+// {
+//   big: "Ooooh, it's ever so large",
+//   medium: "medium, I'd say",
+//   small: 'oh ho, look at the dinky little thing',
+//   leg: [ 'tibia', 'femur', 'fibia' ],
+//   arm: [ 'cloaca', 'lizard-eyes', 'hairy disaster' ],
+//   back: [ 'spoon', 'ribs' ]
+// }
+
+console.log(bones); // remains unchanged
+
+// {
+//   leg: [ 'tibia', 'femur', 'fibia' ],
+//   arm: [ 'cloaca', 'lizard-eyes', 'hairy disaster' ],
+//   back: [ 'spoon', 'ribs' ]
+// }
+```
+
+- If you don't want to fuck up the first object, you can use an empty object as the first argument and have a total of 3 arguments.
+
 ### [Objects vs. Arrays](https://launchschool.com/books/javascript/read/objects#objectvsarrays)
+
+- Objects if:
+  - The items have names
+- Arrays if:
+  - The order matters
+  - I need a stack("last in first out")/queue("first in first out") structure.
+
 ### [Summary](https://launchschool.com/books/javascript/read/objects#summary)
+
+
 ### [Exercises](https://launchschool.com/books/javascript/read/objects#exercises)
+
+1. `person.name` or `person['name']`
+2. All of them are valid, but JS will coerce them into strings. Therefore `'1'` and `1` will be the same key. Be careful of this, it catches everyone out sooner or later.
+
+```
+// trick question : all are valid, but the non-strings will be coerced into strings.
+
+let myObj = {}
+myObj[true] = 1 // will be overwritten
+myObj['true'] = 2
+myObj[1] = 3 // will be overwritten
+myObj['1'] = 4
+myObj[undefined] = 5
+myObj['hello world'] = 6
+
+console.log(myObj);
+```
+
+3.
+
+```
+let myArray = {
+  length: 4,
+  1: 'john',
+  3: 'barry',
+  2: 'jennifer',
+};
+
+for (let i = 0; i < myArray.length; i += 1) {
+  console.log(myArray[i]);
+}
+```
+
+15.
 
 ## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
 
