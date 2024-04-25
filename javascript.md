@@ -2738,21 +2738,683 @@ for (let i = 0; i < myArray.length; i += 1) {
 }
 ```
 
+4.
+
+```
+// Create an array from the keys of the object obj below, with all of the keys converted to uppercase. Your implementation must not mutate obj.
+
+let obj = {
+  b: 2,
+  a: 1,
+  c: 3,
+};
+
+let output = Object.keys(obj);
+console.log(output.map((e) => e.toUpperCase()));
+console.log(obj);
+```
+
+5.
+
+```
+let myProtoObj = {
+  foo: 1,
+  bar: 2,
+};
+
+let obj = Object.create(myProtoObj);
+
+console.log(obj);
+```
+
+6.
+
+```
+// PRIMATIVES:
+
+"foo"
+3.1415
+false
+undefined
+
+// OBJECTS:
+
+[ 'a', 'b', 'c' ]
+function bar() { return "bar"; }
+{ a: 1, b: 2 }
+
+// NEITHER:
+
+foo
+
+```
+
+7.
+
+```
+let myProtoObj = {
+  foo: 1, 
+  bar: 2,
+};
+
+let myObj = Object.create(myProtoObj);
+
+myObj.qux = 3;
+
+let objKeys = Object.keys(myObj);
+objKeys.forEach(function(key) {
+  console.log(key);
+});
+
+// qux
+
+for (let key in myObj) {
+  console.log(key);
+}
+
+// qux
+// foo
+// bar
+```
+
+8.
+
+```
+let objToCopy = {
+  foo: 1,
+  bar: 2,
+  qux: 3,
+};
+
+let newObj = copyObj(objToCopy);
+console.log(newObj);        // => { foo: 1, bar: 2, qux: 3 }
+
+let newObj2 = copyObj(objToCopy, [ 'foo', 'qux' ]);
+console.log(newObj2);       // => { foo: 1, qux: 3 }
+
+let newObj3 = copyObj(objToCopy, [ 'bar' ]);
+console.log(newObj3);       // => { bar: 2 }
+
+// My solution:
+
+function copyObj(obj, keysArr = Object.keys(obj)) {
+  output = {}
+  keysArr.forEach(function(key) {
+    output[key] = obj[key]
+  })
+  return output
+}
+
+// LS solution:
+
+function copyObj(sourceObject, keys) {
+  let destinationObject = {};
+
+  if (keys) {
+    keys.forEach(function(key) {
+      destinationObject[key] = sourceObject[key];
+    });
+
+    return destinationObject;
+  } else {
+    return Object.assign(destinationObject, sourceObject);
+  }
+}
+```
+
+9. 
+
+```
+let foo = {
+  a: 'hello',
+  b: 'world',
+};
+
+let qux = 'hello';
+
+function bar(argument1, argument2) {
+  argument1.a = 'hi';
+  argument2 = 'hi';
+}
+
+bar(foo, qux);
+
+console.log(foo.a); // hi
+console.log(qux); // hello
+```
+
+10.
+
+```
+[1, 2, ["a", ["b", false]], null, {}] // 6P, 4O
+```
+
+11.
+
+```
+let obj = {
+  foo: { a: "hello", b: "world" },
+  bar: ["example", "mem", null, { xyz: 6 }, 88],
+  qux: [4, 8, 12]
+};
+
+obj.bar[3].xyz = 606
+
+console.log(obj)
+```
+
+12.
+
+```
+function foo(bar) {
+  console.log(bar, bar, bar);
+}
+
+let bar = foo;
+
+foo("hello"); // should print "hello hello hello"
+bar("hi");    // should print "hi hi hi"
+```
+
+13.
+
+```
+function foo(bar) {
+  console.log(bar());
+};
+
+foo(function() { return "Welcome"});
+foo(function() { return 3.1415});
+foo(function() { return [1, 2, 3]});
+```
+
+14.
+
+```
+function hello(greeting, name) {
+  return greeting + ' ' + name;
+}
+
+function xyzzy() {
+  return { a: 1, b: 2, c: [3, 4, 5], d: {} };
+}
+
+const howdy = hello('Hi', 'Grace');
+let foo = xyzzy();
+
+// Variables: hello, xyzzy, greeting, name, howdy, foo.
+// Object property names: a:, b:, c:, d:
+// Primitive values: ' ', 1, 2, 3, 4, 5, 'Hi', 'Grace'
+// Objects: hello, xyzzy, [3, 4, 5], {}, { a: 1, b: 2, c: [3, 4, 5], d: {} }
+```
+
 15.
+
+```
+function bar(arg1, arg2) {
+  let foo = 'Hello';
+  const qux = {
+    abc: [1, 2, 3, [4, 5, 6]],
+    def: null,
+    ghi: NaN,
+    jkl: foo,
+    mno: arg1,
+    pqr: arg2,
+  };
+
+  return qux;
+}
+
+let result = bar('Victor', 'Antonina');
+
+// Variables: bar, arg1, arg2, foo, qux, result
+// Object Property Names: abc, def, ghi, jkl, mno, pqr, 0, 1, 2, 3 (indexes).
+// Primitive values: 'Hello', abc, def, ghi, jkl, mno, pqr, 1, 2, 3, 4, 5, 6, 'Victor', 'Antonina', null, NaN
+// Objects: bar, {
+  //   abc: [1, 2, 3, [4, 5, 6]],
+  //   def: null,
+  //   ghi: NaN,
+  //   jkl: foo,
+  //   mno: arg1,
+  //   pqr: arg2,
+  // }, [1, 2, 3, [4, 5, 6]], [4, 5, 6]
+
+```
 
 ## [More Stuff](https://launchschool.com/books/javascript/read/more_stuff)
 
 ### [Variables as Pointers](https://launchschool.com/books/javascript/read/more_stuff#variablesaspointers)
+
+- "pointers" (AKA "references).
+- 'the pointes stored in variables are references' ... hmmmmmm
+
+#### Working with primitive values
+
+- Assigning a second variable to point to the same value as the first variable. Changing the value of the first variable will not alter the second variable. (like Ruby).
+- Strings are primitive values, as you know. However they are not stored directly in the variable, like most other primitive values. But they behave as though they are.
+
+#### Working with objects and non-mutating operations
+
+- When we initialize `a` with `b` JS copiesnthe pointer, not the value. So mutating the value affects `a` and `b`. It can be called 'aliasing' when two vars refer to the same thing.
+- Remember primatives can't be mutated, so giving a var a new primitive value will never effect other vars pointing to that value. 
+
+#### Gotcha
+
+````
+let g = ['a', 'b', 'c']
+let h = g
+g[1] = 'x'
+console.log(g); // => [ 'a', 'x', 'c' ]
+console.log(h); // => [ 'a', 'x', 'c' ]
+````
+
+- This code doesn't mutate the element. It does mutate the array.
+
+### Takeaway
+
+- Same as Ruby, right?
+- The idea that JS stores primitive values directly in variables is an oversimplification, but sufficient for now.
+
 ### [for/in and for/of](https://launchschool.com/books/javascript/read/more_stuff#forinforof)
+
+- For looping easily over object properties.
+
+```
+let obj = { foo: 1, bar: 2, qux: 'c' };
+for (let key in obj) {
+  console.log(key);
+}
+// Output:  foo
+//          bar
+//          qux
+
+let arr = [ 10, 20, 30 ]
+for (let value in arr) {
+  console.log(value);
+}
+// Output:  0
+//          1
+//          2
+
+// because index properties are strings, this happens:
+
+let arr2 = [ 10, 20, 30 ]
+for (let index in arr2) {
+  console.log(index + 5);
+}
+// Output:  05
+//          15
+//          25
+```
+
+- for/of: It's newer, and works on 'any iteratable collection' (so Strings as well)
+
+```
+let arr = [ 10, 20, 30 ]
+for (let value of arr) {
+  console.log(value);
+}
+// Output:  10
+//          20
+//          30
+
+let str = "abc";
+for (let char of str) {
+  console.log(char);
+}
+// Output: a
+//         b
+//         c
+```
+
 ### [Method Chaining](https://launchschool.com/books/javascript/read/more_stuff#methodchaining)
+
+```
+// -------- syntax variation: 1 ----------
+let str = 'Pete Hanson';
+let names = str.toUpperCase().split(' ').reverse().join(', ');
+console.log(names); // => HANSON, PETE
+
+// -------- syntax variation: 2 ----------
+
+let str2 = 'Pete Hanson';
+let names2 = str2.toUpperCase()
+               .split(' ')
+               .reverse()
+               .join(', ');
+console.log(names2);
+
+// -------- syntax variation: 3 ----------
+
+let str3 = 'Pete Hanson';
+let names3 = str3.toUpperCase()
+  .split(' ')
+  .reverse()
+  .join(', ');
+console.log(names3);
+
+// -------- syntax variation: 4 ----------
+
+let str4 = 'Pete Hanson';
+let names4 = str4.toUpperCase().
+                split(' ').
+                reverse().
+                join(', ');
+console.log(names4);
+```
+
+#### Optional Chaining
+
+- like normal chainign, but if any of the values return `nullish` it returns `undefined`.
+- Most often used in a chain where the first expression may return a nullish value
+
+```
+function reverse_words(sentence) {
+  return sentence?.split(' ')
+                  .reverse()
+                  .join(' ');
+}
+console.log(reverse_words("Four score and seven"))
+// seven and score Four
+
+console.log(reverse_words(null))
+// undefined
+```
+
+- But be careful where you deploy these, because usually an error message is a useful thing to see.
+
 ### [Regex](https://launchschool.com/books/javascript/read/more_stuff#regex)
+
+- Here we'll look at the most common use case. Whether a string matches a regex.
+
+```
+// RegExp is the class.
+
+a = /o/.test('bobcat')
+console.log(a); // true
+b = /l/.test('bobcat')
+console.log(b) // false
+```
+
+#### `match`
+
+```
+word = "bobcat"
+resulta = word.match(/match/) // No match
+console.log(resulta) // => null
+resultb = word.match(/[bct]/g) // Global match
+console.log(resultb) // => [ 'b', 'b', 'c', 't' ]
+resultc = word.match(/b((o))b/) // Singular match with groups
+console.log(resultc) // => [ 'bob', 'o', 'o', index: 0, input: 'bobcat', groups: undefined ]
+```
+
+- No match retruns `null`
+- This method has performance costs, and so `.test` is preferable, unless you need all the information about groups, index and input.
+
 ### [The Math Object](https://launchschool.com/books/javascript/read/more_stuff#themathobject)
+
+```
+console.log(Math.sqrt(36)); // => 6
+console.log(Math.sqrt(302910)); // => 550.3726010622258
+console.log(Math.PI); // 3.141592653589793
+```
+
 ### [Dates](https://launchschool.com/books/javascript/read/more_stuff#dates)
+
+```
+let date = new Date ('December 25, 2012')
+console.log(date.getDay()); // => 2 (0 = Sun, 6 = Sat, so 2 = Tue)
+
+function getDayOfWeek(date) {
+  let daysOfWeek = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+  ];
+
+  return daysOfWeek[date.getDay()];
+}
+
+console.log(getDayOfWeek(date)); // => Tuesday
+console.log(date.toLocaleDateString(date)) // =? 12/25/2012
+```
+
 ### [Exceptions](https://launchschool.com/books/javascript/read/more_stuff#exceptions)
+
+- `try`, `catch` and less often `finally`.
+
+```
+let names = ['bob', 'joe', 'steve', undefined, 'frank'];
+names.forEach(name => {
+  try {
+    console.log(`${name}'s name has ${name.length} letters in it.`);
+  } catch (exception) {
+    console.log('Something has gone awry');
+  }
+});
+
+// bob's name has 3 letters in it.
+// joe's name has 3 letters in it.
+// steve's name has 5 letters in it.
+// Something has gone awry
+// frank's name has 5 letters in it.
+```
+
+- Mishandling an exception is usually more destructive than letting the program crash.
+
+#### throw
+
+```
+function foo(number) {
+  if (typeof number !== "number") {
+    throw new TypeError("expected a number");
+  }
+
+  return `${number} is a number`
+}
+
+console.log(foo(2)); // => 2 is a number
+console.log(foo(true)); // => TypeError: expected a number
+```
+
+ - Don't raise exceptions for predictable results. Exceptions should really be for exceptions. That means:
+   - situations your program cannot easily control. FOr instance, not being able to connect to a remote site in a web application.
+ - The example above is therefore not a justified usage of exception handling.
+
+#### syntax error
+
+- Unlike `TypeError`s, these are immediately encountered when the program is run, so you can't catch them.
+- Remember:
+  - It has nothing to do with the value of any of your variables.
+  - It is possible for the error to be caught much later in the program than it's cause. For instance a missing `{`. It's more common than you imagine.
+  - The fact that none of the program executes reveals that programs have a preliminary phase of checking syntax before the execution phase.
+
 ### [Stack Traces](https://launchschool.com/books/javascript/read/more_stuff#readingstacktraces)
+
+```
+function foo() {
+  console.log(bar);
+}
+
+foo();
+
+/*
+hello there: node 13_stack_traces.js 
+/Users/sandyboy/Desktop/launch_school_books/JS_book_exercises/10_more_stuff/13_stack_traces.js:2
+  console.log(bar);
+              ^
+
+ReferenceError: bar is not defined
+    at foo (/Users/sandyboy/Desktop/launch_school_books/JS_book_exercises/10_more_stuff/13_stack_traces.js:2:15)
+    at Object.<anonymous> (/Users/sandyboy/Desktop/launch_school_books/JS_book_exercises/10_more_stuff/13_stack_traces.js:5:1)
+    at Module._compile (node:internal/modules/cjs/loader:1378:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1437:10)
+    at Module.load (node:internal/modules/cjs/loader:1212:32)
+    at Module._load (node:internal/modules/cjs/loader:1028:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:142:12)
+    at node:internal/main/run_main_module:28:49
+
+Node.js v21.6.2
+*/
+
+```
+
+- Your stack traces are important. They will show you where and what the problem is. Ignore them and you may be creating more work for yourself.
+
 ### [ES6 and Beyond](https://launchschool.com/books/javascript/read/more_stuff#essixandbeyond)
+
+- JavaScript's real name is "ECMAScript".
+- A recent updated version is called "ECMAScript 6" AKD "ES6". )or even "ES2015".
+- Before ES6 there weren't `let` and `const` or block scopes, which caused lots of problems. Prior to that vars were either local to functions or 100% global baby.
+- ES6 also introduced arrow functions, which fic "lost execution context" AKA "context loss".
+- There's more and it's always expanding.
+- This means some Javascript environments may not be up to date. Which lead to the creation of **Babel** : a tool that lets you write code using the latest language features, then run it in old environments.
+
 ### [Exercises](https://launchschool.com/books/javascript/read/more_stuff#exercises)
+
+1.
+
+```
+let array1 = [1, 2, 3];
+let array2 = array1;
+array1[1] = 4;
+console.log(array2) // [1, 4, 3]
+```
+
+2. The `greeting` variable is not defined.
+
+- LS answer:
+  - An error occurred in the exercise2.js program on line 4 of the program; a ^ points to where JavaScript thinks the error is in the code: it's pointing to the argument list for console.log.
+
+More specifically, line 6 in the output tells you that a ReferenceError exception occurred and that the name greeting isn't defined. Line 7 repeats some earlier information: JavaScript detected the error at column 15 of line 4 of the program, but it also tells you that the code is in the hello function. Line 8 tells you that hello was called from line 13 of the program in an anonymous function, namely the global-level of the program.
+
+The rest of the output comes from running the code in node and probably isn't useful to you as an application programmer.
+
+3. `console.log(Math.sqrt(37)); // => 6.082762530298219`
+
+4.
+
+```
+// if the input is an array:
+
+function largestValueInArray(array) {
+  currentLargestValue = array[0]
+  array.forEach(function(num) {
+    if (currentLargestValue < num) {
+      currentLargestValue = num;
+    }
+  });
+  return currentLargestValue;
+};
+
+console.log(largestValueInArray([1, 6, 3, 2])); // => 6
+
+// if the input is separate objects:
+
+function largestValueFinder() {
+  let array = Array.from(arguments);
+  currentLargestValue = array[0]
+  array.forEach(function(num) {
+    if (currentLargestValue < num) {
+      currentLargestValue = num;
+    }
+  });
+  return currentLargestValue;
+};
+
+console.log(largestValueFinder(1, 6, 3, 2)); // => 6
+
+// If you're assuming I'll use a Math object:
+
+function largestValueWithMath(array) {
+  return Math.max(...array)
+}
+
+console.log(largestValueWithMath([1, 2, 3, 6, 4, 2])); // => 6
+```
+
+5.
+
+
+```
+function doSomething(string) {
+  return string.split(' ').reverse().map((value) => value.length);
+}
+
+/*
+
+splits a string into an array of individual words, reverses the order of that array, then returns a new array containing the length of each word.
+
+*/
+
+console.log(doSomething("this summer is all about two things.")); // => [7, 3, 5, 3, 2, 6, 4]
+```
+
+6.
+
+
+```
+let words = [
+  'laboratory',
+  'experiment',
+  'flab',
+  'Pans Labyrinth',
+  'elaborate',
+  'polar bear',
+];
+
+function allMatches(arr, pattern) {
+  let output = [];
+  arr.forEach(function(word) {
+    if (pattern.test(word)) {
+      output.push(word)
+    }
+  })
+  return output;
+};
+console.log(allMatches(words, /lab/)); // => ['laboratory', 'flab', 'elaborate']
+```
+
+7. Exeption handling is writing code to catch errors so that the program does not fail when errors are encountered. We use the keywords `try`, `catch`,  and `finally` to do this.
+
+8.
+
+```
+function isNotANumber(value) {
+  return value !== value;
+};
+
+console.log(isNotANumber(1)); // false
+console.log(isNotANumber(true)); // false
+console.log(isNotANumber(NaN)); // true
+console.log(isNotANumber('NaN')); // false
+```
+
+9. (almost)
+
+```
+function isNegativeZero(value) {
+  return 1 / value === -Infinity;
+}
+```
+
+10.
+
+```
+let y = "5"
+y++
+// => 5
+```
+
+
 
 ## [Conclusions](https://launchschool.com/books/javascript/read/next_steps)
 
+
 ### [Conclusion & Next Steps](https://launchschool.com/books/javascript/read/next_steps)
+
+- Don't stop.
