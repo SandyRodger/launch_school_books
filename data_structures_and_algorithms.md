@@ -130,11 +130,273 @@ SKIP
 
 ### [Exploring Time Complexities](https://launchschool.com/books/dsa/read/exploring_time_complexities)
 
-- 
+#### O(1)
 
-### Space Complexity
-### Fine-tuning Time Complexity
-### Time & Space Complexity Problems
+- The number of steps required to complete an operation stays the same regardless of input size.
+- It does NOT mean there's only one step.
+- Note that `N` does not appear in this description. That it because it is irrelevant to how many steps will be taken.
+- An example is searching for a value in a hash table:
+
+```javascript
+function getName(obj) {
+  return obj['name']
+}
+
+let person = {"name": "Srdjan", "age": 39, "job": "Software Engineer"}
+getName(person) // 'Srdjan'
+```
+
+- Another example is accessing an array element by its index:
+
+```javascript
+function sumFirstAndLast(arr) {
+  if (arr.length > 1) {
+    return arr[0] + arr[arr.length - 1]
+  }
+  return 0
+}
+sumFirstAndLast([1,2,3,4,5,6]) // 7
+```
+
+- Time complexity in this operation is derived from these things:
+    - Array.length check is constant - it does not require iterative over the array.
+    - Accessing and summing elements:
+        - accessing the first element
+        - accessing the last element
+        - sums these two elements
+
+#### O(logN)
+
+(I am tired and distractable today, so do go over this again with that in mind)
+
+- This refers to an operation where the number of steps necessary to complete a task increases in proportion to the logarithm of the input size.
+- Logarithm of the input size means the number of times we need to halve the input size until we reach 1
+
+##### logarithms
+
+- The logarithm of a number is a mathematical operation that indicates the exponent to which a fixed value ("the base")
+
+##### exponent
+
+- **exponent** is number of times you should multiply a number by itself. (AKA the power of).
+
+#### O(N)
+
+- This is what we looked at with the linear search above. They're no synonymous though.
+- copying each element from one list to another also fits this time complexity.
+
+#### O(NlogN)
+
+- The time an algorithm takes grows in proportion to the size of input (`N`) times `logN` in the logarithm of `N`. It's like iteratting linearly over an array and for each element doing a logarithmic algorithm. So combining the two previous time complexities..
+
+#### O(N^2)
+
+- Quadratic time complexity: the number of steps is proportional to the square of the input size.
+- So if input doubles, time increases by a factor of 4.
+- Can be written as `N²` or `N^2`
+- An example of this would be finding all pairs between two arrays, where for each element in one array we look at all elements in the seconds array:
+
+```javascript
+function findPairs(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      console.log(`Pair: ${array[i]}, ${array[j]}`);
+    }
+  }
+}
+
+findPairs([1, 2]); // Input length of 2, prints out 4 pairs
+findPairs(['a', 'b', 'c', 'd', 'e']); // Input length of 5, prints out 25 pairs
+```
+- PEDAC often leads one to such a soluton, but they are too slow for large data-sets.
+
+#### O(N^3)
+
+- Cubic time complexity.
+- The number of steps is proportional to the cube of the input size
+    - If size of input doubles, number of steps increases by ^8 (because 2^2 = 8)
+- To illustrate this we can exten the above example with an added nested loop:
+
+```javascript
+function findTriplets(array) {
+  for (let i = 0; i < array.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      for (let k = 0; k < array.length; k++) {
+        console.log(`Triplet: ${array[i]}, ${array[j]}, ${array[k]}`);
+      }
+    }
+  }
+}
+
+findTriplets([1, 2]); // Input length of 2, prints out 8 triplets
+findTriplets(['a', 'b', 'c']); // Input length of 3, prints out 27 triplets
+```
+
+- So for an array of 10 elements the function will perform 1000 iterations.
+- So far we're simply incrementing the exponent by one:
+    - 2 nested loops = quadratic
+    - 3 nested loops = cubic
+    - 4 nested loops = quartic
+- As we add more nested loops the complexity grows exponentially. This means nested loops are often targets for optimisation.
+- The are often found in naive solutions to problems with multi-dimentional data or certain graph algorithms.
+
+#### O(2^N)
+
+- Exponential time complexity.
+- For each additional element in the input the execution time of the algorithm doubles. This exponential growth occurs because the algorithm generates an increasing number of subproblems (or recursive calls) with each inoput element.
+- Sometimes written as `2N`
+- A common example of this is non-memoized recursion, where the algorithm often recalculates the same subproblem multiple times.
+- For example below we have a naive recursive implementation of the Fibonacci sequence, where each call generates two additional calls:
+
+```javascript
+function fibonacci(n) {
+  if (n <= 1) {
+    return n;
+  }
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+```
+
+#### O(N!)
+
+- Factorial time complexity. ("N factorial").
+- Even more rapid growth in execution time.
+- Referes to all positive integers up to `N`. For example if `N` === 5, then `5!` is 5 x 4 x 3 x 2 x 1 (=120)
+- Typically found in scenarios requiring the exploration of all possible permutations/combinations.
+    - A pathfinding problem like the Travelling Salesman Problem.
+
+### [Space Complexity](https://launchschool.com/books/dsa/read/space_complexity)
+
+- time complexity was how an algorithm's performance scales with input size.
+- space complexity is the max memory the algorithm requires to solve a problem.
+- An algorithm's memory usage can significantly impact its efficiency/practicality. This is really important in situations where memory resources are limited.
+- Time complexity measures computational time required by an algorithm, but Space complexity measures the memory space requirements.
+- Also expressed with Big O notation. The growth of the space complexity represents an upper limmit, rather than a consistent outcome.
+- We will look at how time complexity and space complexity can affect each other. FOr example increassing space usage can improve time complexity.
+
+#### [Auxiliary Space Complexity](https://launchschool.com/books/dsa/read/space_complexity#auxiliaryspacecomplexity)
+
+- extra space / temporary space used by an algorithm
+- For instance if we need to split a string into an array of chars, because javascript strings are immutable, additional space is required. This is considered an auxiliary requirement because it is the minimum additional space needed to solve the problem in this language.
+
+### [Fine-tuning Time Complexity](https://launchschool.com/books/dsa/read/fine_tuning_time_complexity_analysis)
+
+- Removing constants
+- simplifying complex expressions
+- using appropriate variable names
+- consider different collections seperately
+#### [Removing constants from time complexity](https://launchschool.com/books/dsa/read/fine_tuning_time_complexity_analysis#removingconstants)
+
+- You must focus on the dominant term that determines the growth rate as the input size increases.
+- For example:
+
+```javascript
+function exampleFunction(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    // O(N) operations
+  }
+
+  for (let j = 0; j < arr.length; j++) {
+    // O(N) operations
+  }
+}
+```
+
+- The second loop is negligible. We focus on the dominant terms rather than precise numbers.
+- What we are interested in is the relationship between the size of input and the number of operations.
+
+#### [The arbitrary name "N"](https://launchschool.com/books/dsa/read/fine_tuning_time_complexity_analysis#arbitraryn)
+
+- The length of the input collection. But its arbitary. You could use another name.
+- We could, for instance, use `U` for a list of users.
+
+#### [Distinct variable names for different collections](https://launchschool.com/books/dsa/read/fine_tuning_time_complexity_analysis#distinctvariables)
+
+- Distinguishing between collections and data structures is crucial when performing time complexity analysis.
+- By recognising that collections can have different sizes we can come to a more comprehensive understanding of how the algorithm's performace scales in different scenarios.
+
+### [Time & Space Complexity Problems](https://launchschool.com/books/dsa/read/time_and_space_complexity_problems)
+
+#### Practice problems
+
+1.
+
+```javascript
+function test(n) {
+  for (let i = 0; i < n; i++) {
+    console.log("Hello!");
+  }
+}
+```
+
+Time Complexity is O(N) - correct
+Space Complexity is O(N) - incorrect O(1), because it does not use any additional memory outside of the input size.
+
+2. 
+
+```javascript
+function test(n) {
+  for (let i = 0; i < n; i++) {
+    for (let j = i; j < n; j++) {
+      console.log("Hello!");
+    }
+  }
+}
+```
+
+Time Complexity: O(N^2) (quadratic time complexity)
+Space Complexity: O(1) as above
+
+3. 
+```javascript
+function test(n) {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(i);
+  }
+  return result;
+}
+```
+
+Time complexity: O(1) incorrect: O(N) because the loop will run N times
+Space complexity: O(2) incorrect O(N) because the result array grows linearly with the input size `n`.
+
+4.
+
+```javascript
+function test(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= i; j++) {
+      sum += 1;
+    }
+  }
+  return sum;
+}
+```
+
+Time: O(N^2) - correct
+Space: O(n) - incorrect - O(1) : number of steps stays the same regardless of the input
+
+5.
+```javascript
+function test(n) {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(i);
+    for (let j = 0; j < n; j++) {
+      result[i] += j;
+    }
+  }
+  return result;
+}
+```
+
+Time: O(N^2) as above - correct
+Space: O(2N) - incorrect O(N) because we are not adding more values to result, we are only modifiying those values.
+
+6.
+
 ### Algorithm Discovery Process
 ### Practice: Find a Majority Element
 ## SORTING ALGORITHMS
@@ -176,9 +438,9 @@ SKIP
 
 |  | 1st: John the Baptist | 2nd: deep-dive | 3rd: find/fill gaps |
 | :--- | :---: | :---: | :---: | 
-| L1 | start 7.11.24 |
-| L2 | 
-| L3 | 
-| L4 | 
-| L5 |
-| L6 |
+| Introduction to data-structures and algorithms | start 7.11.24 |
+| Sorting algorithms | 
+| Pointer-based mental models | 
+| Binary search | 
+| Stacks & queues |
+
