@@ -397,6 +397,21 @@ Space: O(2N) - incorrect O(N) because we are not adding more values to result, w
 
 6.
 
+```javascript
+function test(n) {
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < n; j++) {
+      for (let k = 0; k < n; k++) {
+        console.log("Hello!");
+      }
+    }
+  }
+}
+```
+
+Time: 
+Space:
+
 ### Algorithm Discovery Process
 ### Practice: Find a Majority Element
 ## SORTING ALGORITHMS
