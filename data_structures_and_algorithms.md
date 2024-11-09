@@ -409,7 +409,55 @@ function test(n) {
 }
 ```
 
-Time: 
+Time: cubic complexity = correect
+Space: O(1) stays the same = correct
+
+7. 
+
+```javascript
+function test(n) {
+  let result = [];
+  for (let i = 0; i < n; i++) {
+    result.push(new Array(n).fill(0));
+  }
+  return result;
+}
+```
+
+Time: O(N) = incorrect, O(N^2)
+    - this is becasue the `.fill(0)` method adds another `0(n)` which fills the empty array iteratively.
+Space: O(logN) = incorrect, also O(N^2)
+    - the result array grows quadratically with the input size (holding n arrays of n size).
+
+8. 
+
+```javascript
+function test(n) {
+  for (let i = n; i >= 1; i /= 2) {
+    console.log("Hello!");
+  }
+}
+```
+
+Time: O(logN) like binary search = correct
+Space: O(1) = correct
+
+9.
+
+```javascript
+function test(n) {
+  let matrix = [];
+  for (let i = 0; i < n; i++) {
+    matrix[i] = [];
+    for (let j = 0; j < n; j++) {
+      matrix[i][j] = i + j;
+    }
+  }
+  return matrix;
+}
+```
+
+Time:
 Space:
 
 ### Algorithm Discovery Process
