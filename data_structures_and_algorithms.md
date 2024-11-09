@@ -1,46 +1,65 @@
 # [data structures and algorithms](https://launchschool.com/books/dsa)
 
 
-### [Introduction](https://launchschool.com/books/dsa/read/introduction)
-#### [How DSA gives you an edge](https://launchschool.com/books/dsa/read/introduction#dsagivesedge)
-##### Technical interviews: many focus on DSA
-    - questions will test your ability to:
-      -  solve problems
-      -  analyse different approaches
-      -  optimize solutions for time/space complexity
-    -  This course teaches strategies for nailing these.
-##### Efficient Problem solving:
+## [Introduction](https://launchschool.com/books/dsa/read/introduction)
+
+### [How DSA gives you an edge](https://launchschool.com/books/dsa/read/introduction#dsagivesedge)
+
+#### Technical interviews: many focus on DSA
+
+- questions will test your ability to:
+  -  solve problems
+  -  analyse different approaches
+  -  optimize solutions for time/space complexity
+-  This course teaches strategies for nailing these.
+
+#### Efficient Problem solving:
   - DSA provides the tools/techniques to solve coding challenges systematically/optimally
   - You will learn to
     - analyse problems
     - select appropriate data-structures
     - apply efficient algorithms
-##### Building a strong foundation
+#### Building a strong foundation
   - These concepts are fundamental to computer science and software engineering.
   - These are the building blocks for more advanced topics you'll encounter as a programmer
-#### [What we'll cover](https://launchschool.com/books/dsa/read/introduction#whatwellcover)
-##### PEDAC
+
+### [What we'll cover](https://launchschool.com/books/dsa/read/introduction#whatwellcover)
+
+#### PEDAC
+
 - SKIP
 ##### sorting algorithms
+
 - fundamental sorting algorithms to arrange data.
+
 ##### algorithm techniques
+
 - various strategies:
   -  binary search.
   -  pointer-based techniques
   -  and more...
 -  How to choose the right algorithm
+
 ##### essential data structures
+
 - linked lists
 - stacks
 - queues
 - versatile structures for organizing and manipulating data
-###### Practice for mastery
-###### going deeper
+
+#### Practice for mastery
+
+##### going deeper
+
 - there's a 2nd book
 - capstone also takes this further
-###### let's get started
+
+##### let's get started
+
 ## THE PEDAC APPROACH TO PROBLEM SOLVING
+
 SKIP
+
 ## [INTRODUCTION TO DATA STRUCTURES AND ALGORITHMS](https://launchschool.com/books/dsa/read/why_data_structures_matter#whatareds)
 
 ### [Why Data Structures Matter](https://launchschool.com/books/dsa/read/why_data_structures_matter#whatareds)
@@ -62,12 +81,13 @@ SKIP
   -  They make reading/inserting/deleting data easy.
 
 #### The Benefits of Data Structures
-##### Code Efficiency
+
+#### Code Efficiency
 - selecting the most appropriate structure allows us to write more efficient code
 - Each data structure has unique characteristics that make it suited for particular operations.
 -  Understanding these characteristics allows us to choose the most efficient structure resulting in faster and more optimised code.
 
-##### Algorithm design
+#### Algorithm design
 
 - data structures are closely linked to algorithm design.
 - This is because different data-structures provide different ways to store and access data.
@@ -115,7 +135,7 @@ SKIP
 - Number of steps will change based on input, so **big O Notation** looks at the scalability of an algorithm.
 - It allows us to compare and analyze different algorithms more effectively by showing how the number of steps changes based on the size of input instead of some fixed notion of number-of-steps.
 
-##### Big O
+#### Big O
 
 - "O" stands for order, as in order of magniture of the algorithm's growth rate.
 - Basically it looks at which part of the algorithm has the most significant impact on how its run-time increases with larger inputs.
@@ -159,20 +179,20 @@ sumFirstAndLast([1,2,3,4,5,6]) // 7
 ```
 
 - Time complexity in this operation is derived from these things:
-    - Array.length check is constant - it does not require iterative over the array.
+    - Array.length check is constant - it does not require iteration over the array.
     - Accessing and summing elements:
         - accessing the first element
         - accessing the last element
         - sums these two elements
 
-#### O(logN)
+### O(logN)
 
 (I am tired and distractable today, so do go over this again with that in mind)
 
 - This refers to an operation where the number of steps necessary to complete a task increases in proportion to the logarithm of the input size.
 - Logarithm of the input size means the number of times we need to halve the input size until we reach 1
 
-##### logarithms
+#### logarithms
 
 - The logarithm of a number is a mathematical operation that indicates the exponent to which a fixed value ("the base")
 
