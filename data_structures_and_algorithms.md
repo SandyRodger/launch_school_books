@@ -477,11 +477,140 @@ function test(n) {
 }
 ```
 
-Time:
-Space:
+Time: O(NlogN) incorrect - `O(N^2)` because it involves 2 nested loops each running `n` times. So the number of operations is proportional to `n * n = n^2`
+Space: O(NlogN) - corrent insofar as it mirrors the time complexity, which make it `O(N^2)`
 
-### Algorithm Discovery Process
-### Practice: Find a Majority Element
+10.
+
+```javascript
+function test(n) {
+  for (let i = 0; i < n; i++) {
+    for (let j = 1; j < n; j *= 2) {
+      console.log("Hello!");
+    }
+  }
+}
+```
+
+time: O(logN) like binary search (like question 8) - incorrect:
+  - `O(NlogN)` because there are 2 nested loops. The inner loop runs `logN` times and the total number of operations is proportional to `N * logN`
+space: O(1) - correct
+
+11.
+
+```javascript
+function test(n) {
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j < 100; j++) {
+      console.log("Hello!");
+    }
+  }
+}
+```
+
+Time: O(100N^2) - incorrect
+  - The 100 is a constant factor and as such does not affect the overall time-complexity
+Space: 0(1) - correct
+
+12.
+
+```javascript
+function test(n, m) {
+  for (let i = 0; i < n; i++) {
+    console.log("Hello!");
+  }
+  for (let j = 0; j < m; j++) {
+    console.log("World!");
+  }
+}
+```
+
+time: O(M+N)
+space: O(1)
+
+13.
+
+```javascript
+function test(n) {
+  for (let i = 0; i < 2 * n; i++) {
+    console.log("Hello!");
+  }
+}
+```
+
+Time: O(2N) - incorrect
+  - although the loop does run 2N times we can simplify the time complexity by removing the constant factor. Therefore the time complexity is O(N)
+Space: O(1)
+
+14.
+
+```javascript
+function test(n) {
+  let count = 0;
+  for (let i = n; i > 1; i = Math.floor(i / 2)) {
+    for (let j = 0; j < n; j++) {
+      count++;
+    }
+  }
+  return count;
+}
+```
+
+time: O(logN^N) - half right. yes it is binary then linear, but the combination of those looks like this: `O(NlogN)`
+space: O(1) - correct
+
+### [Algorithm Discovery Process](https://launchschool.com/books/dsa/read/algorithm_discovery_process)
+
+- The algorithm discovery process and how PEDAC fits into it.
+- The naive solution: the solution pedac guides us to before considering O(N).
+
+#### [Pushing the Big O curve down 1 level](https://launchschool.com/books/dsa/read/algorithm_discovery_process#pushingthecurve)
+
+- 
+#### [Hash Tables](https://launchschool.com/books/dsa/read/algorithm_discovery_process#hashtables)
+
+```javascript
+function findPair(nums) {
+  const numMap = new Map();
+  const targetNumber = 10;
+
+  for (let idx = 0; idx < nums.length; idx++) {
+    const complement = targetNumber - nums[idx];
+
+    if (numMap.has(complement)) {
+      return [complement, nums[idx]];
+    }
+
+    numMap.set(nums[idx], idx);
+  }
+
+  return null;
+}
+```
+
+### [Practice: Find a Majority Element](https://launchschool.com/books/dsa/read/find_majority_element)
+
+#### [Problem descrption](https://launchschool.com/books/dsa/read/find_majority_element#description)
+
+```javascript
+// Given an array of numbers, return its majority element.
+
+// The majority element is the value in the array that appears
+// as at least half of the elements in the array.
+
+// It is guaranteed that only one majority element exists in the array.
+
+// Test Cases:
+
+console.log(findMajority([6, 4, 4, 6, 4]) === 4);
+console.log(findMajority([4, 5, 2, 5, 5, 5, 1]) === 5);
+console.log(findMajority([1, 2, 1, 2, 2, 1, 2]) === 2);
+console.log(findMajority([1, 2, 3, 1, 4, 4, 1, 1]) === 1);
+console.log(findMajority([5, 5, 5]) === 5);
+
+// All test cases should log true
+```
+
 ## SORTING ALGORITHMS
 ### Intro to Sorting Algorithms
 ### Bubble Sort
