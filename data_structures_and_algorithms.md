@@ -612,8 +612,24 @@ console.log(findMajority([5, 5, 5]) === 5);
 ```
 
 ## SORTING ALGORITHMS
+
 ### Intro to Sorting Algorithms
-### Bubble Sort
+
+- The fundamental importance of sorting in computer science
+
+#### Real World Applications
+
+- Databases
+- Information retrieval
+- Computational Biology
+- Operating systems
+- Network routing
+
+### [Bubble Sort](https://launchschool.com/books/dsa/read/bubble_sort)
+
+- One of the simplest. Easy to understand, but not one of the more efficient ones.
+- Algorithm: 
+
 ### Selection Sort
 ### Insertion Sort
 ## POINTER-BASED MENTAL MODELS
