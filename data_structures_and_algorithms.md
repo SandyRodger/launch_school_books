@@ -948,14 +948,101 @@ console.log(testCompressToDistinct([6, 6, 6, 6, 6, 6, 6], 1));
 - optimised:
 
 ```javascript
+function compressToDistinct(array) {
+  
+let anchor = 0;
+let runner = 1;
+let limit = array.length
 
+while (array[anchor] <= array[runner]) {
+  if (array[anchor] === array[runner]) {
+    array.push(...array.splice(runner,1));
+    } else {
+      runner += 1;
+      anchor += 1;
+    };
+
+    limit -= 1
+    if (limit === 0) { return anchor+1 };
+
+  }
+
+return anchor + 1;
+}
+```
+
+LS solution:
+
+```javascript
+function compressToDistinct(nums) {
+  if (nums.length <= 1) return nums.length;
+
+  let anchor = 0;
+
+  for (let runner = 1; runner < nums.length; runner++) {
+    if (nums[runner] !== nums[anchor]) {
+      anchor++;
+      nums[anchor] = nums[runner];
+    }
+  }
+
+  return anchor + 1;
+}
 ```
 
 ## BINARY SEARCH
-### Intro to Binary Search
-### Binary Search Template
-### Demo: Find Zero Position
-### Demo: Find The Range of Threes
+### [Intro to Binary Search](https://launchschool.com/books/dsa/read/introduction_to_binary_search)
+
+
+### [Binary Search Template](https://launchschool.com/books/dsa/read/binary_search_template)
+
+- off-by-one errors.
+
+#### Tempate:
+
+```javascript
+let left = 0;
+let right = array.length - 1;
+
+while (left <= right) {
+  let mid = Math.floor((left + right) / 2);
+
+  if (array[mid] === target) {
+    // Optional early return
+  } else if (***comparison***) {
+    left = mid + 1;
+  } else {
+    right = mid - 1;
+  }
+}
+```
+
+// Most often, if the target is not found, additional handling
+// or returning a specific value is needed. In many cases it will
+// be the index that `left` variable holds, which would indicate
+// where the target *would* fit into the array.
+### [Demo: Find Zero Position](https://launchschool.com/books/dsa/read/find_zero_position)
+### [Demo: Find The Range of Threes](https://launchschool.com/books/dsa/read/find_range_of_threes)
+
+```javascript
+
+// brute force
+
+function findRange(arr) {
+  let output = [-1, -1];
+  let firstFound = false;
+  for ([idx, n] of arr.entries()) {
+    if (n === 3 && !firstFound) {
+      output[0] = idx;
+      firstFound = true;
+    } else if (n === 3) {
+      output[1] = idx;
+    }
+  }
+  return output;
+}
+```
+
 ### Practice: Minimum Count
 ## LINKED LISTS
 ### Intro to Linked Lists
