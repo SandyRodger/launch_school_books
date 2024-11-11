@@ -629,15 +629,328 @@ console.log(findMajority([5, 5, 5]) === 5);
 
 - One of the simplest. Easy to understand, but not one of the more efficient ones.
 - Algorithm: 
+- We sort each pair of elements. At the end of the first iteration we know the largest element is at the end. Then we do the same with all the elements - 1 and so on.
 
-### Selection Sort
-### Insertion Sort
+```javascript
+function bubbleSort(arr) {
+  const len = arr.length;
+
+  for (let i = 0; i < len - 1; i++) {
+    // Flag to track if any swaps were made
+    let swapped = false;
+
+    // Last i elements are already in place
+    for (let j = 0; j < len - 1 - i; j++) {
+      // Check if the element in the current iteration
+      // is greater than the one in the next iteration
+      if (arr[j] > arr[j + 1]) {
+        // Swapping elements
+        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+        swapped = true;
+      }
+    }
+
+    if (!swapped) {
+      // If no swaps were made in this iteration, the array is already sorted
+      break;
+    }
+  }
+
+  return arr;
+}
+
+const array = [5, 3, 8, 7, 2];
+console.log(bubbleSort(array)); // Output: [2, 3, 5, 7, 8]
+```
+
+### [Selection Sort](https://launchschool.com/books/dsa/read/selection_sort)
+
+- I have a crate of lego. I put my hand at the left most side creating a barrier. Then I look in the crate for the smallest piece and place that on the left side of my hand. I do this over and over placing the lego pieces in size order on the right side of my hand-barrier. As I do this the amount of pieces on the right side of my hand diminishes and my hand edges towards the left inner wall of the crate. At the end of this process the lego pieces are lined up in size order.
+
+```javascript
+function selectionSort(arr) {
+  const len = arr.length;
+
+  for (let i = 0; i < len - 1; i++) {
+    // Initialize `minIndex` as the first element in
+    // the unsorted portion of the array
+    let minIndex = i;
+
+    // Iterate over the rest of the unsorted part of the array
+    for (let j = i + 1; j < len; j++) {
+      // Check if the element in the current iteration is
+      // less than the element at the current `minIndex`
+      if (arr[j] < arr[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    // If the minimum element is already at
+    // index `i`, we don't need to swap
+    if (minIndex !== i) {
+      // Swap the first element of the unsorted portion
+      // with the element at `minIndex`
+      [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]];
+    }
+  }
+
+  return arr;
+}
+
+const array = [3, 8, 2, 1];
+console.log(selectionSort(array)); // Output: [1, 2, 3, 8]
+```
+
+- Selection sort and bubble sort are similar in terms of efficiency, but Selection sort is slightly better because it reduces the number of swaps necessary. Note that swapping can be more performance-expensive than comparing.
+
+### [Insertion Sort](https://launchschool.com/books/dsa/read/insertion_sort)
+
+- My narrative
+  - We have a plate full of differently sized chips.
+  - I take my knife and put it to the right of the left-most chip.
+  - I compare the chip to the right of my knife with all the chips on the left.
+  - At the beginning this is just a single chip.
+  - When I find the chip that is smaller than "current chip" I insert chip in its right place.
+
+- Conceptual v implementation
+
+- In theory this algorithm had `O(N^2)` complexity and is the same as selection sort and bubble sort, but in reality it often outperforms these in certain scenarios. Sometimes it can even outperform more complex algorithms like Merge sort or quick sort.
+- So how to choose? It depends on how costly the comparisons are. Insertion sort makes fewer comparisons and therefore in situations where comparisons are costly it is to be preferred. 
+
+
 ## POINTER-BASED MENTAL MODELS
-### Pointer-Based Strategies
-### Two Pointers: Start/End
-### Two Pointers: Anchor/Runner
-### Practice: Reverse Consonants
-### Practice: Compress to Distinct
+
+### [Pointer-Based Strategies](https://launchschool.com/books/dsa/read/introduction_to_pointer_based_optimization)
+
+- a powerful technique for sorting lists that can transform big O complexity from quadratic solutions to linear solutions, while preserving O(1) space complexity.
+- Start/end pointers
+  - uses 2 pointers (start and end)
+  - manipulates the elements within that segment of the list
+  - good for:
+    -  finding longest increasing subarray
+    -  determining is an array is a palindrome
+-  Anchor/runner pointers
+  -  (AKA slow/fast pointers)
+  -  2 pointers with different speeds
+  -  Good for:
+    - finding the mid-point in an array
+    - determining if an array has anny duplicates
+
+### [Two Pointers: Start/End](https://launchschool.com/books/dsa/read/two_pointers_start_end)
+
+- my solution was the same as the LS one (-: 
+
+```javascript
+
+function findPair(nums, target) {
+  let s = 0;
+  let e = nums.length - 1;
+  const currentSum = (n1, n2) => n1 + n2;
+
+  while (s !== e) {
+    let sum = currentSum(nums[s], nums[e]);
+    if (sum === target) {
+      return [nums[s], nums[e]];
+    } else if (sum < target) {
+      s += 1;
+    } else if (sum > target) {
+      e -= 1;
+    }
+  }
+  return null;
+}
+
+const nums1 = [1, 3, 6, 7, 8, 12];
+const target1 = 14;
+console.log(findPair(nums1, target1)); // Output: [6, 8]
+
+const nums2 = [2, 6, 8, 10];
+const target2 = 17;
+console.log(findPair(nums2, target2)); // null
+```
+
+### [Two Pointers: Anchor/Runner](https://launchschool.com/books/dsa/read/two_pointers_anchor_runner)
+
+- the slinky dog from toy story with his fore-legs moving faster than his hind legs
+
+#### Reader-writer variant
+
+  - Instead of swapping the elements, we just take the reader elements and write them at the writer and when we've found all the non-1 elements we insert 1s at the writer point.
+  - In the majority of cases the distinction between the two is merely a question of style. (it's different with linked lists)
+
+### [Practice: Reverse Consonants](https://launchschool.com/books/dsa/read/reverse_consonants)
+
+```javascript
+
+// brute force
+function reverseConsonants(str) {
+
+  let consonants = str.match(/[^aeiou]/ig);
+  let chars = str.split('');
+  const isConsonant = (char) => !"aeiou".includes(char.toLowerCase());
+
+  for (i = 0; i < str.length; i++) {
+    if (isConsonant(str[i])) {
+      chars[i] = consonants.pop();
+    }
+  }
+  return chars.join('');
+}
+
+// optimised:
+
+function reverseConsonants(str) {
+
+  if (str.length < 2) {return str};
+  let start = 0;
+  let end = str.length - 1;
+  let chars = str.split('');
+
+  const isConsonant = (char) => !"aeiou".includes(char.toLowerCase());
+  const bothConsonants = (start,end) => isConsonant(chars[start]) && isConsonant(chars[end]);
+
+  while (start < end) {
+    if (bothConsonants(start, end)) {
+      let firstChar = chars[start];
+      let secondChar = chars[end];
+      chars[start] = secondChar;
+      chars[end] = firstChar;
+      start++;
+      end--;
+    } else if (isConsonant(chars[start])) {
+      end--;
+    } else if (isConsonant(chars[end])) {
+      start++;
+    } else {
+      end--;
+      start++;
+    }
+  }
+  return chars.join('');
+}
+
+console.log(reverseConsonants("") === "");
+console.log(reverseConsonants("s") === "s");
+console.log(reverseConsonants("HELLO") === "LELHO");
+console.log(reverseConsonants("leetcode") === "deectole");
+console.log(reverseConsonants("example") === "elapmxe");
+console.log(reverseConsonants("Consonants") === "sotnonasnC");
+```
+
+- that sucked
+
+### [Practice: Compress to Distinct](https://launchschool.com/books/dsa/read/compress_to_distinct_elements)
+
+- brute force:
+
+```javascript
+/*
+
+Given a sorted array of integers, your task is to implement a function
+`compressToDistinct` that modifies the array in-place to ensure
+it starts with a sequence of distinct elements in their original order.
+After making these modifications, the function should return
+the count of these distinct elements.
+
+The elements in the latter part of the array, after the distinct ones, are not important.
+
+Example:
+
+If the input array is [3, 3, 5, 7, 7, 8], there are four distinct elements: 3, 5, 7, and 8.
+After modifying the array to place these distinct elements at the beginning,
+the resulting array should look like this -> [3, 5, 7, 8, _, _].
+The underscores (_) represent the elements that are no longer important.
+
+You should name the function `compressToDistinct` for the tests to work correctly.
+
+P: Write a function that takes a sorted array and does 2 things:
+  1. modifies the array:
+    - by putting all distinct elements in ascending order at the beginning of the array.
+    - leaves the remaining duplicates at the right hand extremity of the array.
+  2. returns an integer representing total distinct elements
+
+E:
+
+testCompressToDistinct([3, 3, 5, 7, 7, 8], 4);
+  - 3, 5, 7, 8, 3, 7
+testCompressToDistinct([1, 1, 2, 2, 2, 3, 4, 4, 5], 5);
+  - 
+testCompressToDistinct([0], 1);
+testCompressToDistinct([-5, -3, -3, -1, 0, 0, 0, 1], 5);
+testCompressToDistinct([6, 6, 6, 6, 6, 6, 6], 1);
+
+
+D:
+
+- arrays
+- counting distinct elements
+
+MM1:
+  - create a whole new array of distinct elems
+  - then copy the values onto original array 
+  - and return a counter fro distinct Elems
+
+MM2:
+
+- reduce (acc, elem, idx)
+- acc counts distinct elems
+- ...
+
+
+A:
+testCompressToDistinct([-5, -3, -3, -1, 0, 0, 0, 1], 5);
+
+- make an arry of distinct elems (distinctElems) => [-5, -3, -1, 0, 1]
+
+- iterate over inputArray deleting the first occurances of distinct elems => [-3, 0, 0]
+- iterate over inputArray unshifting in values from distinct elems => [-5, -3, -1, 0, 1, -3, 0, 0]
+- return distinct elems.length=> 5
+C:
+*/
+
+function testCompressToDistinct(array, expectedLength) {
+  const originalReference = array;
+  const resultLength = compressToDistinct(array);
+  const isSameObject = originalReference === array;
+  const isLengthCorrect = resultLength === expectedLength;
+  const isModifiedCorrectly = array.slice(0, expectedLength).every((val, idx, arr) => idx === 0 || val > arr[idx - 1]);
+
+  return isSameObject && isLengthCorrect && isModifiedCorrectly;
+}
+
+function compressToDistinct(array) {
+
+  let distincts = [];
+  let duplicates = [];
+
+  array.forEach((elem) => {
+    !distincts.includes(elem) ? distincts.push(elem) : duplicates.push(elem);
+  })
+
+  let correctOrder = distincts.concat(duplicates)
+
+  for (i = 0; i < distincts.length; i += 1) {
+    array[i] = correctOrder.shift();
+  }
+
+  return distincts.length;
+}
+
+console.log(testCompressToDistinct([3, 3, 5, 7, 7, 8], 4));
+console.log(testCompressToDistinct([1, 1, 2, 2, 2, 3, 4, 4, 5], 5));
+console.log(testCompressToDistinct([0], 1));
+console.log(testCompressToDistinct([-5, -3, -3, -1, 0, 0, 0, 1], 5));
+console.log(testCompressToDistinct([6, 6, 6, 6, 6, 6, 6], 1));
+
+// All tests should log true.
+```
+
+- optimised:
+
+```javascript
+
+```
+
 ## BINARY SEARCH
 ### Intro to Binary Search
 ### Binary Search Template
