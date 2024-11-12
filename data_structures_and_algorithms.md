@@ -1043,7 +1043,80 @@ function findRange(arr) {
 }
 ```
 
-### Practice: Minimum Count
+- I got peaked at the first 3 steps of the breakdown to solve the binary search version.
+- 2 helper functions to find left most and right-most threes.
+
+```javascript
+function findLeftMostIndex(array, target) {
+  let left = 0;                 // 0
+  let right = array.length - 1; // 8
+  let leftMostThree = -1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+  
+    if (array[mid] === target) {
+      leftMostThree = mid;
+      right = mid - 1;
+    } else if (array[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return leftMostThree;
+}
+
+function findRightMostIndex(array, target) {
+  let left = 0;                 // 0
+  let right = array.length - 1; // 8
+  let rightMostThree = -1;
+
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+  
+    if (array[mid] === target) {
+      rightMostThree = mid;
+      left = mid + 1;
+    } else if (array[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return rightMostThree;
+}
+
+function findRange(arr) {
+  let left = findLeftMostIndex(arr, 3);
+  let right = findRightMostIndex(arr, 3);
+  return [left, right];
+}
+
+console.log(findRange([1, 2, 3, 3, 3, 3, 3, 4, 5])) // [2, 6]
+console.log(findRange([1, 2, 5, 5, 6, 9, 10])) // [-1, -1]
+```
+
+### [Practice: Minimum Count](https://launchschool.com/books/dsa/read/minimum_count)
+
+- brute force:
+
+```javascript
+// brute force
+
+ function minimumCount(array) {
+  let positives = array.filter((n) => n > 0).length;
+  let negatives = array.filter((n) => n < 0).length;
+  return [positives, negatives].sort((a, b) => a - b)[0];
+ }
+```
+
+- optimised
+
+```javascript
+
+```
+
 ## LINKED LISTS
 ### Intro to Linked Lists
 ### Arrays vs Linked Lists Performance
