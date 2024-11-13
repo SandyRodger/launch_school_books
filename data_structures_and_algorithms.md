@@ -1115,13 +1115,114 @@ console.log(findRange([1, 2, 5, 5, 6, 9, 10])) // [-1, -1]
 
 ```javascript
 
+function indexOfMidBetweenPositiveAndNegative(array) {
+  let target = 0;
+  let left = 0;
+  let right = array.length - 1;
+  let mid;
+
+  while (left <= right) {
+    mid = Math.floor((left + right) / 2);
+    if (array[mid] === target) {
+      return mid;
+    } else if (array[mid] < target) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return left;
+}
+
+function minimumCount(array) {
+  let mid = indexOfMidBetweenPositiveAndNegative(array);
+  let positives = array.slice(mid)
+  let negatives = array.slice(0, mid)
+  if (positives[0] === 0) { positives.shift() };
+  return [positives, negatives].sort((a, b) => a.length - b.length)[0].length;
+}
 ```
 
+- LS solution: Assumes that there can be multiple zeroes, and so uses two binary search helper methods:
+
+```javascript
+
+```
+
+
 ## LINKED LISTS
-### Intro to Linked Lists
-### Arrays vs Linked Lists Performance
-### When to Use Linked Lists?
-### Demo: Remove Twos
+### [Intro to Linked Lists](https://launchschool.com/books/dsa/read/introduction_to_linked_lists)
+#### [Arrays vs Linked Lists](https://launchschool.com/books/dsa/read/introduction_to_linked_lists#arraysvslinkedlists)
+#### T[he Structure of a Linked List](https://launchschool.com/books/dsa/read/introduction_to_linked_lists#structureoflinkedlists)
+#### [Types of Linked Lists](https://launchschool.com/books/dsa/read/introduction_to_linked_lists#typesoflinkedlists)
+- singly linked
+  - commonly encountered in job interviews/coding challenges
+- doubly linked
+- circular linked
+#### [Implementing a Linked List](https://launchschool.com/books/dsa/read/introduction_to_linked_lists#implementingalinkedlist)
+- For this course we're only looking at sinly linked lists.
+- For this course we will focus on the `Node-as-a-class` approach to implementing.
+- The class will contain 2 things:
+  - a reference to the next node
+  - the data we want to store
+- This will allow us to encapsulate properties and behaviour of each node into a single entity
+- Example:
+
+```javascript
+class ListNode {
+  constructor(val = 0, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+```
+
+- Other implementations are available. For instance containing all nodes as node objects in a class called `LinkedList`
+  
+### [Arrays vs Linked Lists Performance](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists)
+
+- Choosing whether an array or a linked list is better depends on the program's specific needs.
+- One must understnad the performance characteristics of these data structures.
+#### [Reading](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists#reading)
+
+- Arrays offer direct access in constant time: `O(1)`
+- With linked lists you start only with access to the first node, so you have to traverse the section of the list that precedes your target. This is the notable drawback of linked-lists: their read-efficiency becomes `O(1)`.
+
+#### [Searching](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists#searching)
+
+- Both arrays and linked-lists have linear time-complexity `O(N)`
+- (not sure exactly how this is different to reading)
+
+#### [Inserting](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists#inserting)
+
+- In an array inserting at 0 means shifting all the values, but LL have an advantage because it's easy to create another element. It's `O(1)`. However inserting at the end of an LL would be `O(N)`
+- Interesting to note is that the worst case scenario for LL (appending) is the best case for arrays and vice-versa
+- Sometimes this is a negligible consideration, but sometimes it makes a huge difference.
+
+#### [Deleting](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists#deleting)
+
+- similar to insertion, LLs outperform arrays at the beginning of a list.
+  - LL: `O(1)`
+  - array: `O(N)` because you have to shift all the other elems.
+- But at the end a linked list deletes the element by redirecting the penultimate node to point towards `null`. However, to gether there it needs to traverse the entire list. So `O(N)`
+- As with inserting the best case for LLs is the worst case for Arrs and vice-versa.
+
+### [When to Use Linked Lists?](https://launchschool.com/books/dsa/read/when_and_why_to_choose_linked_lists)
+
+#### [Insertion & Deletion](https://launchschool.com/books/dsa/read/when_and_why_to_choose_linked_lists#insertiondeletion)
+
+- With arrays insertion and deletion involve shifting all the other elements in the list. For this reason LL can be better.
+- The example given is of a list of 2000 telephone numbers where 400 are incorrectly formatted and need to be deleted.
+  - In an array each deletion would create another `O(N)` steps to shift the remaining data to the left and close the gap. If for each 400 elements we shift all the telephonenumbers (2000) that's 800,000 steps
+  - In a LL the time complexity of searching is O(N) (2000) plus 400 for each deletion.
+
+### [Demo: Remove Twos](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list)
+
+#### [Problem Description](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#description)
+#### [Algorithm](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#algorithm)
+#### [Walkthrough](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#walkthrough)
+#### [Solution Code](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#solution)
+
 ### Pointers in Linked Lists
 ###  Dummy Nodes in Linked Lists
 ### Demo: Reverse Linked List
