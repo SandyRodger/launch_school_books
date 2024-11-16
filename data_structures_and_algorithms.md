@@ -1223,8 +1223,81 @@ class ListNode {
 #### [Walkthrough](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#walkthrough)
 #### [Solution Code](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#solution)
 
-### Pointers in Linked Lists
-###  Dummy Nodes in Linked Lists
+```javascript
+class ListNode {
+  constructor(val = 0, next = null) {
+      this.val = val;
+      this.next = next;
+  }
+}
+
+function deleteTwos(head) {
+let prev = null;
+let curr = head;
+
+if (!head) {
+  return head;
+}
+
+while (curr) {
+  if (curr.val === 2) {
+    if (!prev) {
+      head = curr.next;
+    } else {
+      prev.next = curr.next;
+    }
+  } else {
+    prev = curr;
+  }
+  curr = curr.next;
+}
+
+return head;
+}
+
+// Helper function to format the linked list into a string
+function stringifyList(head) {
+let curr = head;
+let result = "";
+while (curr !== null) {
+  result += curr.val + " -> ";
+  curr = curr.next;
+}
+result += "null";
+return result;
+}
+
+// Test case 1
+const head1 = new ListNode(1);
+head1.next = new ListNode(2);
+head1.next.next = new ListNode(3);
+head1.next.next.next = new ListNode(2);
+head1.next.next.next.next = new ListNode(4);
+
+console.log("Input: ", stringifyList(head1));
+console.log("Output:", stringifyList(deleteTwos(head1)));
+// Input:  1 -> 2 -> 3 -> 2 -> 4 -> null
+// Output: 1 -> 3 -> 4 -> null
+
+// Test case 2
+const head2 = new ListNode(2);
+head2.next = new ListNode(3);
+head2.next.next = new ListNode(2);
+
+console.log("Input: ", stringifyList(head2));
+console.log("Output:", stringifyList(deleteTwos(head2)));
+// Input:  2 -> 3 -> 2 -> null
+// Output: 3 -> null
+```
+
+### [Pointers in Linked Lists](https://launchschool.com/books/dsa/read/understanding_pointers_in_linked_lists)
+
+- cat analogy
+
+###  [Dummy Nodes in Linked Lists](https://launchschool.com/books/dsa/read/dummy_nodes_in_linked_lists)
+
+- 
+
 ### Demo: Reverse Linked List
 ### Practice: Remove Every Second
 ## STACKS & QUEUES
