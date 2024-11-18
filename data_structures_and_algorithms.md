@@ -1296,22 +1296,48 @@ console.log("Output:", stringifyList(deleteTwos(head2)));
 
 ###  [Dummy Nodes in Linked Lists](https://launchschool.com/books/dsa/read/dummy_nodes_in_linked_lists)
 
+- need to review this
+
+### [Demo: Reverse Linked List](https://launchschool.com/books/dsa/read/reverse_linked_list)
+
 - 
 
-### Demo: Reverse Linked List
-### Practice: Remove Every Second
-## STACKS & QUEUES
-### Intro to Stacks and Queues
-### Stacks
-### Implement Stack with Linked List
-### Queues
-### Implement Queue using Linked List
-### Stacks and Queues in Interviews
-### Practice: Matching Brackets
-## CONCLUSION
-### Conclusion & Next Steps
+### [Practice: Remove Every Second](https://launchschool.com/books/dsa/read/remove_every_second)
 
-|  | 1st: John the Baptist | 2nd: deep-dive | 3rd: find/fill gaps |
+## STACKS & QUEUES
+### [Intro to Stacks and Queues](https://launchschool.com/books/dsa/read/introduction_stacks_queues)
+#### [Core Characteristics](https://launchschool.com/books/dsa/read/introduction_stacks_queues#corecharacteristics)
+- Linear Structure
+- Operational efficiency
+- controlled access
+### [Stacks](https://launchschool.com/books/dsa/read/stacks)
+### [Implement Stack with Linked List](https://launchschool.com/books/dsa/read/implement_stack_with_linked_list)
+### [Queues](https://launchschool.com/books/dsa/read/queues)
+#### [Key operations](https://launchschool.com/books/dsa/read/queues#keyoperations)
+#### [Practical applications of queues](https://launchschool.com/books/dsa/read/queues#practicalapplications)
+- Process scheduling
+- Print job management
+- Real time systems
+- Breadth-first Search (BFS) in Graphs
+
+### [Implement Queue using Linked List](https://launchschool.com/books/dsa/read/implement_queue_with_linked_list)
+
+
+### [Stacks and Queues in Interviews](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews)
+
+#### [When to use a Stack](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews#whentouseastack)
+- Reversal properties
+- Balancing symbols
+- Depth-first search(DFS)
+#### [When to use a queue](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews#whentouseaqueue)
+- order maintenance
+- Breath-first-search
+- Buffering or pipeline
+### [Practice: Matching Brackets](https://launchschool.com/books/dsa/read/matching_brackets)
+## CONCLUSION
+### [Conclusion & Next Steps](https://launchschool.com/books/dsa/read/conclusion_and_next_steps)
+
+|  | 1st: 1st read | 2nd: deep-dive | 3rd: find/fill gaps |
 | :--- | :---: | :---: | :---: | 
 | Introduction to data-structures and algorithms | start 7.11.24 |
 | Sorting algorithms | 
