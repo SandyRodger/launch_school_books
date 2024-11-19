@@ -1160,7 +1160,8 @@ function minimumCount(array) {
 - doubly linked
 - circular linked
 #### [Implementing a Linked List](https://launchschool.com/books/dsa/read/introduction_to_linked_lists#implementingalinkedlist)
-- For this course we're only looking at sinly linked lists.
+
+- For this course we're only looking at singly linked lists.
 - For this course we will focus on the `Node-as-a-class` approach to implementing.
 - The class will contain 2 things:
   - a reference to the next node
@@ -1177,12 +1178,14 @@ class ListNode {
 }
 ```
 
-- Other implementations are available. For instance containing all nodes as node objects in a class called `LinkedList`
-  
+- Other implementations are available. For instance containing all nodes as node objects in a class called `LinkedList`.
+- This waty means the only access point to the LL is via the head node, like accessing a water-slide.
+   
 ### [Arrays vs Linked Lists Performance](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists)
 
 - Choosing whether an array or a linked list is better depends on the program's specific needs.
 - One must understnad the performance characteristics of these data structures.
+
 #### [Reading](https://launchschool.com/books/dsa/read/comparing_arrays_and_linked_lists#reading)
 
 - Arrays offer direct access in constant time: `O(1)`
@@ -1218,9 +1221,39 @@ class ListNode {
 
 ### [Demo: Remove Twos](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list)
 
+- How to solve problems with linked lists? With pointers:
+  - `prev`
+  - `curr`
+  - `next` (sometimes)
+
 #### [Problem Description](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#description)
+
+- Given the head of a linked list, remove all 2s from the LL:
+  -  input: 1, 2, 3, 2, 4, null
+    -  output: 1, 3, 4, null
+  -  input: 2, 3, 2, null
+    -  output: 3, null
+
 #### [Algorithm](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#algorithm)
+
+- Initialize 2 pointers:
+  - `prev` = null
+  - `curr`=  head of the linked list
+- Begin iterating, checking the value of `curr` each iteration:
+  - if `curr` is null:
+    - break from the loop. This means we're at the end and there are no more elements to check/remove. If it happens right at the beginning it means the list was empty.
+    - if `curr` is 2:
+      - and `prev` is null
+        - save the head as `curr.next`
+      - otherwise: set `prev.next` to `curr.next` in order to skip the current node. (like leaving a dance in which all are holding hands in a circle, by connecting the dancers to each side, so you can depart).
+    - otherwise: update the `prev` pointer to `curr`
+  - Move the `curr` pointer to the next node. (`curr` advances one node regardless of what has happened in this iteration).
+
 #### [Walkthrough](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#walkthrough)
+
+- The confusing thing for me here is:
+  - `prev` and `curr` are pointers. Variables whose only task is to link to the appropriate node. They point to nodes objects (objects of the `ListNode` class), which contain variables pointing to values. The pointers do not point to values.
+
 #### [Solution Code](https://launchschool.com/books/dsa/read/remove_twos_from_linked_list#solution)
 
 ```javascript
@@ -1293,16 +1326,90 @@ console.log("Output:", stringifyList(deleteTwos(head2)));
 ### [Pointers in Linked Lists](https://launchschool.com/books/dsa/read/understanding_pointers_in_linked_lists)
 
 - cat analogy
+- I prefer an analogy of ceilidh dancers.
 
 ###  [Dummy Nodes in Linked Lists](https://launchschool.com/books/dsa/read/dummy_nodes_in_linked_lists)
 
-- need to review this
+- Fictitious temporary nodes to simplify complex scenarios.
+- For the most part we use dummy nodes as references to a head node. By introducing a dummy node before the head, we create a stable reference point.
+- This is to avoid the part of the code that has to do something different when deleting the first element of the LL.
+
+```javascript
+function deleteTwos(head) {
+  let dummy = new ListNode();
+  dummy.next = head;
+  let prev = dummy;
+  let curr = head;
+
+  while (curr) {
+    if (curr.val === 2) {
+      prev.next = curr.next;
+    } else {
+      prev = curr;
+    }
+    curr = curr.next;
+  }
+
+  return dummy.next;
+}
+```
 
 ### [Demo: Reverse Linked List](https://launchschool.com/books/dsa/read/reverse_linked_list)
 
-- 
+- We introduce a new variable called `nextNode`.
+- We iterate over a LL looking at 3 adjacent nodes at a time, resetting their `next` properites to point backwards.
+- The `nextNode` variable is necessary to keep a reference to the next node in the LL.
+- We return `prev` at the end, because it's become the new `head`.
+- When solving such problems drawing out what happens at each stage can be a real necessity. It will help you to catch overseen errors.
+
+```javascript
+class ListNode {
+  constructor(val = 0, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+function reverseLinkedList(head) {
+  if (!head) {
+    return head;
+  }
+
+  let prev = null;
+  let curr = head;
+
+  while (curr !== null) {
+    let nextNode = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = nextNode;
+  }
+  return prev;
+}
+
+function printList(head) {
+  let curr = head;
+  let result = "";
+  while (curr !== null) {
+    result += curr.val + " -> ";
+    curr = curr.next;
+  }
+  result += "null";
+  return result;
+}
+
+const head1 = new ListNode(1);
+head1.next = new ListNode(2);
+head1.next.next = new ListNode(3);
+head1.next.next.next = new ListNode(4);
+
+console.log("Input: ", printList(head1));
+console.log("Output: ", printList(reverseLinkedList(head1)));
+```
 
 ### [Practice: Remove Every Second](https://launchschool.com/books/dsa/read/remove_every_second)
+
+- 
 
 ## STACKS & QUEUES
 ### [Intro to Stacks and Queues](https://launchschool.com/books/dsa/read/introduction_stacks_queues)
