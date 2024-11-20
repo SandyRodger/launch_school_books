@@ -1409,7 +1409,53 @@ console.log("Output: ", printList(reverseLinkedList(head1)));
 
 ### [Practice: Remove Every Second](https://launchschool.com/books/dsa/read/remove_every_second)
 
-- 
+my solution:
+
+```javascript
+
+function removeEverySecondNode(head) {
+
+  //DEALING WITH LISTS OF LENGTH 0 - 2
+  if (head === null) { return null };
+  if (head.next === null) { return head };
+  if (head.next.next === null) { 
+    head.next = null;
+    return head; 
+  };
+
+  // POINTERS
+  let first = head;
+  let second = first.next;
+  let third = second.next;
+
+  while(true) {
+    first.next = third;
+    // reset pointers:
+    if (third.next === null) { 
+      return head 
+    } else if (third.next.next === null) {
+      third.next = null;
+      return head;
+    }
+    first = third;
+    second = first.next;
+    third = second.next;
+  }
+}
+```
+
+LS solution:
+
+```javascript
+function removeEverySecondNode(head) {
+  let curr = head;
+  while (curr && curr.next) {
+    curr.next = curr.next.next;
+    curr = curr.next;
+  }
+  return head;
+}
+```
 
 ## STACKS & QUEUES
 ### [Intro to Stacks and Queues](https://launchschool.com/books/dsa/read/introduction_stacks_queues)
