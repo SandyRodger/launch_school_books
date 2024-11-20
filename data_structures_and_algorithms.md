@@ -1,6 +1,5 @@
 # [data structures and algorithms](https://launchschool.com/books/dsa)
 
-
 ## [Introduction](https://launchschool.com/books/dsa/read/introduction)
 
 ### [How DSA gives you an edge](https://launchschool.com/books/dsa/read/introduction#dsagivesedge)
@@ -1459,12 +1458,53 @@ function removeEverySecondNode(head) {
 
 ## STACKS & QUEUES
 ### [Intro to Stacks and Queues](https://launchschool.com/books/dsa/read/introduction_stacks_queues)
+
+- abstract data-types that devs must know about.
+- AKA "data-structures", but really stacks and queues describe how we interact with the data, rather than the structure of the data itself.
+- We can build stacks and queues with structures like linked-lists, arrays, dynamically resizing arrays.
+
 #### [Core Characteristics](https://launchschool.com/books/dsa/read/introduction_stacks_queues#corecharacteristics)
-- Linear Structure
-- Operational efficiency
-- controlled access
+
+- Linear Structure:
+  - we travels Stacks and queues sequentially, always looking at one element at a time.
+- Operational efficiency:
+  - adding and removing elements are typically `O(1)` operations making them very efficient for certain tasks.
+- Controlled access:
+  - The limited access to data simplifies control of the data-flow. This is a significant advantage.
+
 ### [Stacks](https://launchschool.com/books/dsa/read/stacks)
-### [Implement Stack with Linked List](https://launchschool.com/books/dsa/read/implement_stack_with_linked_list)
+
+- Last in first out (LIFO).
+
+#### Key operations
+
+- Push : `O(1)`
+- Pop: `O(1)`
+- Peek
+
+#### Practical Applications of Stacks
+
+##### Function call management
+
+- Whenever a function is called, information about where the function was called from and its internal variables are stored in a stack.These bundles of information stack up. When one function call ends the program returns to the place that function was called. 
+
+##### Undo mechanisms in Applications
+
+- Control z in a word-doc/image-editing programme etc.
+
+##### Web Browser Nevigation
+
+- the back button
+
+##### Depth-first Search (DFS) in Graphs
+
+- Graphs come later in this lesson.
+- Depth-first search algorithm.
+
+### [Implement Stack with Linked List](https://launchschool.com/books/dsa/read/implement_stack_with_linked_list
+
+- 
+
 ### [Queues](https://launchschool.com/books/dsa/read/queues)
 #### [Key operations](https://launchschool.com/books/dsa/read/queues#keyoperations)
 #### [Practical applications of queues](https://launchschool.com/books/dsa/read/queues#practicalapplications)
