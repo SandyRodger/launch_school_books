@@ -1632,10 +1632,12 @@ LS solution: Pretty similar to mine - but more elegant.
 
 ### [Practice: Matching Brackets](https://launchschool.com/books/dsa/read/matching_brackets)
 
--
+- nailed it
 
 ## CONCLUSION
 ### [Conclusion & Next Steps](https://launchschool.com/books/dsa/read/conclusion_and_next_steps)
+
+- tick
 
 |  | 1st: 1st read | 2nd: deep-dive | 3rd: find/fill gaps |
 | :--- | :---: | :---: | :---: | 
@@ -1643,5 +1645,5 @@ LS solution: Pretty similar to mine - but more elegant.
 | Sorting algorithms | 
 | Pointer-based mental models | 
 | Binary search | 
-| Stacks & queues |
+| Stacks & queues | 21.11.x24
 
