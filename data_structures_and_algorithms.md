@@ -1501,32 +1501,139 @@ function removeEverySecondNode(head) {
 - Graphs come later in this lesson.
 - Depth-first search algorithm.
 
-### [Implement Stack with Linked List](https://launchschool.com/books/dsa/read/implement_stack_with_linked_list
+### [Implement Stack with Linked List](https://launchschool.com/books/dsa/read/implement_stack_with_linked_list)
 
-- 
+- I will try this again later. My solution didn't quite work, but I don't want to get bogged down at this stage.
 
 ### [Queues](https://launchschool.com/books/dsa/read/queues)
+
+- FIFO, like a stack
+
 #### [Key operations](https://launchschool.com/books/dsa/read/queues#keyoperations)
+
+- Enqueue:
+  - Adding an element to the back of the queue (like when you join a queue).
+  - O(1) because it doesn't shift or move the exisiting elements.
+- Dequeue:
+  - Remove the front element
+  - Also O(1) because one needn't look through or rearrange the rest of the elements.
+- Peek
+  - Look at who is at the front of the line.
+
 #### [Practical applications of queues](https://launchschool.com/books/dsa/read/queues#practicalapplications)
-- Process scheduling
+
+- Process scheduling:
+  - In operating systems processes are managed in a queue format, with the CPU taking the front element when it can.
 - Print job management
-- Real time systems
+  - Especially a printer connected to multiple computers. The system is fair because documents are printed in the order they are received.
+- Real time systems.
+  - eg. traffic lights/ customer service lines.
 - Breadth-first Search (BFS) in Graphs
+  - We'll look at this later, but it searches nodes on a graph ("vertex") systematically.
 
 ### [Implement Queue using Linked List](https://launchschool.com/books/dsa/read/implement_queue_with_linked_list)
 
+My solution:
+
+```javascript:
+class ListNode {
+  constructor(val = 0, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
+
+class Queue {
+  constructor() {
+    this.front = null;
+    this.back = null;
+  }
+  peek() {
+    // Returns the value of the top most element without removing it.
+    return this.front ? this.front.val : null;
+    // If the queue is empty, it returns `null`.
+  }
+
+  enqueue(value) {
+    // Adds an item to the queue
+    let newNode = new ListNode(value);
+    // if the queue is empty, newNode becomes front and back
+    if (this.back === null) {
+      this.back = newNode;
+      this.front = newNode;
+    } else {
+    // otherwise the person at the back sets their 'next' to the new node
+      this.back.next = newNode;
+    // and the 'back' pointer points the this new node.
+      this.back = newNode;
+    }
+  }
+
+  dequeue() {
+    // Removes the item from the queue and returns it
+    let output = null;
+    if (this.front) {
+      output = this.front;
+
+      if (this.front.next) {
+        this.front = this.front.next;
+      } else {
+        this.back = null;
+        this.front = null;
+      }
+
+    }
+    // If the queue is empty, it returns `null`.
+    return output;
+  }
+}
+
+const myQueue = new Queue();
+myQueue.enqueue(1);
+console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+myQueue.enqueue(2);
+console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+myQueue.enqueue(3);
+console.log('Front element:', myQueue.peek());  // logs 'Front element: 1'
+myQueue.dequeue();
+console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 2'
+myQueue.dequeue();
+console.log('Front element after dequeue:', myQueue.peek());  // logs 'Front element after dequeue: 3'
+myQueue.dequeue();
+console.log('Peek on empty queue:', myQueue.peek());  // logs 'Peek on empty queue: null'
+console.log('`back` on empty queue:', myQueue.back);  // logs '`back` on empty queue: null'
+```
+
+LS solution: Pretty similar to mine - but more elegant.
 
 ### [Stacks and Queues in Interviews](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews)
 
+- In many technical interviews stacks and queues aren't explicitly mentioned, so you need to know when one is an appropriate tool for he problem at hand.
+
 #### [When to use a Stack](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews#whentouseastack)
-- Reversal properties
-- Balancing symbols
+- Reversal properties:
+  - ie string reversal, or undo operations in text editors.
+- Balancing symbols:
+  - ie. matching parentheses
 - Depth-first search(DFS)
+  - Learn about this later, but we use this to search tree/graph data-structures.
+- A problem that requires a stack could also be solved with recursion, which uses a stack to keep track of function calls.
+
 #### [When to use a queue](https://launchschool.com/books/dsa/read/stacks_and_queues_in_interviews#whentouseaqueue)
-- order maintenance
+
+- order maintenance:
+  - Task scheduling
+  - managing printing jobs
 - Breath-first-search
+  - more on this later
 - Buffering or pipeline
+  - streaming data
+  - load-balancing
+
 ### [Practice: Matching Brackets](https://launchschool.com/books/dsa/read/matching_brackets)
+
+-
+
 ## CONCLUSION
 ### [Conclusion & Next Steps](https://launchschool.com/books/dsa/read/conclusion_and_next_steps)
 
