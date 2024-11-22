@@ -1,11 +1,55 @@
 # INTRODUCTION TO RECURSION
-## Understanding Recursion
-### Example Problem
-### More Terminology
-## Call Stack in Recursive Algorithms
-### Understanding the Call Stack
-### The Call Stack and Non-recursive Function Calls
-### The Call Stack and Recursive Function Calls
+## [Understanding Recursion](https://launchschool.com/books/advanced_dsa/read/understanding_recursion)
+
+- functions calling themselves
+
+### [Example Problem](https://launchschool.com/books/advanced_dsa/read/understanding_recursion#example)
+
+```javascript
+function populationCount(number) {
+  console.log(number);
+  if (number === 0) {
+    return;
+ }
+  populationCount(number - 1);
+}
+
+populationCount(5);
+```
+
+### [More Terminology](https://launchschool.com/books/advanced_dsa/read/understanding_recursion#terminology)
+
+- the recursive case: the apt of the function where it calls itself:
+  - `populationCount(number - 1);`
+- the reduction step: the part where the input is modified to move closer to the base case:
+  - `number - 1`
+
+## [Call Stack in Recursive Algorithms](https://launchschool.com/books/advanced_dsa/read/exploring_call_stack)
+
+- yup.
+
+### [Understanding the Call Stack](https://launchschool.com/books/advanced_dsa/read/exploring_call_stack#understandingcallstack)
+
+- LIFO
+
+### [The Call Stack and Non-recursive Function Calls](https://launchschool.com/books/advanced_dsa/read/exploring_call_stack#nonrecursivefunctioncalls)
+
+- yup
+
+### [The Call Stack and Recursive Function Calls](https://launchschool.com/books/advanced_dsa/read/exploring_call_stack#recursivefunctioncalls)
+
+#### The factorial function
+
+```javascript
+function factorial(n) {
+  if (n === 1) {
+    return 1; // Base case: factorial of 1 is 1
+ } else {
+    return n * factorial(n - 1); // Recursive case
+ }
+}
+```
+
 ### Stack Overflow
 ## Recursion: Time & Space Analysis
 ### Time Complexity
