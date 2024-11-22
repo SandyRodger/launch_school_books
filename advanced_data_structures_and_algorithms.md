@@ -50,10 +50,23 @@ function factorial(n) {
 }
 ```
 
-### Stack Overflow
-## Recursion: Time & Space Analysis
-### Time Complexity
-### Factorial Function
+### [Stack Overflow](https://launchschool.com/books/advanced_dsa/read/exploring_call_stack#stackoverflow)
+
+- there needs to be a well-defined base case to prevent this.
+
+## [Recursion: Time & Space Analysis](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive)
+
+### [Time Complexity](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#timecomplexity)
+
+- counting recursive calls.
+- determining the work done.
+- combining recursive calls and work done
+- drawing a recursion tree
+
+### [Factorial Function](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#factorial)
+
+- 
+
 ### Fibonacci Function
 ### Space Complexity
 ### Fibonacci Call Stack
