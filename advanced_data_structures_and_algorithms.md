@@ -65,23 +65,60 @@ function factorial(n) {
 
 ### [Factorial Function](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#factorial)
 
+- O(N)
+
+### [Fibonacci Function](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#fibonacci)
+
+
+### [Space Complexity](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#spacecomplexity)
+
+#### Space Complexity of the Factorial Algorithm:
+
+- determined by maximum depth.
+
+#### Space Complexity of the Fibonacci Algorithm:
+
+- actually linear - despite time complexity being exponential.
+
+### [Fibonacci Call Stack](https://launchschool.com/books/advanced_dsa/read/time_and_space_complexity_recursive#fibonaccicallstack)
+
+- go over this again. brain is mush.
+
+## [The Function Signature](https://launchschool.com/books/advanced_dsa/read/function_signature)
+
 - 
 
-### Fibonacci Function
-### Space Complexity
-### Fibonacci Call Stack
-## The Function Signature
-### Helper Functions
-## Demo: Valid Palindrome String
-### Problem Description
-### Recursive Definition
-### Implementation
-## Practice: Sum of Natural Numbers
-### Problem Description
-### Walkthrough & Solution
+### [Helper Functions](https://launchschool.com/books/advanced_dsa/read/function_signature#helperfunctions)
+
+#### dynamic programming
+
+## [Demo: Valid Palindrome String](https://launchschool.com/books/advanced_dsa/read/valid_palindrome_string)
+
+
+### [Problem Description](https://launchschool.com/books/advanced_dsa/read/valid_palindrome_string#problemdescription)
+### [Recursive Definition](https://launchschool.com/books/advanced_dsa/read/valid_palindrome_string#recursivedefinition)
+### [Implementation](https://launchschool.com/books/advanced_dsa/read/valid_palindrome_string#implementation)
+## [Practice: Sum of Natural Numbers](https://launchschool.com/books/advanced_dsa/read/sum_of_natural_numbers)
+
+- Did it in seconds: I am good at this.
+
 # DIVIDE AND CONQUER ALGORITHMS
-## Intro to Divide and Conquer Algorithms
-## Quicksort: Partitioning
+## [Intro to Divide and Conquer Algorithms](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer
+
+### [Divide:](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer#divide)
+
+### [Conquer:](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer#conquer)
+
+### [Combine](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer#combine)
+
+## [Quicksort: Partitioning](https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning)
+
+- Select a pivot point
+
+### [Algorithm[(https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning#algorithm)
+
+- 
+
 ## Quicksort: Adding Recursion
 ## Quicksort: Pivot Element Position
 ## Divide & Conquer in Quicksort
