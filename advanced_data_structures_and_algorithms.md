@@ -113,15 +113,40 @@ function factorial(n) {
 
 ## [Quicksort: Partitioning](https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning)
 
-- Select a pivot point
+- A popular sorting algorithm used by many programming languages beacuse it's fast and efficient (in average scenarios)
+-  Partitioning:
+  -  Select a pivot point("somehwat random"?)
 
 ### [Algorithm[(https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning#algorithm)
 
-- 
+- We use 2 pointers coming from the far left and far right.
+  - left starts from the left and ensures that everything from here to the meeting point is less than the pivot
+  - right moves from the right ensuring that the elements are more than the pivot.
+  - When we encounter elements that aren't in the right place we can swap them and continue.
+#### steps:
 
-## Quicksort: Adding Recursion
-## Quicksort: Pivot Element Position
-## Divide & Conquer in Quicksort
+1. Set the pivot as the first element in the array
+2. assign left and right pointers to the leftmost and rightmost indeces of the remaining elements.
+3. Incremenet left until it reaches a value greater than or equal to the pivot or the right pointer
+4. Decrement the right pointer until it reaches a value less than pivot or less than left pointer (can't be equal).
+5. If at this point left has gone beyond right move to step 6, otherwise go back to step 3.
+6. Swap the value at the pivot index witht he value at the right pointer, placing the pivot in the correct position in the array.
+
+- the result will not be sorted, but the pivot will seperate the numbers less than and greater than it.
+
+## [Quicksort: Adding Recursion](https://launchschool.com/books/advanced_dsa/read/quicksort_recursion)
+
+- if we take each side and do a quick sort on it, recursively, then we end up with a sorted array.
+
+## [Quicksort: Pivot Element Position](https://launchschool.com/books/advanced_dsa/read/quicksort_pivot_selection)
+
+#### implementation
+
+## [Divide & Conquer in Quicksort](https://launchschool.com/books/advanced_dsa/read/understanding_divide_and_conquer_quicksort)
+
+### Divide
+### Conquer
+
 ## QuickSort Time Complexity
 # DYNAMIC PROGRAMMING
 ## Intro to Dynamic Programming
