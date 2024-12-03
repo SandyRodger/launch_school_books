@@ -145,9 +145,18 @@ function factorial(n) {
 ## [Divide & Conquer in Quicksort](https://launchschool.com/books/advanced_dsa/read/understanding_divide_and_conquer_quicksort)
 
 ### Divide
+
+- In the `partition` function. The array is divided into 2 subarrays based on the pivot.
+
 ### Conquer
 
-## QuickSort Time Complexity
+- This is recursively implementing the `quickSort` on the sections of the array until it's all sorted.
+
+### Combine
+
+- This isn't a step, it just happens implicitly during the partitioning
+## [QuickSort Time Complexity](https://launchschool.com/books/advanced_dsa/read/quicksort_time_complexity)
+
 # DYNAMIC PROGRAMMING
 ## Intro to Dynamic Programming
 ### Two Strategies
