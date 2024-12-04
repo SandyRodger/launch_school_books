@@ -180,16 +180,52 @@ function factorial(n) {
 # DYNAMIC PROGRAMMING
 ## [Intro to Dynamic Programming](https://launchschool.com/books/advanced_dsa/read/introduction_to_dynamic_programming)
 
-- break down
+- A technique used to solve tricky problems (not just in computer sccience). It is used to avoid repeating a task when a problem involves going over the same data-set a few times (my words).
+- DP has a reputation as being difficult.
+
+- break down:
+  - ... the problem into sub-problems
 - solve and store
+  - ... the smaller problems (like building a jig-saw).
 - reuse solutions
+  -  When we encounter the same smaller problem again we don't have to solve it from scratch.
 
 ### [Two Strategies](https://launchschool.com/books/advanced_dsa/read/introduction_to_dynamic_programming#twostrategies)
 
-### Time Complexity
+- Top-down ("Memoization") : the recursive approach
+  - Focus on the original problem: Begin by expressing the solution to the OG problem in terms of solutons to smaller problems.
+  - Recursive break-down: Break the problem down into smaller sub-problems - often with a recursive element.
+  - Memoization for efficiency: store the results of each sib-problem, so you can check if the problem has already been solved before attempting it.
+
+- Bottom-up (tabulation): the iterative approach
+  - Solves in order of increasing complexity: Start with the smallest and simplest subproblem (Often the base-case), then use those solutions to solve bigger problems.
+  - Builds-up solutions: systematically builds solutions to the sub-problems using a table of some kind (maybe an array, maybe a hash-map object). The table is filled iteratively with each entry being a solution to a particular subproblem.
+  - Iterative Computation: relies on loops to fill in the table avoiding the overhead of recursive function calls.
+
+### Time complexity
+
+- Efficiency can vary significantly depending on the implementation strategy. Without Memoization it can be exponentially complex  (`O(2^n)`), but when memoizatin is implemented it goes down to `O(N)` if the problem has a linear number of states, or `O(N^2)` if the problem starts from a 2d space.
+
 ### When to use DP
+
+- Good for problems that require optimizing specific criteria/ accumulating results over several computations:
+  - determine min/max value
+  - assess possibilities (true/false)
+  - optimise an outcome
+  - calculate totals
+  - count distince ways to achieve a goal
+- (Not appropriate when you need to find all possible solutions without optimization. Then a combinatorial approach like back-tracking would be better.
+
 ### DP vs DnC
-## Demo: Hopping Chaos I
+
+ - It's not divide and conquer. It looks the same, but:
+   - DnC you solve each sub-problem only once, then combine results - done.
+   - Dynamic programming is for when sub-problems overlap (meaning they share common calculations). DP stores the results of these overlapping subproblems so you needn't repeat it.
+
+## [Demo: Hopping Chaos I](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_top_down)
+
+```
+
 ## Demo: Hopping Chaos II
 ## DP Caching: Arrays vs. Maps
 ## Demo: Chaos in the Grid (Bottom-Up)
