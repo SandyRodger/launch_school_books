@@ -103,7 +103,8 @@ function factorial(n) {
 - Did it in seconds: I am good at this.
 
 # DIVIDE AND CONQUER ALGORITHMS
-## [Intro to Divide and Conquer Algorithms](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer
+
+## [Intro to Divide and Conquer Algorithms](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer)
 
 ### [Divide:](https://launchschool.com/books/advanced_dsa/read/introduction_to_divide_and_conquer#divide)
 
@@ -117,12 +118,13 @@ function factorial(n) {
 -  Partitioning:
   -  Select a pivot point("somehwat random"?)
 
-### [Algorithm[(https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning#algorithm)
+### [Algorithm](https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning#algorithm)
 
 - We use 2 pointers coming from the far left and far right.
   - left starts from the left and ensures that everything from here to the meeting point is less than the pivot
   - right moves from the right ensuring that the elements are more than the pivot.
   - When we encounter elements that aren't in the right place we can swap them and continue.
+
 #### steps:
 
 1. Set the pivot as the first element in the array
@@ -157,9 +159,33 @@ function factorial(n) {
 - This isn't a step, it just happens implicitly during the partitioning
 ## [QuickSort Time Complexity](https://launchschool.com/books/advanced_dsa/read/quicksort_time_complexity)
 
+- Two main factors:
+  - partitioning
+  - recursion
+### Partitioning Step
+
+- Scan the array once and partition it based on the pivot.
+  - Linear time complexity (`O(N)`.
+
+### Recursive step
+
+- Until each subarray contains either 0 or 1 element.
+  - `log N`
+
+### Combining the Partitioning and recursion steps
+
+- Because we know partitioning is `O(N)` and the recursion is `log N` we can multiply these and see that the the overall time complexity of quickSort is `O(NlogN)`
+- This reflects the average time complexity, but in worst case scenarios quickSort degrades to `O(N^2)`
+
 # DYNAMIC PROGRAMMING
-## Intro to Dynamic Programming
-### Two Strategies
+## [Intro to Dynamic Programming](https://launchschool.com/books/advanced_dsa/read/introduction_to_dynamic_programming)
+
+- break down
+- solve and store
+- reuse solutions
+
+### [Two Strategies](https://launchschool.com/books/advanced_dsa/read/introduction_to_dynamic_programming#twostrategies)
+
 ### Time Complexity
 ### When to use DP
 ### DP vs DnC
