@@ -224,9 +224,33 @@ function factorial(n) {
 
 ## [Demo: Hopping Chaos I](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_top_down)
 
+```javascript
+function hoppingChaos(n) {
+  const memo = new Map();
+
+  function waysToN(n) {
+    if (n === 1) {
+      return 1;
+    }
+    if (n === 2) {
+      return 2;
+    }
+    if (memo.has(n)) {
+      return memo.get(n);
+    }
+    const result = waysToN(n - 1) + waysToN(n - 2);
+    memo.set(n, result);
+    return result;
+  }
+
+  return waysToN(n);
+}
 ```
 
-## Demo: Hopping Chaos II
+### [Time and space complexity](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_top_down#timeandspacecomplexity)
+
+
+## [Demo: Hopping Chaos II](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up)
 ## DP Caching: Arrays vs. Maps
 ## Demo: Chaos in the Grid (Bottom-Up)
 ## Demo: Chaos in the Grid (Top-Down)
