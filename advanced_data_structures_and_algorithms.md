@@ -251,9 +251,67 @@ function hoppingChaos(n) {
 
 
 ## [Demo: Hopping Chaos II](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up)
-## DP Caching: Arrays vs. Maps
-## Demo: Chaos in the Grid (Bottom-Up)
-## Demo: Chaos in the Grid (Top-Down)
+
+### [Problem description](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up#problemdescription)
+
+### [Bottom-up walkthrough](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up#bottomup)
+
+### [Solution](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up#solution)
+
+### [Time and space complexity](https://launchschool.com/books/advanced_dsa/read/hopping_chaos_bottom_up#timeandspacecomplexity)
+
+- same as the solution with recursion & memoization (`O(N)`)
+- It can be solved with `O(1)` time complexity in the following way:
+
+```javascript
+function hoppingChaos(n) {
+  if (n === 1) {
+    return 1;
+  }
+  if (n === 2) {
+    return 2;
+  }
+
+  let prev2 = 1;
+  let prev1 = 2;
+
+  for (let i = 3; i <= n; i++) {
+    const temp = prev1 + prev2;
+    prev2 = prev1;
+    prev1 = temp;
+  }
+
+  return prev1;
+}
+```
+
+## [DP Caching: Arrays vs. Maps](https://launchschool.com/books/advanced_dsa/read/cache_strategies_dynamic_programming)
+
+- Arrays:
+  - Performance:
+    - Generally more performant than hashes (which `Map` is a kind of)
+    - better memory locality
+      - always use contiguous memory locations which helps CPU performance
+    - avoid hashing overhead
+      - The cost of computing the value of a key and avoiding potential collisions(...?)
+  - Simplicity:
+    - Straightforward IF the problem involves a fixed range of integer indeces, like in the Hopping Chaos problem.
+- Maps:
+  - Flexibility:
+    - more flexible than arrays
+      - can handle keys of various types (not just integers, like indexes)
+
+- In Hopping chaos one solution uses a map, the other uses an array, to show that these choices are often interchangeable.
+- A key point is if the keys aren't integers a hashmap is usually better.
+
+## [Demo: Chaos in the Grid (Bottom-Up)](https://launchschool.com/books/advanced_dsa/read/chaos_in_the_grid_bottom_up)
+
+
+
+## [Demo: Chaos in the Grid (Top-Down)](https://launchschool.com/books/advanced_dsa/read/chaos_in_the_grid_top_down)
+
+
+
 ## Top-Down vs. Bottom-Up Approach
 ## Practice: Chaos in Grid with Cats
 # BINARY TREES
