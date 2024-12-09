@@ -116,7 +116,7 @@ function factorial(n) {
 
 - A popular sorting algorithm used by many programming languages beacuse it's fast and efficient (in average scenarios)
 -  Partitioning:
-  -  Select a pivot point("somehwat random"?)
+  -  Select a pivot point("somewhat random"?)
 
 ### [Algorithm](https://launchschool.com/books/advanced_dsa/read/quicksort_partitioning#algorithm)
 
@@ -312,11 +312,36 @@ function hoppingChaos(n) {
 
 
 
-## Top-Down vs. Bottom-Up Approach
-## Practice: Chaos in Grid with Cats
+## [Top-Down vs. Bottom-Up Approach](https://launchschool.com/books/advanced_dsa/read/top_down_vs_bottom_up)
+## [Practice: Chaos in Grid with Cats](https://launchschool.com/books/advanced_dsa/read/chaos_in_the_grid_with_cats)
+
+- I'm going to come back to this.
+- I'm supposed to be practiscing what I've learnt in the previous sections, but It's been a minute and I need to go over these methods again. 
+
 # BINARY TREES
-## Intro to Trees
-## Binary Trees
+
+## [Intro to Trees](https://launchschool.com/books/advanced_dsa/read/introduction_to_trees)
+
+### [Terminology](https://launchschool.com/books/advanced_dsa/read/introduction_to_trees#terminology)
+
+- Nodes: The basic unit of a tree. Each node contains data.
+- Edges: they have direction. Incoming and outgoing.
+- Parent and child nodes. They can all be either or both, but the rott can only be parent.
+- Leaf nodes: nodes that have no children.
+- levels and heights- what you think they are.
+
+## [Binary Trees](https://launchschool.com/books/advanced_dsa/read/binary_trees)
+
+### Key properties of Binary trees
+
+- each node has max 2 children. ("left child", "right child")
+- One unique root node (so all nodes start in the same place)
+- Unique path.
+- (Can be an empty tree)
+
+### [Representing a Binary Tree in Javascript](https://launchschool.com/books/advanced_dsa/read/binary_trees#representingatree)
+
+
 ## Types of Binary Trees
 ## Divide & Conquer in Tree Problems
 ## Practice: Binary Tree Height
