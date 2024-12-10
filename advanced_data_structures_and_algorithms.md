@@ -442,12 +442,97 @@ root.right.left = new Node(4);
 
 ## [Practice: Preorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_preorder_traversal)
 
-- 
+```javascript
+  function processNode(currentNode) {
+    // console.log(currentNode.val);
+    output.push(currentNode.val);
+    if (currentNode.left) {
+        processNode(currentNode.left);
+      } 
+    if (currentNode.right) {
+        processNode(currentNode.right);
+      }
+    }
 
-## Practice: Inorder Traversal
-## Practice: Postorder Traversal
-## Practice: Level Order Traversal
-## Binary Search Tree
+  processNode(rootNode);
+  return output;
+}
+```
+
+## [Practice: Inorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_inorder_traversal)
+
+- same as above, but move the push to after the L:
+
+```javascript
+function inorderTraversal(rootNode) {
+  // LNR
+  let output = [];
+
+  function processNode(currentNode) {
+    // console.log(currentNode.val);
+    if (currentNode.left) {
+        processNode(currentNode.left);
+      } 
+    output.push(currentNode.val);
+    if (currentNode.right) {
+        processNode(currentNode.right);
+      }
+    }
+
+  processNode(rootNode);
+  return output;
+}
+```
+
+## [Practice: Postorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_postorder_traversal)
+
+- This time LRN, so just move 1 line:
+
+```javascript
+function postorderTraversal(rootNode) {
+  // LRN
+    let output = [];
+  
+    function processNode(currentNode) {
+      if (currentNode.left) {
+          processNode(currentNode.left);
+        } 
+      if (currentNode.right) {
+          processNode(currentNode.right);
+        }
+      output.push(currentNode.val);
+      }
+  
+    processNode(rootNode);
+    return output;
+  }
+```
+
+## [Practice: Level Order Traversal](https://launchschool.com/books/advanced_dsa/read/level_order_traversal)
+
+```javascript
+function bfs(rootNode) {
+  let queue = [rootNode];
+  let output = [];
+
+  while (queue.length) {
+    if (queue[0].left) {queue.push(queue[0].left)};
+    if (queue[0].right) {queue.push(queue[0].right)};
+    output.push(queue.shift().val);
+  }
+
+  return output;
+}
+```
+
+## [Binary Search Tree](https://launchschool.com/books/advanced_dsa/read/binary_search_tree)
+
+- like a binary tree, but ordered. ie each left is less than the parent and each right is greater.
+- Each sub-tree must also be a valid BST.
+
+### [Time and Space Complexities of Binary Search Tree Operations](https://launchschool.com/books/advanced_dsa/read/binary_search_tree#timeandspacecomplexity)
+
+
 ## Practice: Find Node in a BST
 # GRAPHS
 ## Introduction to Graphs
