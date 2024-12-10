@@ -341,12 +341,109 @@ function hoppingChaos(n) {
 
 ### [Representing a Binary Tree in Javascript](https://launchschool.com/books/advanced_dsa/read/binary_trees#representingatree)
 
+- Using a `Node` class.
+- Each `Node` object stores:
+  - `val`
+  - `left`
+  - `right`
 
-## Types of Binary Trees
-## Divide & Conquer in Tree Problems
-## Practice: Binary Tree Height
-## Tree Traversal: DFS and BFS
-## Practice: Preorder Traversal
+```javascript
+class Node {
+  constructor(value) {
+    this.val = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+const root = new Node(1);
+root.left = new Node(2);
+root.right = new Node(3);
+root.right.left = new Node(4);
+```
+
+### [Time and Space COmplexities of Binary Tree Operations](https://launchschool.com/books/advanced_dsa/read/binary_trees#timeandspacecomplexity)
+
+- If you're searching/inserting/deleting it's just `O(N)` complexity because there isn't an order for the nodes, which means you have to look through all of them to find the one you need.
+- Insertion and deletion is `O(1)`, but finding the right node is still `O(N)`
+- Space complexity is usually the tree's height (`O(h)`). That's because a lot of tree operations are recursive. If we're using an iterative approach it depends on if we choose DFS or BFS. (more on that later)
+
+## [Types of Binary Trees](https://launchschool.com/books/advanced_dsa/read/types_of_binary_trees)
+
+### [Full Binary Tree](https://launchschool.com/books/advanced_dsa/read/types_of_binary_trees#full)
+
+- all node has either 2 or 0 children. No single children.
+
+### [Complete Binary Tree](https://launchschool.com/books/advanced_dsa/read/types_of_binary_trees#complete)
+
+- All levels are fully filled, with the possible exception of the last level, built even that has to be filled left to right completely.
+
+### [Perfect Binary Tree](https://launchschool.com/books/advanced_dsa/read/types_of_binary_trees#perfect)
+
+- Both full and complete. The most symmetrical type.
+- All leaf nodes are at the same level.
+- Total nodes doubles at each level. Therefore the height of the tree grows logarithmically.
+- The number of nodes at the lowest level = the sum of all other nodes + 1.
+
+### [Balanced Binary Tree](https://launchschool.com/books/advanced_dsa/read/types_of_binary_trees#balanced)
+
+- The height of left and right sides differs by max 1.
+
+## [Divide & Conquer in Tree Problems](https://launchschool.com/books/advanced_dsa/read/divide_and_conquer_binary_trees)
+
+- D&C is really good for binary trees. 
+
+### [A complimentary duo](https://launchschool.com/books/advanced_dsa/read/divide_and_conquer_binary_trees#complementary)
+
+- The structures of each match intuitively. D&C is therfore an effective and efficient approach for solving tree-related problems.
+- Like this:
+  - Natural Segmentation: Each node in a binary tree acts as the root of its own left and right sub-trees. This breaks up the tree into smaller self-contained units. This is just like the "divide" bit of D&C.
+  - Recursive nature: Binary trees are inherently recursive. Each subtree is a binary tree. So just like in D&C sub-problems are solved in the same way as the original problem.
+  - Combining solutions: The heirarchical natue of binary trees makes combining solutions quite simple.
+
+## [Practice: Binary Tree Height](https://launchschool.com/books/advanced_dsa/read/binary_tree_height)
+
+- Hmmm, I'll come back when I have a fresh brain.
+
+## [Tree Traversal: DFS and BFS](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal)
+
+### Binary Tree Traversal
+#### [Depth-First Search](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal#dfs)
+
+- Go as deep as you can before exploring side-caves (laterally)
+- Can be iterative or recursive.
+- Three DFS traversal strategies:
+  - preorder
+  - inorder
+  - postorder
+- These determine the order in which the nodes are "processed".
+
+##### [Preorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal#preorder)
+
+- 'pre' here meaning that the node is processed before it's subtrees are traversed. (In this example the processing will involve adding the node's value to the `result` array.
+- `NLR` is the pattern we follow for this:
+  - Node
+  - Left
+  - Right
+- Processing a `Left` node will begin a new `NLR` sub-process for that node. (recursion)
+
+##### [Inorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal#inorder)
+
+- We process the node between L and R (`LNR`)
+
+##### [PostOrder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal#postorder)
+
+- `LRN`
+
+##### [Breadth-First Search](https://launchschool.com/books/advanced_dsa/read/binary_tree_traversal#bfs)
+
+- Explores nodes level by level, moving outward to all its children.
+- Uses a queue data-structure. This helps nodes be processed as FIFO.
+
+## [Practice: Preorder Traversal](https://launchschool.com/books/advanced_dsa/read/binary_tree_preorder_traversal)
+
+- 
+
 ## Practice: Inorder Traversal
 ## Practice: Postorder Traversal
 ## Practice: Level Order Traversal
