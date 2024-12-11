@@ -613,9 +613,66 @@ function findNodeInBST(root, target) {
       - "incoming neighbour to 2"
     - outgoing neighbour
       - "outgoing neighbout to 2"
+#### [weighted and unweighted graphs](https://launchschool.com/books/advanced_dsa/read/types_of_graphs#weightedandunweighted)
 
-## Graphs with Adjacency List
-## Graph Traversal Part I
+- unweighted graphs:
+  - all edges are equal.
+- weighted graphs
+  - each edge is assigned a weight which represents a value like:
+    - distance
+    - cost
+    - time
+  - so for instance in google maps the edges help to find the shortest route.
+
+#### [cyclic and acyclic graphs](https://launchschool.com/books/advanced_dsa/read/types_of_graphs#cyclicandacyclic)
+
+- cyclic graphs
+  - these graphs have at least one loop where you can start and stop on the same vertex.
+  - Good for modelling systems that can return to their original state
+- acyclic graphs
+  - No loops here
+  - No ways back
+  - Can be used for heirarchies/processes with a clear direction and no repetition.
+
+## [Graphs with Adjacency List](https://launchschool.com/books/advanced_dsa/read/representing_graphs_adjacency_list)
+
+- One of the most common and efficient ways to represent graphs.
+
+### [What is it?](https://launchschool.com/books/advanced_dsa/read/representing_graphs_adjacency_list#whatisanadjacencylist)
+
+- Each vertex stores a list of the vertices it is connected to.
+- Implemented as a dictionary or `Map`, in which each key represents a vertex and its value is an array of connected vertexes. The value array therefore holds all outgoing neighbours.
+
+### [Why use an adjacency list](https://launchschool.com/books/advanced_dsa/read/representing_graphs_adjacency_list#whyuseanadjacencylist)
+
+- Efficient storage:
+  - particilarly good at storing sparse graphs where most vertices have relatively few connections. Other methods might track all possible connections, which would be a waste of resources.
+- Quick look up:
+  - just by accessing the key.
+- Easy implementation:
+  - easy to code.
+
+### [Adjacency List in JavaScript](https://launchschool.com/books/advanced_dsa/read/representing_graphs_adjacency_list#adjacencylistinjs)
+
+- `Map`s are better, because in a javascript Object the keys would need to be strings. 
+
+```javascript
+const adjList = new Map();
+adjList.set(1, [2, 3]);
+adjList.set(2, [4]);
+adjList.set(3, [5]);
+adjList.set(4, []);
+adjList.set(5, [6]);
+adjList.set(6, []);
+```
+
+## [Graph Traversal Part I](https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_1)
+
+- searching though a directed acyclic graph with DFS and BFS.
+
+- DFS
+  - With graphs it usually makes most sense to do DFS traversal.
+
 ## Edge List to Adjacency List
 ## Graph Traversal Part II
 ## Practice: Has Path
