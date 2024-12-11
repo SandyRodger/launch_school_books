@@ -532,11 +532,88 @@ function bfs(rootNode) {
 
 ### [Time and Space Complexities of Binary Search Tree Operations](https://launchschool.com/books/advanced_dsa/read/binary_search_tree#timeandspacecomplexity)
 
+- Search:
+  - On average `O(logN)`
+  - Each step down the tree halves the search path (similar to binary searching a sorted array).
+- Insertion and deletion:
+  - Takes `O(logN)` assuming the tree remains balanced.
 
-## Practice: Find Node in a BST
+- Unbalanced Trees:
+  - If you change the nodes on either side too much it will affect the performance.
+  - Lists can become "left-heavy" or "right heavy".
+  - For insdtance if you keep adding elements in ascending or descending order.
+- Space complexity:
+  - Usually `O(h)`, where h represents the tree's height.
+  - It's rare to do a BFS on a binary search tree.
+
+## [Practice: Find Node in a BST](https://launchschool.com/books/advanced_dsa/read/find_node_in_bst)
+
+```javascript
+function findNodeInBST(root, searchVal) {
+  if (Object.is(null, root)) {return false};
+  let currentNode = root;
+
+  while (currentNode.left || currentNode.right ) {
+    if (currentNode.val === searchVal) {
+      return true;
+    } else if (currentNode.val < searchVal) {
+      currentNode = currentNode.right;
+    } else {
+      currentNode = currentNode.left;
+    }
+  }
+
+  return currentNode.val === searchVal;
+}
+```
+
+- LS solution:
+
+```javascript
+function findNodeInBST(root, target) {
+  if (root === null) {
+    return false;
+  }
+  if (root.val === target) {
+    return true;
+  }
+  return findNodeInBST(target > root.val ? root.right : root.left, target);
+}
+```
+
 # GRAPHS
-## Introduction to Graphs
-## Types of Graphs
+## [Introduction to Graphs](https://launchschool.com/books/advanced_dsa/read/introduction_to_graphs)
+- vertex
+- edge
+### [why graphs matter in the real world](https://launchschool.com/books/advanced_dsa/read/introduction_to_graphs#whygraphsmatter)
+
+- they mirror real relationships like:
+  - facebook friends
+  - ancestors
+  - customers who bought this also...
+  - maps find routes like this
+
+## [Types of Graphs](https://launchschool.com/books/advanced_dsa/read/types_of_graphs)
+
+### [Directed and Undirected graphs](https://launchschool.com/books/advanced_dsa/read/types_of_graphs#directedandundirected)
+
+- Undirected graphs:
+  - The edges between vertices (points) don't have specific direction. So like two facebook firneds are just friends, the frendship doesn't go in one way or another. It's equal.
+- Directed graphs:
+  - like following someone on Insta.
+
+### [Neighbour nodes in directed and undirected graphs](https://launchschool.com/books/advanced_dsa/read/types_of_graphs#neighbornodes)
+
+- neighbour nodes are what they sound like.
+- In undirected graphs:
+  - straightforward
+- In directed graphs:
+  - more nuanced:
+    - incoming neighbour
+      - "incoming neighbour to 2"
+    - outgoing neighbour
+      - "outgoing neighbout to 2"
+
 ## Graphs with Adjacency List
 ## Graph Traversal Part I
 ## Edge List to Adjacency List
