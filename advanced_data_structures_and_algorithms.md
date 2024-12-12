@@ -745,9 +745,97 @@ function bfs(adjList, source) {
 
 ## [Edge List to Adjacency List](https://launchschool.com/books/advanced_dsa/read/edge_list_to_adjacency_list)
 
-- 
+- It's common (in graph theory) to have an edge list as input.
+- A graph can be represented with an array of arrays with each subarray containing two connected nodes:
 
-## Graph Traversal Part II
+```javascript
+[
+  [1, 2],
+  [1, 3],
+  [2, 4],
+  [3, 4],
+  [3, 5],
+  [5, 6],
+];
+```
+
+```javascript
+function createAdjList(edgeList) {
+  const adjList = new Map();
+
+  edgeList.forEach(([vertex1, vertex2]) => {
+    if (!adjList.has(vertex1)) adjList.set(vertex1, []);
+    adjList.get(vertex1).push(vertex2);
+
+    if (!adjList.has(vertex2)) adjList.set(vertex2, []);
+    adjList.get(vertex2).push(vertex1);
+  });
+  return adjList;
+}
+
+// Helper Function
+function printAdjList(adjList) {
+  console.log(
+    "{\n" +
+      Array.from(
+        adjList,
+        ([key, value]) => `  ${key}: [${value.join(", ")}]`
+      ).join(",\n") +
+      "\n}"
+  );
+}
+
+const edgeList1 = [
+  [1, 2],
+  [2, 3],
+  [3, 1],
+];
+
+const adjList1 = createAdjList(edgeList1);
+printAdjList(adjList1);
+// {
+//   1: [2, 3],
+//   2: [1, 3],
+//   3: [2, 1]
+// }
+
+const edgeList2 = [
+  [1, 2],
+  [1, 3],
+  [2, 4],
+  [3, 4],
+  [3, 5],
+  [5, 6],
+];
+
+const adjList2 = createAdjList(edgeList2);
+printAdjList(adjList2);
+// {
+//  1: [2, 3],
+//  2: [1, 4],
+//  3: [1, 4, 5],
+//  4: [2, 3],
+//  5: [3, 6],
+//  6: [5]
+// }
+```
+
+## [Graph Traversal Part II](https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_2)
+
+```javascript
+function dfs(adjList, source, visited = new Set()) {
+  console.log(source);
+  visited.add(source);
+
+  let neighbors = adjList.get(source);
+  for (let neighbor of neighbors) {
+    if (!visited.has(neighbor)) {
+      dfs(adjList, neighbor, visited);
+    }
+  }
+}
+```
+
 ## Practice: Has Path
 ## Demo: Number of Forests
 ## Practice: Largest Forest Area
