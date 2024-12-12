@@ -673,7 +673,80 @@ adjList.set(6, []);
 - DFS
   - With graphs it usually makes most sense to do DFS traversal.
 
-## Edge List to Adjacency List
+### [DFS recursive exercise](https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_1#dfsrecursive)
+
+```javascript
+function dfs(adjList, source) {
+  let output = [];
+
+  function recursiveNodeprocessing(node) {
+    output.push(node)
+    let neighbours = adjList.get(node)
+    while (neighbours.length) {
+      recursiveNodeprocessing(neighbours.pop());
+    }
+  }
+
+  recursiveNodeprocessing(source);
+  return output
+}
+```
+
+- LS solution:
+
+```javascript
+function dfs(adjList, source) {
+  console.log(source);
+  let neighbors = adjList.get(source);
+  for (let neighbor of neighbors) {
+    dfs(adjList, neighbor);
+  }
+}
+```
+
+### [Breadth-first search](https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_1#bfs)
+
+- a common way to explore vertices level by level.
+
+```javascript
+function bfs(adjList, source) {
+  let output = [source];
+
+  function processNode(node) {
+    let neighbours = adjList.get(node)
+    for (i = 0; i < neighbours.length; i ++) {
+      output.push(neighbours[i]);
+    }
+    while (neighbours.length) {
+      processNode(neighbours.shift());
+    }
+  }
+
+  processNode(source)
+  return output;
+}
+
+// LS solution:
+
+function bfs(adjList, source) {
+  let queue = [source];
+
+  while (queue.length !== 0) {
+    let current = queue.shift();
+    console.log(current);
+
+    let neighbors = adjList.get(current);
+    for (let neighbor of neighbors) {
+      queue.push(neighbor);
+    }
+  }
+}
+```
+
+## [Edge List to Adjacency List](https://launchschool.com/books/advanced_dsa/read/edge_list_to_adjacency_list)
+
+- 
+
 ## Graph Traversal Part II
 ## Practice: Has Path
 ## Demo: Number of Forests
