@@ -836,8 +836,99 @@ function dfs(adjList, source, visited = new Set()) {
 }
 ```
 
-## Practice: Has Path
+- solution with stack:
+
+```javascript
+function dfs(adjList, source) {
+  let stack = [source];
+  let visited = new Set();
+  visited.add(source);
+
+  while (stack.length) {
+    let current = stack.shift();
+    let neighbours = adjList.get(current);
+    neighbours.forEach((neighbour) => {
+      if (!visited.has(neighbour)) {
+        stack.push(neighbour);
+        visited.add(neighbour);
+      }
+    })
+    console.log(current)
+  }
+}
+```
+
+- LS solution (close to mine. I should have popped, not unshifted. That's what a stack does)
+
+```javascript
+function dfs(adjList, source) {
+  let stack = [source];
+  let visited = new Set([source]);
+
+  while (stack.length !== 0) {
+    let current = stack.pop();
+    console.log(current);
+
+    let neighbors = adjList.get(current);
+    for (let neighbor of neighbors) {
+      if (!visited.has(neighbor)) {
+        visited.add(neighbor);
+        stack.push(neighbor);
+      }
+    }
+  }
+}
+```
+
+- BFS solution: (LS solution pretty much the same)
+
+```javascript
+function bfs(adjList, source) {
+  let stack = [source];
+  let visited = new Set([source])
+
+  while (stack.length) {
+    let current = stack.shift();
+    console.log(current);
+
+    let neighbours = adjList.get(current);
+    neighbours.forEach((neighbour) => {
+      if (!visited.has(neighbour)) {
+        stack.push(neighbour);
+        visited.add(neighbour);
+      }
+    })
+  }
+}
+```
+
+## [Practice: Has Path](https://launchschool.com/books/advanced_dsa/read/has_path)
+
+```javascript
+function hasPath(edgeList, src, dst) {
+  let stack = [src];
+  let visited = new Set([src]);
+
+  while (stack.length) {
+    if (stack.includes(dst)) { return true }
+    let current = stack.shift();
+    for (i = 0; i < edgeList.length; i += 1) {
+      if (edgeList[i][0] === current && !visited.has(edgeList[i][1])) {
+        stack.push(edgeList[i][1]);
+        visited.add(edgeList[i][1]);
+      } else if (edgeList[i][1] === current && !visited.has(edgeList[i][0])) {
+        stack.push(edgeList[i][0]);
+        visited.add(edgeList[i][0]);
+      }
+    }
+  }
+```
+
 ## Demo: Number of Forests
+
+
+- you can achieve the same result wihtout using a set if you reassign trees to 'O's once they've been counted: `grid[row][col] = 'O';`
+
 ## Practice: Largest Forest Area
 # BACKTRACKING
 ## Introduction to Backtracking
