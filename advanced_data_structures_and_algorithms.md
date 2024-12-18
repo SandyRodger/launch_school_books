@@ -924,18 +924,80 @@ function hasPath(edgeList, src, dst) {
   }
 ```
 
-## Demo: Number of Forests
+## [Demo: Number of Forests](https://launchschool.com/books/advanced_dsa/read/number_of_forests)
 
 
 - you can achieve the same result wihtout using a set if you reassign trees to 'O's once they've been counted: `grid[row][col] = 'O';`
 
-## Practice: Largest Forest Area
+## [Practice: Largest Forest Area](https://launchschool.com/books/advanced_dsa/read/largest_forest_area)
+
+- an easy tweak of the previous exercise solution.
+
 # BACKTRACKING
-## Introduction to Backtracking
-## Terminology
-## Problem Solving Approach
-## Template
-## Demo: Permutations
-## Practice: Combinations
+## [Introduction to Backtracking](https://launchschool.com/books/advanced_dsa/read/introduction_to_backtracking)
+
+#### [Efficiency](https://launchschool.com/books/advanced_dsa/read/introduction_to_backtracking#efficiency)
+
+
+
+## [Terminology](https://launchschool.com/books/advanced_dsa/read/terminology)
+
+
+- State Space: the set of all possible states in our problemn. All possible configurations we could get to when solving the problem.
+
+- State Space Tree: Were we to draw this out as a tree
+
+- Candidate: A potential choice we could add to our current incomplete solution.
+
+- Solution: AKA "candidate solution" because it has all the candidates we've selected at each step.
+
+- Dead End: self-explanatory.
+
+- Terminal Condition: either a dead-end or because the solution has been found. Or could be something else.
+
+- A Backtrack step: Returning to a previous step. (Obvs).
+
+- Pruning: cutting off logic branches when we can.
+
+### [Permutations](https://launchschool.com/books/advanced_dsa/read/terminology#permutations)
+
+- ok
+
+### [Optimization](https://launchschool.com/books/advanced_dsa/read/terminology#optimization)
+
+- 
+
+## [Problem Solving Approach](https://launchschool.com/books/advanced_dsa/read/problem_solving_approach)
+
+### [Naive Steps](https://launchschool.com/books/advanced_dsa/read/problem_solving_approach#naivesteps)
+
+- Step 1: Draw it out on a piece of paper.
+- Step 2: Define Naive branching logic.
+- Step 3: Define the Dead-end conditions.
+- Step 4: define the success conditions
+
+### [Optimization](https://launchschool.com/books/advanced_dsa/read/problem_solving_approach#optimization)
+
+
+## [Template](https://launchschool.com/books/advanced_dsa/read/template)
+
+1. Initializaton and main function call
+2. success condition
+3. Exploration loop
+4. Dead-end condition
+
+## [Demo: Permutations](https://launchschool.com/books/advanced_dsa/read/permutations)
+
+- Walkthrough
+- Optimization
+  - Option 1: check for inclusion.
+  - Option 2: filtering the collection
+
+## [Practice: Combinations](https://launchschool.com/books/advanced_dsa/read/combinations)
+
+
+
 # CONCLUSION
-## Conclusion & Next Steps
+## [Conclusion & Next Steps](https://launchschool.com/books/advanced_dsa/read/conclusion_and_next_steps)
+
+First pass complete: 18.12.24
