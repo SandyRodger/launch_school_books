@@ -938,7 +938,8 @@ function hasPath(edgeList, src, dst) {
 
 #### [Efficiency](https://launchschool.com/books/advanced_dsa/read/introduction_to_backtracking#efficiency)
 
-
+- Generally poor. Often exponential or even factorial.
+- Calculating the complexities can be complicated, so it's not a focus of this section.
 
 ## [Terminology](https://launchschool.com/books/advanced_dsa/read/terminology)
 
