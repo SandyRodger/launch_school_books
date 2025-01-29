@@ -3,6 +3,7 @@
 #### Prerequisites
 
 - not relevant
+- 2nd pass read (29.1.25)
 
 ## [Introduction](https://launchschool.com/books/dsa/read/introduction)
 
@@ -33,6 +34,8 @@
 #### PEDAC
 
 - SKIP
+- 2nd pass read (29.1.25)
+
 ##### sorting algorithms
 
 - fundamental sorting algorithms to arrange data.
