@@ -1,6 +1,12 @@
 # [data structures and algorithms](https://launchschool.com/books/dsa)
 
+#### Prerequisites
+
+- not relevant
+
 ## [Introduction](https://launchschool.com/books/dsa/read/introduction)
+
+- master this to create efficient, scalable and maintainable code. (lucrative skills).
 
 ### [How DSA gives you an edge](https://launchschool.com/books/dsa/read/introduction#dsagivesedge)
 
@@ -1641,9 +1647,10 @@ LS solution: Pretty similar to mine - but more elegant.
 
 |  | 1st: 1st read | 2nd: deep-dive | 3rd: find/fill gaps |
 | :--- | :---: | :---: | :---: | 
-| Introduction to data-structures and algorithms | start 7.11.24 |
+| Introduction to data-structures and algorithms | start 7.11.24 | start 29.1.25 |
 | Sorting algorithms | 
 | Pointer-based mental models | 
+| linked lists |
 | Binary search | 
-| Stacks & queues | 21.11.x24
+| Stacks & queues | 21.11.24
 
