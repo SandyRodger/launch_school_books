@@ -1,7 +1,16 @@
-# INTRODUCTION TO RECURSION
+## [INTRODUCTION](https://launchschool.com/books/advanced_dsa/read/introduction)
+
+- We cover:
+  - recursion
+  - Divide and Conquer - which uses recursion
+  - Dynamic Programming - means storing calculations as you go
+  - Binary trees: types and what you do with them
+  - Grpahs: how to solve problems with them.
+
 ## [Understanding Recursion](https://launchschool.com/books/advanced_dsa/read/understanding_recursion)
 
 - functions calling themselves
+- "elegant and efficient"
 
 ### [Example Problem](https://launchschool.com/books/advanced_dsa/read/understanding_recursion#example)
 
