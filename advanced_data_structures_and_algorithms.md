@@ -673,6 +673,42 @@ adjList.set(6, []);
 - DFS
   - With graphs it usually makes most sense to do DFS traversal.
 
+### [LS bot on DFS and BFS in graphs]
+
+- I asked @LSBot:
+  - can you clarify what a depth-first-search and a breadth-first-search do in undirected graphs and how they differ?
+
+- LSBot replied
+
+  - Certainly! I'd be happy to clarify the concepts of depth-first search (DFS) and breadth-first search (BFS) in the context of undirected graphs, and explain how they differ.
+Both DFS and BFS are graph traversal algorithms used to explore or search through all the vertices of a graph. In an undirected graph, the edges between vertices don't have a direction, meaning you can traverse from one vertex to another in either direction.
+Let's start with Depth-First Search (DFS):
+1.  Depth-First Search (DFS):
+    DFS explores as far as possible along each branch before backtracking. In an undirected graph, it works as follows:
+    •   Start at a chosen vertex.
+    •   Explore one of its unvisited neighbors.
+    •   Continue this process, always choosing an unvisited neighbor of the current vertex.
+    •   If there are no unvisited neighbors, backtrack to the previous vertex and explore its other neighbors.
+    •   Repeat until all vertices have been visited.
+    DFS tends to go "deep" into the graph before exploring other branches. It's like exploring a maze by following one path as far as you can before backtracking.
+2.  Breadth-First Search (BFS):
+    BFS explores all the neighbors of a vertex before moving to the next level. In an undirected graph, it works like this:
+    •   Start at a chosen vertex.
+    •   Explore all of its immediate neighbors.
+    •   Then move to the next level and explore all neighbors of those vertices.
+    •   Continue this process, level by level, until all vertices have been visited.
+    BFS explores the graph in "waves", moving outward from the starting point in all directions equally.
+The main differences between DFS and BFS in undirected graphs are:
+1.  Order of exploration: DFS goes deep into one path before exploring others, while BFS explores all neighbors at the current depth before moving deeper.
+2.  Implementation: DFS is typically implemented using a stack (or recursion), while BFS uses a queue.
+3.  Memory usage: DFS can use less memory in some cases, especially in trees, as it only needs to store the nodes on the current path. BFS needs to store all nodes at the current level, which can be memory-intensive for wide graphs.
+4.  Shortest path: In unweighted graphs, BFS guarantees finding the shortest path between two nodes, while DFS doesn't.
+5.  Completeness: Both are complete, meaning they will find a solution if one exists, but BFS is often preferred when you need to find the optimal solution in unweighted graphs.
+These algorithms are crucial in solving various graph problems.
+8:03
+For example, as mentioned in the "Advanced Data Structures and Algorithms" book (https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_1), DFS can be used to detect cycles in a graph or to perform topological sorting, while BFS is often used to find the shortest path in unweighted graphs.
+Remember, the choice between DFS and BFS depends on the specific problem you're trying to solve and the structure of your graph. Both have their strengths and are valuable tools in a programmer's toolkit.
+
 ### [DFS recursive exercise](https://launchschool.com/books/advanced_dsa/read/graph_traversal_part_1#dfsrecursive)
 
 ```javascript
