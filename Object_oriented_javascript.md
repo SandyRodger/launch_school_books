@@ -571,6 +571,7 @@ try {
 
 ### Function prototypes:
 
+- Most functions and classes have a property called `prototype` which stores the function prototype.
   -  When we create a class (`Cat` for example) javascript invisibly creates a "constructor" function for that class (not the same as the constructor method you have included).
   -  This constructor creates an object (called the function prototype) which contains the methods you've written in your class.
   -  The object is than saved as a `prototype` property of the `Cat` class.
@@ -605,9 +606,11 @@ try {
 
 ### [The Prototype Chain](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#theprototypechain)
 
+- "class keyword is syntactic sugar that maps to a constructor function and a function prototype." -> isn't all code syntactical sugar, in the sense that it hides layers of more complex lannnguage that the computer use using?
 ### [Constructor/Prototype Pattern](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#constructorprototypepattern)
 
 ### [When Should You Use the Constructor/Prototype Pattern?](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#whentouseconstructorprototype)
 ### [Summary](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#summary)
 ### [Exercises](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#exercises)
 
+I'm going to have to come back to this. 
