@@ -602,11 +602,50 @@ try {
 
 #### Object Prototypes for Functions and Classes
 
+#### Arrow Functions and Function Prototypes
 
+#### The __proto__ Property
+
+- dunder
+- Deprecated
+
+#### Accessing Function Prototypes
+
+- 
 
 ### [The Prototype Chain](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#theprototypechain)
 
-- "class keyword is syntactic sugar that maps to a constructor function and a function prototype." -> isn't all code syntactical sugar, in the sense that it hides layers of more complex lannnguage that the computer use using?
+- "class keyword is syntactic sugar that maps to a constructor function and a function prototype." -> isn't all code syntactical sugar, in the sense that it hides layers of more complex language that the computer use using?
+  - LS response:
+  - You're right that in a broad sense, most programming constructs could be considered "syntactic sugar" for lower-level operations. However, in programming terminology, "syntactic sugar" has a more specific meaning.
+When we say the class keyword in JavaScript is syntactic sugar, we mean it doesn't introduce any new capabilities to the language - it's just a more convenient way to write code that uses the existing constructor functions and prototypes. As shown in the JS225 materials, the class syntax directly maps to the pseudo-classical pattern that was already possible:
+// javascript
+
+// This class syntax
+class Point {
+  constructor(x = 0, y = 0) {
+    this.x = x;
+    this.y = y;
+  }
+  
+  onXAxis() {
+    return this.y === 0;
+  }
+}
+
+// Is equivalent to this constructor function syntax
+function Point(x=0, y=0) {
+  this.x = x;
+  this.y = y;
+};
+
+Point.prototype.onXAxis = function() {
+  return this.y === 0;
+};
+The key distinction is that syntactic sugar offers an alternative syntax for something that was already possible in the language, without changing the underlying mechanics or adding new capabilities. It just makes certain patterns more convenient to express.
+In contrast, many language features aren't considered syntactic sugar because they introduce fundamentally new capabilities or concepts that weren't previously expressible.
+JavaScript's class syntax was specifically added to make the language more approachable to developers coming from class-based languages like Java or Ruby, even though JavaScript's object system remains prototype-based under the hood.
+
 ### [Constructor/Prototype Pattern](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#constructorprototypepattern)
 
 ### [When Should You Use the Constructor/Prototype Pattern?](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#whentouseconstructorprototype)
