@@ -647,9 +647,92 @@ In contrast, many language features aren't considered syntactic sugar because th
 JavaScript's class syntax was specifically added to make the language more approachable to developers coming from class-based languages like Java or Ruby, even though JavaScript's object system remains prototype-based under the hood.
 
 ### [Constructor/Prototype Pattern](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#constructorprototypepattern)
-
+  - 2 more typos:
+    - OOJS book -> Prototypal Inheritance -> Constructor/Prototype Pattern -> 2nd code snippet -> line 10 -> "we meed to simulate super()"
+    - OOJS book -> Prototypal Inheritance -> Constructor/Prototype Pattern -> 2nd paragraph -> "(for now, we'll ignore the inheritance aspect of this code for now)"
 ### [When Should You Use the Constructor/Prototype Pattern?](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#whentouseconstructorprototype)
 ### [Summary](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#summary)
 ### [Exercises](https://launchschool.com/books/oo_javascript/read/prototypal_inheritance#exercises)
 
-I'm going to have to come back to this. 
+1. 
+
+```
+function Phone(brand, model, releaseYear) {
+  this.model = model;
+  this.brand = brand;
+  this.releaseYear = releaseYear;
+  this.batteryLevel = 75;
+}
+
+Phone.prototype.information = function() {
+  console.log(`This phone is a ${this.brand} ${this.model} released ${this.releaseYear}`)
+}
+
+Phone.prototype.battery = function() {
+  console.log(`Battery level is ${this.batteryLevel}%`)
+}
+
+let phoneA = new Phone('Apple',	'iPhone 12',	'2020');
+let phoneB = new Phone('Samsung',	'Galaxy S21',	'2021');
+phoneA.information()
+phoneA.battery()
+phoneB.information()
+phoneB.battery()
+```
+
+2.
+
+````javascript
+/*
+
+This exercise re-examines exercise 3 from the previous chapter. In that exercise, you wrote a class hierarchy to represent vehicles of various types. In this exercise, we'll rewrite that solution using the constructor/prototype pattern.
+
+Using the constructor/prototype pattern, create some types that represent vehicles, including cars, boats, and planes as specific kinds of vehicles. All vehicles should be able to accelerate and decelerate. Cars should be able to honk, boats should be able to drop anchor, and planes should be able to take off and land. Test your code.
+*/
+
+function Vehicle(name) {
+  this.name = name;
+}
+
+function Car(name) {
+  Vehicle.call(this, name);
+}
+
+Car.prototype = Object.create(Vehicle.prototype);
+Car.prototype.constructor = Car;
+Car.prototype.honk = function() {
+  console.log(`My ${this.name} honks.`);
+};
+
+function Boat(name) {
+  Vehicle.call(this, name);
+}
+
+Boat.prototype = Object.create(Vehicle.prototype);
+Boat.prototype.constructor = Boat;
+Boat.prototype.dropAnchor = function() {
+  console.log(`My ${this.name} drops anchor.`);
+};
+
+function Plane(name) {
+  Vehicle.call(this, name);
+}
+
+Plane.prototype = Object.create(Vehicle.prototype);
+Plane.prototype.constructor = Plane;
+Plane.prototype.takeOff = function() {
+  console.log(`My ${this.name} takes off.`);
+};
+Plane.prototype.land = function() {
+  console.log(`My ${this.name} lands.`);
+};
+
+let myCar = new Car('volvo');
+myCar.honk()
+
+let myBoat = new Boat('yacht');
+myBoat.dropAnchor()
+
+let myPlane = new Plane('jet');
+myPlane.takeOff()
+```
