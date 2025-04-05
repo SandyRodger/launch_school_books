@@ -1,5 +1,6 @@
 # Object Oriented javascript
 
+
 ## [Introduction](https://launchschool.com/books/oo_javascript/read/introduction)
 ### [Why JavaScript?](https://launchschool.com/books/oo_javascript/read/introduction#whyjavascript)
 - It's ubiquitous (front and back end)
@@ -682,7 +683,7 @@ phoneB.battery()
 
 2.
 
-````javascript
+```javascript
 /*
 
 This exercise re-examines exercise 3 from the previous chapter. In that exercise, you wrote a class hierarchy to represent vehicles of various types. In this exercise, we'll rewrite that solution using the constructor/prototype pattern.
@@ -736,3 +737,7 @@ myBoat.dropAnchor()
 let myPlane = new Plane('jet');
 myPlane.takeOff()
 ```
+## My Progress
+
+First read: March 2025
+Second Read: April 2025 (5th - )
