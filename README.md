@@ -376,3 +376,4 @@
 ## Agile Planning.
 ## Demystifying Rails.
 ## Introduction to Programming with Javascript.
+## [Object Oriented Javascript](https://github.com/SandyRodger/launch_school_books/blob/main/Object_oriented_javascript.md)
