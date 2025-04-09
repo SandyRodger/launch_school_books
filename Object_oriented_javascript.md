@@ -1,6 +1,4 @@
 # Object Oriented javascript
-
-
 ## [Introduction](https://launchschool.com/books/oo_javascript/read/introduction)
 ### [Why JavaScript?](https://launchschool.com/books/oo_javascript/read/introduction#whyjavascript)
 - It's ubiquitous (front and back end)
