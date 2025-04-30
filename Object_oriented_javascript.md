@@ -8,6 +8,14 @@
 ## [Types and Objects](https://launchschool.com/books/oo_javascript/read/types_and_objects)
 - sounds a lot like RB120
 ### [Objects](https://launchschool.com/books/oo_javascript/read/types_and_objects#objects)
+
+- What are javascript objects?
+  - data-structures written between curly braces containing key-value pairs. The values can be primitives, other objects or functions. The keys (also called properties) are accessible with dot notation or square brackets.
+  - Javascript is an object oriented language. Almost everything in Javascript is an object with the exception of primitives, like integers and null.
+  - In the Object oriented model data and behaviours are encapsulated in objects or classes. This helps the programmer organise the program because it means parts of the object can be hidden from the rest of the code-base and code can be more easily re-used.
+  - There are several ways to create an object in Javascript, such as object literals, factory functions, pseudo-classical code using a constructor, ES6 classes or Objects linking to other objects.
+  - Objects can delegate behaviour up the prototype chain via the object.prototype with prototypal inheritance.
+
   - type v class:
     - type usually refers to a primitive object
     - Class refers to an object defined with the `class` keyword
