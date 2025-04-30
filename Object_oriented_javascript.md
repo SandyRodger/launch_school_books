@@ -34,8 +34,18 @@ let pudding = new Cat("Pudding");
 ### [Classes and Types](https://launchschool.com/books/oo_javascript/read/types_and_objects#classestypes)
 -  Confusion
 ### [Creating Objects](https://launchschool.com/books/oo_javascript/read/types_and_objects#creatingobjects)
+
 - You can create functions inside Object classes so instances are created with the behaviour to manipulate its data.
 - When object properties have functons we call them methods
+
+####  What are the different ways of organising code into objects?
+
+    1. Literals
+    2. Factory Functions (don't need `new`)
+    3. pseudo-classical pattern. This uses constructor functions and defines behaviour on the prototype in order to set up behaviour delegation
+    4. ES6 classes
+    5. OLOO (define a prototype and then use Object.create() to attach it to another object) -> uses Object.create to make a prototypal link between objects.
+
 ### [Concise Method Syntax](https://launchschool.com/books/oo_javascript/read/types_and_objects#concisemethodsyntax)
 
 - covered before
