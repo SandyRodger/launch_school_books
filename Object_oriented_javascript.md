@@ -159,7 +159,36 @@ console.log(phone2.displayInfo());
 
 ### [What is an Object Factory?](https://launchschool.com/books/oo_javascript/read/object_factories#whatisanobjectfactory)
 
-- we've covered this already
+    - "Object factories (or factory functions) are functions that create and return new objects based on a predefined template. They encapsulate the object creation process, allowing us to create multiple objects with similar properties and behaviors without duplicating code.
+    - How they work:
+      1.  They instantiate a new object in the function body
+      2.  They assign properties and methods to this object
+      3.  They return the fully formed object
+      - Advantages:
+        •   They provide a simple way to create multiple similar objects
+        •   They encapsulate the object creation logic
+        - One can create private data by initializing it in the function, but not including it in the returned object.
+      - Disadvantages:
+        •   There's no way to tell if an object was created by a particular factory function
+        •   Each object created has its own separate copies of methods, which can be redundant and memory-inefficient
+      - A complete example:
+```javascript
+function createStudent(name, age) {
+  return {
+    name: name,
+    age: age,
+    grades: [],
+    addGrade(grade) {
+      this.grades.push(grade);
+    },
+    getAverageGrade() {
+      return this.grades.reduce((sum, grade) => sum + grade, 0) / this.grades.length;
+    }
+  };
+}
+let student1 = createStudent('John', 20);
+let student2 = createStudent('Jane', 22);
+```
 
 ### [Advantages and Disadvantages of Object Factories](https://launchschool.com/books/oo_javascript/read/object_factories#advantagesdisadvantages)
 
