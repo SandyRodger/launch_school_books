@@ -650,6 +650,41 @@ try {
 
 #### Arrow Functions and Function Prototypes
 
+##### What are arrow fucntions:
+
+1.  In callback functions
+let obj = {
+ a: 'hello',
+ b: 'world',
+ foo() {
+    [1, 2, 3].forEach((number) => {
+ console.log(String(number) + ' ' + this.a + ' ' + this.b);
+    });
+  },
+};
+
+obj.foo();
+// => 1 hello world
+// => 2 hello world
+// => 3 hello world
+2.  In nested functions inside methods:
+let obj = {
+ a: 'hello',
+ b: 'world',
+ foo: function() {
+ // Traditional function would lose context
+ let bar = () => {
+ console.log(this.a + ' ' + this.b);
+    }
+ 
+ bar(); // => hello world
+  }
+};
+
+obj.foo();
+
+3.  When functions are passed as arguments
+
 #### The __proto__ Property
 
 - dunder
