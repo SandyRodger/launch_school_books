@@ -191,9 +191,56 @@ x-request-time: 0.031
 
 ### [URL or URI](https://launchschool.com/books/working_with_apis/read/a_review_of_urls#url_or_uri)
 
+- URI: uniform resource Identifier: this identifies a resource. **These can be anywhere**
+  - analogous to social security number
+- URL: Uniform resource locator: a web resource with a specified locaton on a computer network.
+  -  analogous to someone's street address
+  -  ALso unique, so you could say a URL is a type of URI.
+-  IF YOU ARE WORKING WITH RESOURCES ON THE INTERNET USE URL
 
+### The parts of a URL
 
-## Media Types
+- Scheme: https
+- `://`
+- hostname
+- optional colon and port: `:81` (uncommon with APIs)
+- the path to the resource, like `/api/v1/pages/1`
+- An optional query string: `?=query=term`
+
+### [Identifiers in Paths](https://launchschool.com/books/working_with_apis/read/a_review_of_urls#identifiers_in_paths)
+
+- `/products/:id` , where :id is a place-holder to be filled with a value.
+- Nested paths are also a thing: `/products/:product_id/comments/:id`
+
+### [Summary](https://launchschool.com/books/working_with_apis/read/a_review_of_urls#summary)
+
+- Working with APIS, involves working with URLs
+- URLs represent where a resource is and how it can be accessed.
+- URLs typically contain a:
+  - Scheme
+  - hostname
+  - path
+  - sometimes a query string
+- Paths can include placeholders when they are written generically
+
+## [Media Types](https://launchschool.com/books/working_with_apis/read/media_types)
+
+- The internet has shared markup languages and data formats to facilitate communication. HTML is an example of this. Almost all devices can read HTML and display it.
+- HTML is one of many different **media types** (AKA content types sometimes AKA MIME types)
+- `Content-Type: text/html` -> this tells the browser to interpret the content as HTML rather than render it graphically on the screen.
+- `charset`
+- `http --headers www.google.com`
+- photos are returned as `image/jpeg`
+  - example: `http --headers https://c2.staticflickr.com/4/3913/15095210318_930069f3d6_c.jpg`
+
+### Data-serialization
+
+- APIs allow systems to communicate by exchanging structured data. The structure of these is **data serialization format**
+- Example with the black circle
+
+### XML
+
+- Extensible Markup language
 ## REST and CRUD
 ## WORKING WITH AN API
 ## Fetching Resources
