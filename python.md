@@ -943,31 +943,431 @@ print(all(remainders_5(numbers_4)))
 ```
 
 ## [Flow Control](https://launchschool.com/books/python/read/flow_control)
+### [Conditionals](https://launchschool.com/books/python/read/flow_control#conditionals)
 
-### Conditionals
-### Comparisons
-### Logical Operators
-### Short Circuits
-### Truthiness
-### Logical Operator Precedence
-### match/case Statement
-### Ternary Expressions
+- new ones:
+  - `and`
+  - `or`
+  - `not`
+  - `elif` instead of `elsif`.
+- `pass`: add a comment for clarity.
+
+```
+value = int(input('Enter a number: '))
+
+if value > 10:
+  print('value is greater than 10')
+elif value < 10:
+  print('value is less than 10')
+else:
+  pass # we don't care about 10 itself
+```
+
+### [Comparisons](https://launchschool.com/books/python/read/flow_control#comparisons)
+
+- `==` operands have equal values
+- Sometimes `==` will equate operands of different types, sometimes not:
+```
+print(5 == float(5))                # True
+
+big_num = 12345678901234567
+print(float(big_num) == big_num)    # False
+```
+
+### [Logical Operators](https://launchschool.com/books/python/read/flow_control#logicaloperators)
+
+#### not
+
+- so like `!` in js ?
+  - `print(not True) # False
+
+#### and / or
+
+- `&&` / `||`
+
+### [Short Circuits](https://launchschool.com/books/python/read/flow_control#shortcircuits)
+
+- short circuit evaluation
+
+### [Truthiness](https://launchschool.com/books/python/read/flow_control#truthiness)
+
+- Falsey:
+  - `False`
+  - `None`
+  - `0`
+  - `''`
+  - all empty collections
+  - custom data types can be falsey
+  - The final value returned by an expression using `and` or `or` is the final value read by the phrase:
+
+```
+print(3 and 'foo') # foo
+print('foo' or 3) # foo
+print([] or 3) # 3
+```
+
+- `is_ok = bool(foo or bar)`
+
+### [Logical Operator Precedence](https://launchschool.com/books/python/read/flow_control#logicaloperatorprecedence)
+
+- this is the list:
+  - `==`, `!=`, `<=`, `<`, `>`, `>=` -> comparison
+  - `not`
+  - `and`
+  - `or`
+
+### [match/case Statement](https://launchschool.com/books/python/read/flow_control#matchstatement)
+
+- it's switch syntax
+
+```
+value = 'box'
+
+match value:
+  case 5: 
+    print('value is 5')
+  case 6:
+    print ('value is 6')
+  case _:
+    print('value is neither 5 nor 6')
+```
+
+### [Ternary Expressions](https://launchschool.com/books/python/read/flow_control#ternaryexpressions)
+
+- `value1 if condition else value2`
+- `print("Triangle" if shape.sides() == 3 else "Square")`
+
 ### Summary
 ### Exercises
+
+```
+# 1.
+
+False or (True and False) # False
+True or (1 + 2) # True
+(1 + 2) or True # 3
+True and (1 + 2) # True WRONG -> 3
+False and (1 + 2) # False
+(1 + 2) and True # True
+(32 * 4) >= 129 # False
+False != (not True) # False
+True == 4 # False
+False == (847 == '847') # True
+
+# 2.
+
+def even_or_odd(n):
+  if (n % 2 == 1):
+    print('odd')
+  else:
+    print('even')
+
+# 3.
+
+# product2
+# product3 NOPE -> product not found
+# print(142 == '142') # False
+
+# 4.
+
+def foo():
+  return True
+
+def qux():
+  return 1
+
+def baz():
+  if (foo()):
+    return 'bar'
+  else:
+    return qux()
+  
+# 5.
+
+def is_list_empty(my_list):
+    if my_list:
+        print('Not Empty')
+    else:
+        print('Empty')
+
+# is_list_empty([]) # Empty
+
+# 6. 
+
+def capitalise_long_words(word):
+   if len(word) > 10:
+      return word.upper()
+   else:
+      return word
+   
+# print(capitalise_long_words('bar'))
+# print(capitalise_long_words('barnabussyl'))
+
+# 7.
+
+def number_range(n):
+  if n < 0:
+    print(f'{n} is less than 0')
+  elif n <= 50:
+    print(f'{n} is between 0 and 50')
+  elif n < 100:
+    print(f'{n} is between 51 and 100')
+  else:
+     print(f'{n} is greater than 100')
+
+number_range(0)     # 0 is between 0 and 50
+number_range(25)    # 25 is between 0 and 50
+number_range(50)    # 50 is between 0 and 50
+number_range(75)    # 75 is between 51 and 100
+number_range(100)   # 100 is between 51 and 100
+number_range(101)   # 101 is greater than 100
+number_range(-1)    # -1 is less than 0
+```
 
 ## COLLECTIONS AND ITERATION
 
-## Intro to Collections
-### Collection Types
-### What are Sequences?
-### What are Sets?
-### What are Mappings?
-### Sequence Constructors
+
+## [Intro to Collections](https://launchschool.com/books/python/read/intro_collections)
+### [Collection Types](https://launchschool.com/books/python/read/intro_collections#collectiontypes)
+
+- python has a lot
+- 3 main categories:
+  - sequences
+    - ranges
+    - tuples (tuples are just frozen lists)
+    - lists
+    - strings as text sequences, although simultaneously strings are not collections since the characters inside are not objects. This seems to be a contradiction, but I do not have the time to pin down the precise nature of the truth now.
+  - mappings
+    - dictionaries
+  - sets
+    - sets
+    - frozen sets
+
+### [What are Sequences?](https://launchschool.com/books/python/read/intro_collections#whatsequences)
+
+- collections of elements with an integer index value -> so analogous to JS arrays)
+- "heterogeneous" -> composed of parts of different kinds. (Unlike ranges which are homogeneous -> they always contain integers)
+- Strings are text sequences
+
+### [What are Sets?](https://launchschool.com/books/python/read/intro_collections#whataresets)
+
+- unordered collection
+
+```
+letters = {'a', 'b', 'c'}
+letters.add('d')
+print(letters)
+# {'a', 'b', 'c', 'd'} (order may differ)
+
+frozen_letters = frozenset(letters)
+frozen_letters.add('e')
+# AttributeError: 'frozenset' object has no
+# attribute 'add'
+```
+
+- python will ignore any attempt to add duplicate members to a set:
+
+```
+letters = {'a', 'b', 'c', 'b', 'a'}
+print(letters)
+# {'a', 'c', 'b'} (order may differ)
+
+letters.add('c')
+print(letters)
+# {'a', 'c', 'b'} (order may differ)
+```
+
+- Since Python 3.7 sets of integers appear to be ordered, but this is an illusion, easy to trick and not to be relied upon:
+
+```
+numbers = { 1, 2, 37, 4, 5 }
+print(numbers)      # {1, 2, 4, 37, 5}
+```
+
+### [What are Mappings?](https://launchschool.com/books/python/read/intro_collections#whataremappings) 
+
+- types tha maintain an unordered collection of k/v pairs. (so JS objects?)
+- There's a few, but this book only looks at `dict` types.
+- Keys must be unique.
+- Keys must be hashable values (usually immutable)
+- since Python 3.7 order is preserved, but you should think of them as unordered.
+
+### [Sequence Constructors](https://launchschool.com/books/python/read/intro_collections#sequenceconstructors)
+
+#### String constructor:
+
+- `str()` => `''`
+- `str(something)` 
+```
+str()            # returns '' (empty string)
+str('abc')       # returns 'abc'
+str(42)          # returns '42'
+str(3.141592)    # returns '3.141592'
+str(False)       # returns 'False'
+str(None)        # returns 'None'
+str(range(3, 7)) # returns 'range(3, 7)'
+str([1, 2, 3])   # returns '[1, 2, 3]'
+str(int)         # returns "<class 'int'>"
+str(list)        # returns "<class 'list'>"
+
+class Person: pass
+str(Person())
+# returns "<__main__.Person object at 0x1006d21e0>"
+```
+
+#### Range Constructor
+1. `range(start, stop, step)`
+```
+r = range(5, 12, 2)
+print(list(r))            # [5, 7, 9, 11]
+
+r = range(12, 8, -1)
+print(list(r))            # [12, 11, 10, 9]
+
+r = range(12, 5, -2)
+print(list(r))            # [12, 10, 8, 6]
+```
+- empty ranges are often bugs:
+
+```
+r = range(5, 5, 1)
+print(list(r))           # []
+
+r = range(5, 7, -1)
+print(list(r))            # []
+```
+2. `range(start, stop)`
+- defaults to 1 step
+
+3. `range(stop`
+- start defaults to `0`
+- so `range(5)` is the same as `range(0, 5, 1)`
+
+- ranges are "lazy sequences"
+
+#### The List, Tuple, Set, and Frozen Set Constructors
+
+- without argument they create an empty collection:
+  - `list()`
+  - `tuple()`
+  - `set()`
+  - `frozenset()`
+- args must be iterables
+
+```
+my_str = 'Python'
+
+my_list = list(my_str)
+print(my_list)  # ['P', 'y', 't', 'h', 'o', 'n']
+
+my_tuple = tuple(my_list)
+print(my_tuple) # ('P', 'y', 't', 'h', 'o', 'n')
+
+my_set = set(my_tuple)
+print(my_set)   # {'t', 'o', 'n', 'h', 'P', 'y'}
+```
+- one can use these constructors to duplicate a collection:
+
+```
+my_list = [5, 12, 2]
+another_list = list(my_list)
+
+print(my_list)                          # [5, 12, 2]
+print(another_list)                     # [5, 12, 2]
+
+print(my_list == another_list)          # True
+print(my_list is another_list)          # False
+# so `is` is like === in JS, right?
+```
+
+- This demonstrates that copying nested lists results in shallow copies being copied:
+
+```
+my_list = [[1, 2, 3], [4, 5, 6]]
+another_list = list(my_list)
+
+print(my_list)                          # [[1, 2, 3], [4, 5, 6]]
+print(another_list)                     # [[1, 2, 3], [4, 5, 6]]
+
+print(my_list == another_list)          # True
+print(my_list is another_list)          # False
+print(my_list[0] is another_list[0])    # True
+print(my_list[1] is another_list[1])    # True
+```
+
 ### Summary
 ### Exercises
 
-## Using Collections
-### Indexing
+```
+# 2.
+stuff = ('hello', 'world', 'bye', 'now')
+# LS1
+stuff = ('hello', 'world', 'goodbye', 'now')
+# LS2
+stuff = stuff[0:2] + ('goodbye', stuff[3])
+# LS3
+stuff = stuff[0:2] + ('goodbye', stuff[3])
+
+# 3
+
+
+# Similarities
+  # both tuples and lists have number indexes
+  # both heterogenous
+
+# 4
+
+# 5
+
+# 6
+
+pi = 3.141592
+str_pi = str(pi)
+
+# 7
+
+range(7) # 0, 1, 2, 3, 4, 5, 6. correct
+range(1, 6) # 1, 2, 3, 4, 5 correct
+range(3, 15, 4) # 3, 7, 11 
+range(3, 8, -1) # []
+range(8, 3, -1) # 8, 7, 6, 5, 4
+
+# 8
+
+# print(range(3, 17, 4)) # => range(3, 17, 4)
+result = tuple(range(3, 17, 4))
+# print(result) # => (3, 7, 11, 15)
+# since ranges are lazy sequences you have to convert the range to a non-lazy sequence
+
+# 9.
+# 1 -> yes they are equal
+# 2 -> no they are not the same object
+# 3 -> yes the nested lists are equal
+# 4 -> Yes they are the same object because they copy did not create a new nested list, it only created a reference to the first nested list. This is the nature of shallow copies, they only copy down one level (as it were)
+
+# 10
+# no it will jumble them up. Sets by definition are unordered collections
+names = { 'Chris', 'Clare', 'Karis', 'Karl',
+          'Max', 'Nick', 'Victor' }
+# print(names)
+
+# 11
+# use a dict:
+
+countries = {
+  'Alice': 'USA',
+  'Francois': 'Canada',
+  'Inti':	'Peru',
+  'Monika':	'Germany',
+  'Sanyu':	'Uganda',
+  'Yoshitaka':	'Japan',
+}
+print(countries['Alice'])
+```
+
+
+## [Using Collections](https://launchschool.com/books/python/read/using_collections)
+### [Indexing](https://launchschool.com/books/python/read/using_collections#indexing)
 ### Slicing
 ### Key-Based Access
 ### Common Collection Operations
