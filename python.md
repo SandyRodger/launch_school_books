@@ -587,33 +587,363 @@ print (full_name)
 
 ### [Augmented Assignment](https://launchschool.com/books/python/read/variables#augmentedassignment)
 
+- it's just `+=` etc.
+
+- but you can smush together lists:
+q
+```
+bar = [1, 2, 3]     # bar is [1, 2, 3]
+bar += [4, 5]       # + with lists appends
+                    # bar is now [1, 2, 3, 4, 5]
+print(bar)          # prints [1, 2, 3, 4, 5]
+```
+- It talks about set union, but has not introduced this term:
+  - `bar |= {2, 3, 4, 5} # | performs set union`
 
 
-### Reassignment vs. Mutation
-### Summary
+### [Reassignment vs. Mutation](https://launchschool.com/books/python/read/variables#reassignmentvsmutation)
+
+- nothing new
+
+### [Summary](https://launchschool.com/books/python/read/variables#summary)
 ### Exercises
 
-## Input/Output
-### Terminal Output
-### Terminal Input
+1. 
+- index => idiomatic
+- CatName => non-idiomatic
+- lazy_dog => non-idiomatic WRONG -> idiomatic
+- quick_Fox => non-idiomatic
+- 1stCharacter => non-idiomatic WRONG illegal
+- operand2 => non-idiomatic WRONG idiomatic
+- BIG_NUMBER => non-idiomatic
+- π => illegal WRONG non-idiomatic
+2.
+- same as above
+3.
+- index => non-idiomatic (all chars should be capitalised)
+- CatName => non-idiomatic (all chars should be capitalised)
+snake_case => non-idiomatic (all chars should be capitalised)
+LAZY_DOG3 => idiomatic
+1ST => illegal, should not begin with a digit
+operand2 => non-idiomatic (all chars should be capitalised)
+BIG_NUMBER => idiomatic
+Π => non-idiomatic, not an Ascii char
+5.
+```
+name = 'Victor'
+print(f'Good Morning {name}')
+print(f'Good Afternoon {name}')
+print(f'Good Evening {name}')
+
+```
+6.
+```
+age = 35
+print(f'You are {age} years old.')
+print(f'In 10 years, you will be {age + 10} years old.')
+print(f'In 20 years, you will be {age + 20} years old.')
+print(f'In 30 years, you will be {age + 30} years old.')
+print(f'In 40 years, you will be {age + 40} years old.')
+```
+8.
+```
+balance = 1000
+interestRate = 1.05
+balance *= interestRate
+balance *= interestRate
+balance *= interestRate
+balance *= interestRate
+balance *= interestRate
+print(balance)
+```
+9. already did it
+10.
+```
+obj = 42 # assignment
+obj = 'ABcd' # reassignment
+obj.upper() # neither CORRECT
+obj = obj.lower() # reassign CORRECT
+print(len(obj)) # neither CORRECT
+obj = list(obj) # reassign CORRECT
+obj.pop() # mutate CORRECT
+obj[2] = 'X' # MUTATE
+obj.sort() # MUTATE
+set(obj) # neither
+obj = tuple(obj) # REASSIGN
+```
+
+## [Input/Output](https://launchschool.com/books/python/read/input_output)
+### [Terminal Output](https://launchschool.com/books/python/read/input_output#terminaloutput)
+
+- `sep` keyword to seperate output:
+```
+print(1, 2, 3, 'a', 'b', sep=',')      # 1,2,3,a,b
+print('a', 'b', 'c', 'd', 'e', sep='') # abcde
+```
+
+- The end keyword argument defines what print() prints after it prints the last argument. By default, it prints a newline (\n). 
+
+```
+print(1, 2, 'a', 'b', sep=',', end=' <-\n')
+# 1,2,a,b <-
+
+print('a', 'b', end='', sep=','); print('c', 'd', sep=',')
+# a,bc,d
+```
+
+### [Terminal Input](https://launchschool.com/books/python/read/input_output#terminalinput)
+
+```
+print("What's your name?")
+name = input()
+
+print(f'Good Morning, {name}!')
+```
+
+- or
+
+```
+name = input("What's your name? ")
+
+print(f'Good Morning, {name}!')
+```
+
 ### Summary
 ### Exercises
+1.
+```
+name = input('what is your name? ')
+print(f'Hello {name}')
+```
+2.
 
-## Functions and Methods
-### Calling Functions
-### Built-in Functions
-### Creating Functions
-### Scope
-### Namespaces
-### Arguments & Parameters
-### Return Values
-### Default Parameters
-### Functions vs. Methods
-### Mutating the Caller
-### Summary
+3.
+```
+age = input('give me your age ')
+print(f'in 10 years you will be {int(age) + 10} years old')
+```
+
+## [Functions and Methods](https://launchschool.com/books/python/read/functions_methods)
+### [Calling Functions](https://launchschool.com/books/python/read/functions_methods#callingfunctions)
+
+```
+def hello():
+    print('Hello')
+    return True
+
+hello()         # invoking function; ignore return value
+print(hello())  # using return value in a `print` call
+
+>>> print(print())
+None => for some reason the return value is None ?
+```
+### [Built-in Functions](https://launchschool.com/books/python/read/functions_methods#builtinfunctions)
+
+- about 70 of them
+- Here are some:
+  - float
+  - int
+  - str, list, tuple
+  - set, frozenset
+  - input, print
+  - type
+  - len
+- min/max
+```
+print(min(-10, 5, 12, 0, -20))      # -20
+print(max(-10, 5, 12, 0, -20))      # 12
+
+print(min('over', 'the', 'moon'))   # 'moon'
+print(max('over', 'the', 'moon'))   # 'the'
+
+print(max(-10, '5', '12', '0', -20))
+# TypeError: '>' not supported between instances
+# of 'str' and 'int'
+```
+
+#### ord and chr
+
+#### truthy and falsey
+
+- falsey:
+  - False, None
+  - all numeric 0 values (integers, floats, complex)
+  - empty strings: ''
+  - empty collections: [], (), {}, set(), frozenset(), and range(0)
+  - Custom data types can also define additional falsy value(s).
+- truthy
+  - everything else
+
+#### any/all
+```
+collection1 = [False, False, False]
+collection2 = (False, True, False)
+collection3 = {True, True, True}
+
+print(any(collection1))       # False
+print(any(collection2))       # True
+print(any(collection3))       # True
+print(any([]))                # False
+
+print(all(collection1))       # False
+print(all(collection2))       # False
+print(all(collection3))       # True
+print(all([]))                # True
+```
+
+- a comprehension ? like the following
+
+```
+numbers = [2, 5, 8, 10, 13]
+print([number % 2 == 0 for number in numbers])
+# [True False True True False]
+```
+#### Functions for the REPL
+
+##### The id Function
+
+- interning
+
+##### the `dir` function
+
+- use a comprehension to limit the output to just the names that don't contain `__` :
+
+```
+>>> names = sorted(dir(range(1)))
+>>> names = [name for name in names
+...          if '__' not in name]
+>>> print(names)
+['count', 'index', 'start', 'step', 'stop']
+```
+
+#### the `help` function
+
+### [Creating Functions](https://launchschool.com/books/python/read/functions_methods#creatingfunctions)
+
+#### docstring
+
+```
+def say():
+    """
+    The say function prints "Hi!"
+    """
+    print('Hi!')
+
+print('-' * 60)
+print(say.__doc__)
+print('-' * 60)
+help(say)
+```
+
+### [Scope](https://launchschool.com/books/python/read/functions_methods#scope)
+
+ - all familiar from Javascript, except this:
+
+```
+def scope_test():
+    if True:
+        foo = 'Hello'
+    else:
+        bar = 'Goodbye'
+
+    print(foo)
+    print(bar)
+
+scope_test()
+```
+
+### [Namespaces](https://launchschool.com/books/python/read/functions_methods#namespaces)
+
+- order of look-up for an identifier:
+  -  local namespace
+  -  enclosing namespace
+  -  global namespace
+  -  built-in namespace
+
+### [Arguments & Parameters](https://launchschool.com/books/python/read/functions_methods#argumentsparameters)
+
+### [Return Values](https://launchschool.com/books/python/read/functions_methods#returnvalues)
+
+- defaults to `None`
+
+### [Default Parameters](https://launchschool.com/books/python/read/functions_methods#defaultparameters)
+
+- yup
+
+### [Functions vs. Methods](https://launchschool.com/books/python/read/functions_methods#functionsvsmethods)
+
+- you should say methods when discussing functions explicitly designed to require calling objects.
+
+### [Mutating the Caller](https://launchschool.com/books/python/read/functions_methods#mutatingthecaller)
+
+- yup
+
+### [Summary](https://launchschool.com/books/python/read/functions_methods#summary)
 ### Exercises
 
-## Flow Control
+1. undefined variable foo
+2. bar
+3. 
+```
+def multiply():
+  arg1 = float(input('Enter the first number: '))
+  arg2 = float(input('Enter the second number: '))
+  return arg1  * arg2
+
+print(multiply())
+```
+4.
+5. nothin'
+6. nothin' at all
+7. print 'hello', retunr an error -> nope, just return an error, unline JS
+8. too many args also throws an error:
+
+```
+def foo(bar, qux):
+    print(bar)
+    print(qux)
+
+foo(42, 3.141592, 2.718)
+```
+9. yep
+10. yep
+11. yep
+12. yep
+13. yep
+18. yep
+```
+def remainders_3(numbers):
+    return [number % 3 for number in numbers]
+
+numbers_1 = [0, 1, 2, 3, 4, 5, 6]
+numbers_2 = [1, 2, 4, 5]
+numbers_3 = [0, 3, 6]
+numbers_4 = []
+
+print(any(remainders_3(numbers_1)))
+print(any(remainders_3(numbers_2)))
+print(any(remainders_3(numbers_3)))
+print(any(remainders_3(numbers_4)))
+```
+
+19. yep
+```
+def remainders_5(numbers):
+    return [number % 5 for number in numbers]
+
+numbers_1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+numbers_2 = [1, 2, 3, 4, 6, 7, 8, 9]
+numbers_3 = [0, 5, 10]
+numbers_4 = []
+
+print(all(remainders_5(numbers_1)))
+print(all(remainders_5(numbers_2)))
+print(all(remainders_5(numbers_3)))
+print(all(remainders_5(numbers_4)))
+```
+
+## [Flow Control](https://launchschool.com/books/python/read/flow_control)
+
 ### Conditionals
 ### Comparisons
 ### Logical Operators
