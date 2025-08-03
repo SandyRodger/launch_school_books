@@ -1368,36 +1368,617 @@ print(countries['Alice'])
 
 ## [Using Collections](https://launchschool.com/books/python/read/using_collections)
 ### [Indexing](https://launchschool.com/books/python/read/using_collections#indexing)
-### Slicing
-### Key-Based Access
-### Common Collection Operations
-### String Operations
-### Nested Collections
-### Comparing Collections
+
+- nothing new here.
+
+### [Slicing](https://launchschool.com/books/python/read/using_collections#slicing)
+
+```
+string = 'abcdefghi'
+print(string[3:7])       # defg
+print(string[-6:-2])     # defg
+print(string[2:8:2])     # ceg
+print(repr(string[3:3])) # ''
+print(string[:])         # abcdefghi
+print(string[::-1])      # ihgfedcba
+
+seq = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(seq[3:7])          # [4, 5, 6, 7]
+print(seq[-6:-2])        # [5, 6, 7, 8]
+print(seq[2:8:2])        # [3, 5, 7]
+print(seq[3:3])          # []
+print(seq[:])            # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(seq[::-1])         # [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+
+seq = [[1, 2], [3, 4]]
+seq_dup = seq[:]
+print(seq[0] is seq_dup[0])   # True
+```
+
+### [Key-Based Access](https://launchschool.com/books/python/read/using_collections#keybasedaccess)
+
+- dict keys must be immutable
+
+### [Common Collection Operations](https://launchschool.com/books/python/read/using_collections#commoncollectionoperations)
+
+#### Non-Mutating Operations for Collections
+##### collection membership
+- ie `in` and `not in`
+
+```
+seq = [4, 'abcdef', (True, False, None)]
+print(4 in seq)                         # True
+print(4 not in seq)                     # False
+print('abcdef' in seq)                  # True
+print('abcdef' not in seq)              # False
+print('cde' in seq[1])                  # True
+print('cde' not in seq[1])              # False
+print('acde' in seq[1])                 # False
+print('acde' not in seq[1])             # True
+print((True, False, None) in seq)       # True
+print((True, False, None) not in seq)   # False
+print(3.14 in seq)                      # False
+print(3.15 not in seq)                  # True
+```
+
+#### minimum and maximum members
+
+- can't use min max with heterogenous collections:
+
+```
+  my_set = {1, 4, '-9', 16, '25', -36, -63, -1}
+min(my_set)
+# TypeError: '<' not supported between instances of 'str' and 'int'
+
+max(my_set)
+# TypeError: '>' not supported between instances of 'str' and 'int'
+```
+
+#### Sum
+
+```
+nums = (1, 2, 3, 4, 5)
+print(sum(nums))
+```
+
+#### Locating Indices and Counting
+
+- which just means using `.index('value')` to return an index.
+  - (if you do it with a string it tells you where that string begins)
+- and `.count(number)` to count how many occurences in a list.
+```
+names = ['Karl', 'Grace', 'Clare', 'Victor',
+         'Antonina', 'Allison', 'Trevor']
+print(names.index('Clare'))   # 2
+print(names.index('Trevor'))  # 6
+print(names.index('Chris'))
+# ValueError: 'Chris' is not in list
+```
+
+```
+numbers = [1, 3, 6, 5, 4, 10, 1, 5, 4, 4, 5, 4]
+print(numbers.count(1))       # 2
+print(numbers.count(3))       # 1
+print(numbers.count(4))       # 4
+print(numbers.count(7))       # 0
+```
+
+#### Merging Collections
+
+- zip
+```
+iterable1 = [1, 2, 3]
+iterable2 = ('Kim', 'Leslie', 'Bertie')
+iterable3 = [None, True, False]
+
+zipped_iterables = zip(iterable1, iterable2, iterable3)
+print(list(zipped_iterables))
+# Pretty printed for clarity
+# [
+#   (1, 'Kim', None),
+#   (2, 'Leslie', True),
+#   (3, 'Bertie', False)
+# ]
+```
+
+`zipped_iterables = zip(iterable1, iterable2, strict=True)`
+
+- iterators can only be consumed once!
+
+#### Operations on Dictionaries
+
+```
+dict.keys
+dict.values
+dict.items
+```
+
+#### Operations for Mutable Sequences
+
+- `append` `insert` and `extend`
+- `seq.append`
+
+#### Removing Elements from Mutable Sequences
+
+- remove
+- pop
+- clear
+
+#### Sorting Collections
+
+- `sorted` doesn't mutate the list,`list.sort` does.
+
+```
+names = ('Grace', 'Clare', 'Allison', 'Trevor')
+print(sorted(names))
+# ['Allison', 'Clare', 'Grace', 'Trevor']
+
+print(names)
+# ('Grace', 'Clare', 'Allison', 'Trevor')
+
+names = list(names)
+print(names)
+# ['Grace', 'Clare', 'Allison', 'Trevor']
+
+print(names.sort())   # None
+print(names)
+# ['Allison', 'Clare', 'Grace', 'Trevor']
+```
+
+- sort string numbers like this:
+
+```
+numbers = ['1', '5', '100', '15', '534', '53']
+numbers.sort()
+print(numbers)   # ['1', '100', '15', '5', '53', '534']
+
+numbers.sort(key=int)
+print(numbers)   # ['1', '5', '15', '53', '100', '534']
+```
+
+#### Reversing Sequences and Dictionaries
+
+
+### [String Operations](https://launchschool.com/books/python/read/using_collections#stringoperations)
+
+#### Letter Case
+
+- `str.capitalize`
+- `str.title`
+- `capwords`:
+```
+import string
+print(string.capwords("i can't believe it's already mid-july."))
+# I Can't Believe It's Already Mid-july.
+```
+- `swapcase`
+
+#### Character Classification
+
+- `str.isalpha`
+- str.isdigit()
+- str.isalnum()
+- str.islower()
+- str.isupper()
+- str.isspace() 
+- `text.isalpha() and text.isascii()` to exclude non ASCII letters
+
+#### Stripping Characters
+
+- str.strip
+- with `repr`
+```
+text = ' \t  abc def    \n\r'
+print(repr(text))             # ' \t  abc def    \n\r'
+print(repr(text.strip()))     # 'abc def'
+```
+
+#### Splitting and Joining Strings
+
+- `split`:
+
+```
+text = '  Four     score and   seven years ago.   '
+print(text.split())
+# ['Four', 'score', 'and', 'seven', 'years', 'ago.']
+
+print('no-spaces'.split()) # ['no-spaces']
+```
+
+#### Finding Substrings
+
+- str.find and str.rfind
+
+### [Nested Collections](https://launchschool.com/books/python/read/using_collections#nestedcollections)
+
+- you can't nest mutable collections inside some collections. For instance, you can't nest a mutable collection such as a list, dictionary, or another set inside a set:
+
+```
+>>> my_set = {1, 2, 3, [4, 5]}
+TypeError: unhashable type: 'list'
+
+>>> my_set = {1, 2, 3, {4, 5}}
+TypeError: unhashable type: 'set'
+```
+
+### [Comparing Collections](https://launchschool.com/books/python/read/using_collections#comparingcollections)
+
+```
+print([2, 3] == [2, 3])    # True
+print([2, 3] == [3, 2])    # False (diff sequence)
+print([2, 3] == [2])       # False (diff lengths)
+print([2, 3] == (2, 3))    # False (diff types)
+print({2, 3} == {3, 2})    # True (same members)
+
+dict1 = {'a': 1, 'b': 2}
+dict2 = {'b': 2, 'a': 1}
+dict3 = {'a': 1, 'b': 2, 'c': 3}
+
+print(dict1 == dict2)      # True (same pairs)
+print(dict1 == dict3)      # False
+```
+
 ### Summary
+### Exercises
+- done
+
+## [Loops and Iterating](https://launchschool.com/books/python/read/loops_iterating)
+- `for` and `while`
+### [while Loops](https://launchschool.com/books/python/read/loops_iterating#whileloops)
+
+```
+names = ['Chris', 'Max', 'Karis', 'Victor']
+upper_names = []
+index = 0
+
+while index < len(names):
+    upper_name = names[index].upper()
+    upper_names.append(upper_name)
+    index += 1
+
+print(upper_names)
+# ['CHRIS', 'MAX', 'KARIS', 'VICTOR']
+```
+
+### [for Loops](https://launchschool.com/books/python/read/loops_iterating#forloops)
+
+```
+names = ['Chris', 'Max', 'Karis', 'Victor']
+upper_names = []
+
+for name in names:
+    upper_name = name.upper()
+    upper_names.append(upper_name)
+
+print(upper_names)
+# ['CHRIS', 'MAX', 'KARIS', 'VICTOR']
+```
+
+```
+# Looping over a set
+my_set = {1000, 2000, 3000, 4000, 5000}
+for member in my_set:
+    print(member)
+```
+
+#### Nested Loops
+
+### [Controlling Loops](https://launchschool.com/books/python/read/loops_iterating#controllingloops)
+
+-`continue` and `break`
+
+#### Continuing a Loop With Next Iteration
+
+```
+names = ['Chris', 'Max', 'Karis', 'Victor']
+upper_names = []
+
+for name in names:
+    if name == 'Max':
+        continue
+
+    upper_name = name.upper()
+    upper_names.append(upper_name)
+
+print(upper_names);
+# ['CHRIS', 'KARIS', 'VICTOR']
+```
+
+```
+for value in collection:
+    if not some_condition():
+        continue
+
+    # some code here
+
+    if not another_condition():
+        continue
+
+    # some more code here
+```
+
+#### Breaking Out of a Loop
+
+````
+numbers = [3, 1, 5, 9, 2, 6, 4, 7]
+found_item = -1
+index = 0
+
+while index < len(numbers):
+    if numbers[index] == 5:
+        found_item = index
+        break
+
+    index += 1
+
+print(found_item)
+````
+
+#### Emulating Do/While Loops
+### [Simultaneous Iteration](https://launchschool.com/books/python/read/loops_iterating#simultaneousiteration)
+
+- use `zip`
+
+### [Comprehensions](https://launchschool.com/books/python/read/loops_iterating#comprehensions)
+
+- 3 types
+  - list
+  - dict
+  - set
+
+#### List Comprehensions
+
+- the most common.
+- `[ expression for element in iterable if condition ]` is the format
+
+```
+squares = [ number * number for number in range(5) ]
+print(squares)      # [0, 1, 4, 9, 16]
+```
+#### Dictionary Comprehensions
+
+```
+squares = { f'{number}-squared': number * number
+            for number in range(1, 6) }
+print(squares)
+# pretty-printed for clarity.
+{
+    '1-squared': 1,
+    '2-squared': 4,
+    '3-squared': 9,
+    '4-squared': 16,
+    '5-squared': 25
+}
+```
+
+#### Set Comprehensions
+
+```
+squares = { number * number for number in range(1, 6) }
+print(squares)      # {1, 4, 9, 16, 25}
+```
+
+#### Why No Tuple, Range, or String Comprehensions?
+
+- it would be something called a "generator expression" for some reason.
+
+### [Summary](https://launchschool.com/books/python/read/loops_iterating#summary)
 ### Exercises
 
-## Loops and Iterating
-### while Loops
-### for Loops
-### Controlling Loops
-### Simultaneous Iteration
-### Comprehensions
-### Summary
-### Exercises
+```
+# 1. because it doesn't increment
+
+# 2.
+# age = int(input('How old are you? '))
+# print(f'You are {age} years old.')
+# print()
+
+# for future in range(10, 50, 10):
+#   print(f'In {future} years, you will be {age + future} years old.')
+
+# 3.
+
+# my_list = [6, 3, 0, 11, 20, 4, 17]
+# index = 0
+# while index < len(my_list):
+#   print(my_list[index])
+#   index += 1
+
+# 4.
+
+# my_list = [6, 3, 0, 11, 20, 4, 17]
+# index = 0
+# while index < len(my_list):
+#   if (my_list[index] % 2 == 0):
+#     print(my_list[index])
+#   index += 1
+
+# for n in my_list:
+#   if (n % 2 == 1):
+#     print(n)
+
+# 5.
+
+my_list = [
+    [1, 3, 6, 11],
+    [4, 2, 4],
+    [9, 17, 16, 0],
+]
+
+# for list in my_list:
+#   for n in list:
+#     if (n % 2 == 0):
+      # print(n)
+
+#6
+
+new_list = []
+my_list = [
+    1, 3, 6, 11,
+    4, 2, 4, 9,
+    17, 16, 0,
+]
+for n in my_list:
+  if (n % 2 == 1):
+    new_list.append('odd')
+  else:
+    new_list.append('even')
+
+# print(new_list)
+
+# 7
+def find_integers(tuple):
+  return [ elem
+           for elem in tuple
+           if type(elem) is int ]
+
+my_tuple = (1, 'a', '1', 3, [7], 3.1415,
+            -4, None, {1, 2, 3}, False)
+integers = find_integers(my_tuple)
+# print(integers)  
+
+# 8
+
+# Write a comprehension that creates a dict object whose keys are strings and whose values are the length of the corresponding key. Only keys with odd lengths should be in the dict. Use the set given by my_set as the source of strings.
+
+my_set = {
+    'Fluffy',
+    'Butterscotch',
+    'Pudding',
+    'Cheddar',
+    'Cocoa',
+}
+
+name_lengths = { name: len(name) for name in my_set 
+                            if (len(name)) % 2 == 1}
+# print(name_lengths)
+
+# 9
+def factorial(n):
+  if (n == 1):
+    return n
+  else:
+    return n * factorial(n-1)
+
+# print(factorial(1))   # 1
+# print(factorial(2))   # 2
+# print(factorial(3))   # 6
+# print(factorial(4))   # 24
+# print(factorial(5))   # 120
+# print(factorial(6))   # 720
+# print(factorial(7))   # 5040
+# print(factorial(8))   # 40320
+# print(factorial(25))  # 15511210043330985984000000
+
+# 10
+
+import random
+
+highest = 10
+while True:
+  number = random.randrange(highest + 1)
+  # print(number)
+  if number == highest:
+    break
+
+# 11.
+
+index = 0
+while (index < len(my_list)):
+  if (my_list[index] % 2 == 0):
+    print(my_list[index])
+  index += 1
+```
+
 
 ## ADDITIONAL TOPICS
-## Variables As Pointers
-### Variables As Pointers
-### Variables and Objects
-### Variables and Shared Objects
-### Equality and Identity
-### Shallow vs. Deep Copies
+## [Variables As Pointers](https://launchschool.com/books/python/read/variables_pointers)
+
+- nothing new here.
+
+### [Variables As Pointers](https://launchschool.com/books/python/read/variables_pointers#variablesaspointers)
+
+- 
+
+### [Variables and Objects](https://launchschool.com/books/python/read/variables_pointers#variablesobjects)
+
+### [Variables and Shared Objects](https://launchschool.com/books/python/read/variables_pointers#variablessharedobjects)
+
+- I'm tired and not a lot of this is going in, but I'm assuming that most of it is the same as Javascript
+
+### [Equality and Identity](https://launchschool.com/books/python/read/variables_pointers#equality)
+
+
+
+### [Shallow vs. Deep Copies](https://launchschool.com/books/python/read/variables_pointers#shallowdeepcopies)
+#### Shallow Copies
+#### Deep Copies
+#### Should I Make Deep or Shallow Copies?
 ### Summary
 ### Exercises
 
-## More Stuff
-### Function Composition
+```
+# 1
+
+# the == is asking whether the 2 comparees have equal value.
+# the is statement is asking whether the two variables are pointing to he same object in memory.
+
+# 2
+
+set1 = {42, 'Monty Python', ('a', 'b', 'c')}
+set2 = set1
+set1.add(range(5, 10))
+print(set2)
+# this will print the two objects added together
+
+# 3 will print an error because dict2 is a shallow copy, so Monty Python doesn't exist on dict1 -ok I misread the question, but I got the concept right.
+
+# 4 the original dict 1 object values -> no
+
+# You may modify this line
+# import copy
+
+dict1 = {
+    'a': [[7, 1], ['aa', 'aaa']],
+    'b': ([3, 2], ['bb', 'bbb']),
+}
+
+# dict2 = copy.deepcopy(dict1) # You may modify the `???` part
+            # of this line
+
+# All of these should print False
+# print(dict1         is dict2)
+# print(dict1['a']    is dict2['a'])
+# print(dict1['a'][0] is dict2['a'][0])
+# print(dict1['a'][1] is dict2['a'][1])
+# print(dict1['b']    is dict2['b'])
+# print(dict1['b'][0] is dict2['b'][0])
+# print(dict1['b'][1] is dict2['b'][1])
+
+# 6 
+
+dict1 = {
+    'a': [{7, 1}, ['aa', 'aaa']],
+    'b': ({3, 2}, ['bb', 'bbb']),
+}
+
+dict2 = dict(dict1) # You may modify the `???` part
+            # of this line
+
+print(dict1         is dict2) # false
+print(dict1['a']    is dict2['a']) # true
+print(dict1['a'][0] is dict2['a'][0]) # true
+print(dict1['a'][1] is dict2['a'][1]) # true
+print(dict1['b']    is dict2['b']) # true
+print(dict1['b'][0] is dict2['b'][0]) # true
+print(dict1['b'][1] is dict2['b'][1]) # true
+```
+
+## [More Stuff](https://launchschool.com/books/python/read/more_stuff)
+### [Function Composition](https://launchschool.com/books/python/read/more_stuff#functioncomposition)
+
+- composing function calls, AKA composition.
+
 ### Method Chaining
 ### Modules
 ### The math Module
