@@ -1977,17 +1977,169 @@ print(dict1['b'][1] is dict2['b'][1]) # true
 ## [More Stuff](https://launchschool.com/books/python/read/more_stuff)
 ### [Function Composition](https://launchschool.com/books/python/read/more_stuff#functioncomposition)
 
-- composing function calls, AKA composition.
+- composing function calls, AKA composition => passing around functions as arguments.
 
-### Method Chaining
-### Modules
-### The math Module
-### The datetime Module
-### Function Definition Order
-### Nested Functions
-### The global and nonlocal Statements
-### Summary
+### [Method Chaining](https://launchschool.com/books/python/read/more_stuff#methodchaining)
+
+- Many methods simply return None. Thus, chaining in Python isn't very common. 
+
+### [Modules](https://launchschool.com/books/python/read/more_stuff#modules)
+
+- [pyPI](https://pypi.org/)
+- `pip` command to download.
+- Every python file is/can be a module
+
+#### The import and from Statements
+
+```
+import math
+
+print(math.sqrt(math.pi))   # 1.7724538509055159
+```
+
+- or more targetedly:
+
+```
+from math import pi, sqrt
+
+print(sqrt(pi))             # 1.7724538509055159
+```
+
+- "Be aware, though, that from circumvents the naming conflict benefits of import." ?
+- aliases can be useful:
+
+```
+import math as m
+
+print(m.sqrt(m.pi))         # 1.7724538509055159
+```
+
+### [The math Module](https://launchschool.com/books/python/read/more_stuff#mathmodule)
+
+```
+import math
+print(math.sqrt(36))        # 6.0
+print(math.sqrt(2))         # 1.4142135623730951
+```
+
+### [The datetime Module](https://launchschool.com/books/python/read/more_stuff#datetimemodule)
+
+```
+from datetime import datetime as dt
+
+date = dt.strptime("July 16, 2022", "%B %d, %Y")
+weekday_name = date.strftime('%A')
+print(weekday_name)                   # Saturday
+```
+
+-... skim
+
+### [Function Definition Order](https://launchschool.com/books/python/read/more_stuff#functiondefinitionorder)
+
+- This code shows hoisting is not a thing in Python:
+```
+top()
+
+def top():
+    bottom()
+
+def bottom():
+    print('Reached the bottom')
+```
+-  The only rule of thumb is that you should define all your functions before you try to invoke the first one
+
+### [Nested Functions](https://launchschool.com/books/python/read/more_stuff#nestedfunctions)
+
+```
+def foo():
+    def bar():
+        print('BAR')
+
+    bar() # BAR
+
+foo()
+bar() # NameError: name 'bar' is not defined
+```
+
+
+### [The global and nonlocal Statements](https://launchschool.com/books/python/read/more_stuff#globalnonlocalstatements)
+
+-  No matter how deeply nested we are, the global statement stipulates that the listed identifiers are to be interpreted as global variables; that is, as identifiers in the global namespace.
+-   unlike with the global statement, the nonlocal statement requires the named variable to already exist.
+-    The global and nonlocal statements often reflect poor design choices that can be implemented more clearly
+
+### [Summary](https://launchschool.com/books/python/read/more_stuff#summary)
+
 ### Exercises
 
+```
+# 1: CHRIS -> correct
+# 2
+import math
+# print(math.sqrt(37))        # 6.082762530298219
+
+import math as m
+
+# print(m.sqrt(37))            # 6.082762530298219
+
+from math import sqrt
+
+# print(sqrt(37))              # 6.082762530298219
+
+# 3
+
+def sum_of_squares(num1, num2):
+  def square(n):
+      return n * n
+  return square(num1) + square(num2)
+
+
+# print(sum_of_squares(3, 4))   # 25 (3 * 3 + 4 * 4)
+# print(sum_of_squares(5, 12))  # 169 (5 * 5 + 12 * 12)
+
+# 4
+
+# counter = 0
+
+# def increment_counter():
+#   global counter
+#   counter += 1
+
+# print(counter)                # 0
+
+# increment_counter()
+# print(counter)                # 1
+
+# increment_counter()
+# print(counter)                # 2
+
+# counter = 100
+# increment_counter()
+# print(counter)                # 101
+
+# 5
+
+def all_actions():
+    counter = 0
+
+    def increment_counter():
+        nonlocal counter
+        counter += 1
+
+    print(counter)                # 0
+
+    increment_counter()
+    print(counter)                # 1
+
+    increment_counter()
+    print(counter)                # 2
+
+    counter = 100
+    increment_counter()
+    print(counter)                # 101
+
+all_actions()
+```
+
 ## CONCLUSION
-### Conclusion & Next Steps
+### [Conclusion & Next Steps](https://launchschool.com/books/python/read/next_steps)
